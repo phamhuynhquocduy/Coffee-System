@@ -54,7 +54,7 @@ class CategoryController extends Controller
         return view('page.category.create');
     }
     //trả dữ liệu ra json
-    public function conver_json(){
+    public function conver_category_json(){
         $json_category = Category::all();
         return response()->json($json_category);
     }

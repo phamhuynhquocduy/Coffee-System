@@ -17,7 +17,11 @@ class ProductController extends Controller
         //
         return view('page.product.all');
     }
-
+    // convert json product
+    public function conver_category_json(){
+        $product = Product::all();
+        return response()->json($product);
+    }
     /**
      * Show the form for creating a new resource.
      *

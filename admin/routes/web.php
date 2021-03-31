@@ -15,5 +15,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/dashboard', 'App\Http\Controllers\DashboardController@dashboard')->name('dashboard');
 //product
 Route::resource('product', App\Http\Controllers\ProductController::class);
+//category json
+Route::get('product/data/all/json', 'App\Http\Controllers\ProductController@conver_product_json')->name('product-json');
 //category
 Route::resource('category', App\Http\Controllers\CategoryController::class);
+//category json
+Route::get('category/data/all/json', 'App\Http\Controllers\CategoryController@conver_category_json')->name('category-json');
