@@ -13,3 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/dashboard', 'App\Http\Controllers\DashboardController@dashboard')->name('dashboard');
+//product
+Route::resource('product', App\Http\Controllers\ProductController::class);
+//category
+Route::resource('category', App\Http\Controllers\CategoryController::class);
