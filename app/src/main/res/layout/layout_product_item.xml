@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints"
-        android:orientation="horizontal"
-        android:background="@drawable/custom_border_item">
-        <LinearLayout
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/custom_border_item">
+        <ImageView
             android:layout_width="100sp"
             android:layout_height="100sp"
             android:layout_marginLeft="5sp"
             android:layout_marginTop="5sp"
             android:layout_marginBottom="5sp"
             android:background="@drawable/custom_product_item">
-        </LinearLayout>
+        </ImageView>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -32,6 +28,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <TextView
+                        android:id="@+id/tv_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Trà trái cây nhiệt đới"
@@ -45,6 +42,7 @@
                     android:layout_marginRight="10sp"
                     android:layout_marginLeft="60sp">
                     <TextView
+                        android:id="@+id/tv_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="52.000đ"
@@ -55,25 +53,19 @@
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="250sp"
-                android:layout_marginRight="10sp"
-                android:layout_marginBottom="5sp"
-                android:layout_marginTop="40sp">
+                android:orientation="horizontal">
                 <ImageButton
-                    android:layout_width="25sp"
-                    android:layout_height="25sp"
-                    android:background="@drawable/ic_baseline_favorite_border_24">
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_baseline_favorite_border_24">
                 </ImageButton>
                 <ImageButton
-                    android:layout_width="25sp"
-                    android:layout_height="25sp"
-                    android:background="@drawable/ic_baseline_shopping_cart_24">
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_baseline_shopping_cart_24">
                 </ImageButton>
             </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
