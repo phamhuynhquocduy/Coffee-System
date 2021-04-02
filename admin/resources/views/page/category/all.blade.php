@@ -86,11 +86,7 @@
                           {{$cate->description}}
                       </td>
                       <td class="project-actions text-right">
-                          <a class="btn btn-primary btn-sm" href="{{route('category.show', $cate->id)}}">
-                              <i class="fas fa-folder">
-                              </i>
-                              Xem
-                          </a>
+                          
                           <a class="btn btn-info btn-sm" href="{{route('category.edit',$cate->id)}}">
                               <i class="fas fa-pencil-alt">
                               </i>
