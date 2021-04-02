@@ -111,8 +111,8 @@ class CategoryController extends Controller
         ]);
 
         Category::insert($arr);
-        Session::put('message', '<p style="color: green;">Cạp nhật danh mục sản phẩm thành công</p>');
-        return redirect('category/create');
+        Session::put('message', '<p style="color: green;">Cập nhật danh mục sản phẩm thành công</p>');
+        return redirect('category');
     }
 
     /**
