@@ -32,6 +32,15 @@
           </div>
         </div>
         <div class="card-body p-0">
+          <div class="form-group">
+          <?php
+          $message = Session::get('message');
+          if($message){
+            echo $message;
+            Session::put('message', null);
+          }
+          ?>
+          </div>
           <table class="table table-striped projects">
               <thead>
                   <tr>

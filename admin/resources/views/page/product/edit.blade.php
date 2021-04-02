@@ -87,7 +87,7 @@
       <div class="row">
         <div class="col-1"></div>
         <div class="col-10">
-          <input type="submit" value="Thêm sản phẩm" class="btn btn-success float-right">
+          <input type="submit" value="Cập nhật sản phẩm" class="btn btn-success float-right">
         </div>
         <div class="col-1"></div>
       </div>
