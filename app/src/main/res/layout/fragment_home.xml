@@ -15,7 +15,8 @@
         android:gravity="center"
         app:title=""
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme">
+        android:theme="?attr/actionBarTheme"
+        app:menu="@menu/home_menu">
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/search_bar"
@@ -24,7 +25,9 @@
             android:layout_marginRight="24dp"
             app:iconifiedByDefault="false"
             android:layout_gravity="center"
-            app:queryBackground="@null" />
+            android:background="@drawable/custom_search"
+            style="@style/ThemeOverlay.SearchView"
+            app:queryBackground="@null"/>
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
