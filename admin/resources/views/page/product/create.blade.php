@@ -34,13 +34,13 @@
             </div>
             <div class="card-body">
               <form action="{{route('product.store')}}" method="post" enctype="multipart/form-data">
+              {{ csrf_field() }}
                 <div class="form-group">
                   <label for="inputProjectLeader">Danh mục sản phẩm</label>
                   <select name="inputCategory" class="form-control custom-select">
-                    <option selected disabled>Chọn một</option>
-                    <option>Cà phê</option>
-                    <option>Sinh tố</option>
-                    <option>Nước ép</option>
+                    <option value="">Chọn một</option>
+                    <option value=""></option>
+                    
                   </select>
                 </div>
                 <div class="form-group">
