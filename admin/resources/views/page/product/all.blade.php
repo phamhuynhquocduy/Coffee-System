@@ -38,16 +38,22 @@
                       <th style="width: 1%">
                           #
                       </th>
+                      <th style="width: 10%">
+                          Tên danh mục
+                      </th>
                       <th style="width: 15%">
                           Tên sản phẩm
                       </th>
-                      <th style="width: 20%">
+                      <th style="width: 10%">
                           Hình sản phẩm
                       </th>
-                      <th>
+                      <th style="width: 17%">
                           Mô tả
                       </th>
-                      <th style="width: 10%" class="text-center">
+                      <th>
+                          Giá
+                      </th>
+                      <th style="width: 7%" class="text-center">
                           Trạng thái
                       </th>
                       <th style="width: 20%">
@@ -55,46 +61,68 @@
                   </tr>
               </thead>
               <tbody>
+              @foreach ($list_product as $list)
                   <tr>
                       <td>
-                          #
+                          {{$list->id}}
                       </td>
                       <td>
-                          <a>
-                              Sản phẩm 1
-                          </a>
+                      @foreach ($list_cate as $cate)
+                        @if ($cate->id == $list->id_category)
+                          <strong>{{$cate->name}}</strong>
+                        @endif
+                      @endforeach
+                      </td>
+                      <td>
+                          <strong>
+                              {{$list->name}}
+                          </strong>
                           <br/>
                           <small>
-                              Tạo 31.03.2021
+                              {{$list->updated_at}}
                           </small>
                       </td>
                       <td>
-                          <img src="" alt=""> image 1
+                          <img style="width: 50px; height:50px;" src="{{asset('public/save/images/product')}}/{{$list->image}}" alt="">
                       </td>
                       <td class="project_progress">
-                          Mô tả 1
+                          {{$list->description}}
+                      </td>
+                      <td class="project_progress">
+                          <strong>
+                            Giảm còn: {{$list->price - $list->price*($list->sale/100)}} vnd
+                          </strong>
+                          <br/>
+                          <small>
+                            Giá: {{$list->price}} vnd ({{$list->sale}} %)
+                          </small>
                       </td>
                       <td class="project-state">
-                          <span class="badge badge-success">Còn hàng</span>
+                      @if ($list->status == 'Còn')
+                          <span class="badge badge-success">{{$list->status}}</span>
+                      @else
+                          <span class="badge badge-danger">{{$list->status}}</span>
+                      @endif
                       </td>
                       <td class="project-actions text-right">
-                          <a class="btn btn-primary btn-sm" href="#">
+                          <a class="btn btn-primary btn-sm" href="{{route('product.show',$list->id)}}">
                               <i class="fas fa-folder">
                               </i>
                               Xem
                           </a>
-                          <a class="btn btn-info btn-sm" href="{{route('product.edit',1)}}">
+                          <a class="btn btn-info btn-sm" href="{{route('product.edit',$list->id)}}">
                               <i class="fas fa-pencil-alt">
                               </i>
                               Sửa
                           </a>
-                          <a class="btn btn-danger btn-sm" href="#" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?')">
+                          <a class="btn btn-danger btn-sm" href="{{route('product.destroy',$list->id)}}" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?')">
                               <i class="fas fa-trash">
                               </i>
                               Xóa
                           </a>
                       </td>
                   </tr>
+                  @endforeach
               </tbody>
           </table>
         </div>

@@ -5,12 +5,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Sản phẩm</h1>
+            <h1>Danh mục</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Trang chủ</a></li>
-              <li class="breadcrumb-item active">Tất cả sản phẩm</li>
+              <li class="breadcrumb-item active">Tất cả danh mục</li>
             </ol>
           </div>
         </div>
@@ -23,7 +23,7 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Tất cả sản phẩm</h3>
+          <h3 class="card-title">Tất cả danh mục</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -53,13 +53,13 @@
                           #
                       </th>
                       <th style="width: 20%">
-                          Tên sản phẩm
+                          Tên danh mục
                       </th>
                       <th style="width: 20%">
-                          Hình sản phẩm
+                          Hình danh mục
                       </th>
                       <th>
-                          Mô tả
+                          Mô tả danh mục
                       </th>
                       <th style="width: 20%">
                       </th>
@@ -75,7 +75,6 @@
                           <p>
                               {{$cate->name}}
                           </p>
-                          <br/>
                           <small>
                               {{$cate->created_at}}
                           </small>

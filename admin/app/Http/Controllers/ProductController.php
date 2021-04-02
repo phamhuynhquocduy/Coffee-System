@@ -21,10 +21,10 @@ class ProductController extends Controller
         //
         $list_cate = Category::all();
         $list_product = Product::all();
-        return view('page.product.all', compact(['list_cate', 'list_pro']));
+        return view('page.product.all', compact(['list_cate', 'list_product']));
     }
     // convert json product
-    public function conver_category_json(){
+    public function conver_product_json(){
         $product = Product::all();
         return response()->json($product);
     }
@@ -50,7 +50,7 @@ class ProductController extends Controller
     {
         //
         $image = $request->file('inputImage');
-        $imgae->move('public/save/images/product',  $image->getClientOriginalName());
+        $image->move('public/save/images/product',  $image->getClientOriginalName());
         $like = Product::where('name', $request->inputName)->get();
         if(!empty($like[0]->name)){
             Session::put('message', '<p style="color:red;">Sản phẩm đã tồn tại, vui lòng nhập danh mục khác!!</p>');

@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="{{asset('public/plugins/summernote/summernote-bs4.min.css')}}">
     <!-- edit css -->
     <link rel="stylesheet" href="{{asset('public/style-css/style.css')}}">
+    <!-- selectize -->
+    <link rel="stylesheet" href="{{asset('public/selectize/dist/css/selectize.bootstrap3.css')}}">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -311,5 +313,12 @@
 <script src="{{asset('public/dist/js/demo.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('public/dist/js/pages/dashboard.js')}}"></script>
+<!-- selectize -->
+<script src="{{asset('public/selectize/dist/js/standalone/selectize.min.js')}}"></script>
 </body>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $(".select").selectize();
+  });
+</script>
 </html>

@@ -37,10 +37,11 @@
               {{ csrf_field() }}
                 <div class="form-group">
                   <label for="inputProjectLeader">Danh mục sản phẩm</label>
-                  <select name="inputCategory" class="form-control custom-select">
+                  <select name="inputCategory" class="select form-control custom-select">
                     <option value="">Chọn một</option>
-                    <option value=""></option>
-                    
+                    @foreach ($list_cate as $list)
+                    <option value="{{$list->id}}">{{$list->name}}</option>
+                    @endforeach
                   </select>
                 </div>
                 <div class="form-group">
@@ -66,12 +67,11 @@
                 <div class="form-group">
                   <label for="inputStatus">Trạng thái sản phẩm</label>
                   <select name="inputStatus" class="form-control custom-select">
-                    <option selected disabled>Chọn một</option>
-                    <option>Còn</option>
-                    <option>Hết</option>
+                    <option value="" selected disabled>Chọn một</option>
+                    <option value="Còn">Còn</option>
+                    <option value="Hết">Hết</option>
                   </select>
                 </div>
-              </form>
             </div>
             <!-- /.card-body -->
           </div>
@@ -86,6 +86,7 @@
         </div>
         <div class="col-1"></div>
       </div>
+      </form>
     </section>
     <!-- /.content -->
 @endsection
