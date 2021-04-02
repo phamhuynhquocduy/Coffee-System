@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Session;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 session_start();
 
 class CategoryController extends Controller
@@ -43,6 +44,11 @@ class CategoryController extends Controller
         //
         $image = $request->file('inputImage');
         $image->move('public/save/images', $image->getClientOriginalName());
+        $like = Category::where('name', $request->inputName)->get();
+        if(!empty($like[0]->name)){
+            Session::put('message', '<p style="color:red;">Danh mục sản phẩm đã tồn tại, vui lòng nhập danh mục khác!!</p>');
+            return redirect('category/create');
+        }
         $arr = array([
             'name' => $request->inputName,
             'description' => $request->inputDescription,
@@ -50,8 +56,8 @@ class CategoryController extends Controller
         ]);
 
         Category::insert($arr);
-        Session::put('message', '<p style="color: green;">Thêm sản phẩm thành công</p>');
-        return view('page.category.create');
+        Session::put('message', '<p style="color: green;">Thêm danh mục sản phẩm thành công</p>');
+        return redirect('category/create');
     }
     //trả dữ liệu ra json
     public function conver_category_json(){
@@ -65,10 +71,12 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show($id)
     {
         //
-        return view('page.category.view');
+        $info_cate = Category::where('id', $id)->get();
+
+        return view('page.category.view', compact(['info_cate']));
     }
 
     /**
@@ -77,10 +85,11 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
         //
-        return view('page.category.edit');
+        $edit_cate = Category::where('id', $id)->get();
+        return view('page.category.edit', compact(['edit_cate']));
     }
 
     /**
@@ -93,6 +102,17 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         //
+        $image = $request->file('inputImage');
+        $image->move('public/save/images', $image->getClientOriginalName());
+        $arr = array([
+            'name' => $request->inputName,
+            'description' => $request->inputDescription,
+            'image' => $image->getClientOriginalName()
+        ]);
+
+        Category::insert($arr);
+        Session::put('message', '<p style="color: green;">Cạp nhật danh mục sản phẩm thành công</p>');
+        return redirect('category/create');
     }
 
     /**
@@ -105,7 +125,7 @@ class CategoryController extends Controller
     {
         //
         Category::where('id', $id)->delete();
-        Session::put('message', '<p style="color:red;">Xóa sản phẩm thành công</p>');
-        echo 'xóa thành công';
+        Session::put('message', '<p style="color:red;">Xóa danh mục sản phẩm thành công</p>');
+        return redirect('category');
     }
 }

@@ -32,6 +32,20 @@
           </div>
         </div>
         <div class="card-body p-0">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="col-sm-1"></div>
+              <div class="col-sm-11">
+              <?php
+              $message = Session::get('message');
+              if($message){
+                echo $message;
+                Session::put('message', null);
+              }
+              ?>
+              </div>
+            </div>
+          </div>
           <table class="table table-striped projects">
               <thead>
                   <tr>
@@ -73,12 +87,12 @@
                           {{$cate->description}}
                       </td>
                       <td class="project-actions text-right">
-                          <a class="btn btn-primary btn-sm" href="#">
+                          <a class="btn btn-primary btn-sm" href="{{route('category.show', $cate->id)}}">
                               <i class="fas fa-folder">
                               </i>
                               Xem
                           </a>
-                          <a class="btn btn-info btn-sm" href="#">
+                          <a class="btn btn-info btn-sm" href="{{route('category.edit',$cate->id)}}">
                               <i class="fas fa-pencil-alt">
                               </i>
                               Sửa
