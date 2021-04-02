@@ -7,6 +7,7 @@
     android:orientation="horizontal"
     android:background="@drawable/custom_border_item">
         <ImageView
+            android:id="@+id/img_product"
             android:layout_width="100sp"
             android:layout_height="100sp"
             android:layout_marginLeft="5sp"
@@ -57,11 +58,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <ImageButton
+                    android:id="@+id/imgbtn_favorite"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/ic_baseline_favorite_border_24">
                 </ImageButton>
                 <ImageButton
+                    android:id="@+id/imgbtn_cart"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/ic_baseline_shopping_cart_24">

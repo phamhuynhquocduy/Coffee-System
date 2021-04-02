@@ -11,6 +11,7 @@
         android:theme="@style/Theme.CoffeeSystem">
         <activity
             android:name=".MainActivity"
+            android:theme="@style/Theme.CoffeeSystem.NoActionBar"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,5 +20,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
