@@ -119,7 +119,7 @@ class ProductController extends Controller
             'id_category' => $request->inputCategory,
             'status' => $request->inputStatus
         ]);
-        Session::put('message', '<p style="color:green;">Thêm sản phẩm thành công</p>');
+        Session::put('message', '<p style="color:green;">Cập nhật sản phẩm thành công</p>');
         return redirect('product');
     }
 

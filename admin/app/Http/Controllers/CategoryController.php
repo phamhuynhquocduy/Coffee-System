@@ -44,7 +44,7 @@ class CategoryController extends Controller
     {
         //
         $image = $request->file('inputImage');
-        $image->move('public/save/images/category',  $image->getClientOriginalName());
+        $image->move('public/save/images/category/',  $image->getClientOriginalName());
         $like = Category::where('name', $request->inputName)->get();
         if(!empty($like[0]->name)){
             Session::put('message', '<p style="color:red;">Danh mục sản phẩm đã tồn tại, vui lòng nhập danh mục khác!!</p>');
@@ -104,7 +104,7 @@ class CategoryController extends Controller
     {
         //
         $image = $request->file('inputImage');
-        $image->move('public/save/images/category',  $image->getClientOriginalName());
+        $image->move('public/save/images/category/',  $image->getClientOriginalName());
 
         Category::where('id', $id)->update([
             'name' => $request->inputName,
