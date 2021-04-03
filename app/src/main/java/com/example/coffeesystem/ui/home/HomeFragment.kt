@@ -1,12 +1,13 @@
 package com.example.coffeesystem.ui.home
 
+import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.SearchView
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.coffeesystem.R
 import com.example.coffeesystem.databinding.FragmentHomeBinding
 import com.example.coffeesystem.model.Product
 
@@ -24,8 +25,12 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //Menu
+        setHasOptionsMenu(true)
 
         val receiveOrder = Product(1, "Quận 5 co", "https://www.hudsonvalleysojourner.com/wp-content/uploads/2013/10/Art-Cafe-Latte-Art.jpg", "Dịch vụ: Gói hàng, Bóc vác", 100.000, 1)
         val receiveOrder1 = Product(2, "Quận 1 a", "https://www.hudsonvalleysojourner.com/wp-content/uploads/2013/10/Art-Cafe-Latte-Art.jpg", "Dịch vụ: Gói hàng, Bóc vác",100.000 , 2)
@@ -56,6 +61,7 @@ class HomeFragment : Fragment() {
         _binding = null
     }
     private fun searchEvent(){
+        binding.searchBar.queryHint
         binding.searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener, androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String?): Boolean {
                 return false
@@ -69,4 +75,11 @@ class HomeFragment : Fragment() {
             }
         })
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.home_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+
 }
