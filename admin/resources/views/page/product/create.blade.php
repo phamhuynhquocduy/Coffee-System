@@ -46,7 +46,7 @@
               {{ csrf_field() }}
                 <div class="form-group">
                   <label for="inputProjectLeader">Danh mục sản phẩm</label>
-                  <select name="inputCategory" class="select form-control custom-select">
+                  <select name="inputCategory" class="select form-control custom-select" required="Vui lòng nhập trường này!!">
                     <option value="">Chọn một</option>
                     @foreach ($list_cate as $list)
                     <option value="{{$list->id}}">{{$list->name}}</option>
@@ -55,23 +55,23 @@
                 </div>
                 <div class="form-group">
                   <label for="inputName">Tên sản phẩm</label>
-                  <input type="text" name="inputName" class="form-control">
+                  <input type="text" name="inputName" class="form-control" required="Vui lòng nhập trường này!!">
                 </div>
                 <div class="form-group">
                   <label for="inputDescription">Mô tả sản phẩm</label>
-                  <textarea name="inputDescription" class="form-control" rows="4"></textarea>
+                  <textarea name="inputDescription" class="form-control" rows="4" required="Vui lòng nhập trường này!!"></textarea>
                 </div>
                 <div class="form-group">
                   <label for="inputClientCompany">Hình ảnh sản phẩm</label>
-                  <input type="file" name="inputImage" class="form-control">
+                  <input type="file" name="inputImage" class="form-control" required="Vui lòng nhập trường này!!">
                 </div>
                 <div class="form-group">
                   <label for="inputProjectLeader">Giá tiền sản phẩm</label>
-                  <input type="text" name="inputPrice" class="form-control" required>
+                  <input type="text" name="inputPrice" class="form-control" required="Vui lòng nhập trường này!!">
                 </div>
                 <div class="form-group">
                   <label for="inputStatus">Trạng thái sản phẩm</label>
-                  <select name="inputStatus" class="form-control custom-select">
+                  <select name="inputStatus" class="form-control custom-select" required="Vui lòng nhập trường này!!">
                     <option value="" selected disabled>Chọn một</option>
                     <option value="Còn">Còn</option>
                     <option value="Hết">Hết</option>

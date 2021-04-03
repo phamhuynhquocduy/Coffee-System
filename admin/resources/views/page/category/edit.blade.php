@@ -47,7 +47,7 @@
                     {{csrf_field()}}
                     <div class="form-group">
                       <label for="inputName">Tên danh mục</label>
-                      <input type="text" value="{{$edit->name}}" name="inputName" class="form-control">
+                      <input type="text" value="{{$edit->name}}" name="inputName" class="form-control" required>
                     </div>
                     <div class="form-group">
                       <label for="inputDescription">Mô tả danh mục</label>

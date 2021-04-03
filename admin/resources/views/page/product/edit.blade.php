@@ -38,7 +38,7 @@
               {{ csrf_field() }}
                 <div class="form-group">
                   <label for="inputProjectLeader">Danh mục sản phẩm</label>
-                  <select name="inputCategory" class="select form-control custom-select">
+                  <select name="inputCategory" class="select form-control custom-select" required>
                     @foreach ($list_cate as $cate)
                       @if ($cate->id == $edit->id_category)
                       <option value="{{$cate->id}}">{{$cate->name}}</option>
@@ -51,16 +51,16 @@
                 </div>
                 <div class="form-group">
                   <label for="inputName">Tên sản phẩm</label>
-                  <input type="text" value="{{$edit->name}}" name="inputName" class="form-control">
+                  <input type="text" value="{{$edit->name}}" name="inputName" class="form-control" required>
                 </div>
                 <div class="form-group">
                   <label for="inputDescription">Mô tả sản phẩm</label>
-                  <textarea name="inputDescription" class="form-control" rows="4">{{$edit->description}}</textarea>
+                  <textarea name="inputDescription" class="form-control" rows="4" required>{{$edit->description}}</textarea>
                 </div>
                 <div class="form-group">
                   <img src="{{asset('public/save/images/product')}}/{{$edit->image}}" style="witdh: 80px; height: 80px;" alt="" > <br>
                   <label for="inputClientCompany">Hình ảnh sản phẩm</label>
-                  <input type="file" name="inputImage" class="form-control">
+                  <input type="file" name="inputImage" class="form-control" required>
                 </div>
                 <div class="form-group">
                   <label for="inputProjectLeader">Giá tiền sản phẩm</label>
@@ -68,7 +68,7 @@
                 </div>
                 <div class="form-group">
                   <label for="inputStatus">Trạng thái sản phẩm</label>
-                  <select name="inputStatus" value="{{$edit->status}}" class="form-control custom-select">
+                  <select name="inputStatus" value="{{$edit->status}}" class="form-control custom-select" required>
                     <option value="Còn">Còn</option>
                     <option value="Hết">Hết</option>
                   </select>
