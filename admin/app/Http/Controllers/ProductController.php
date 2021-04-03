@@ -131,9 +131,6 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
-        $del_img = Product::where('id',$id)->get('image');
-        Storage::delete('public/save/images/product/'+$del_img[0]->image);
         Product::where('id',$id)->delete();
         Session::put('message', '<p style="color:red;">Xóa sản phẩm thành công</p>');
         return redirect('product');
