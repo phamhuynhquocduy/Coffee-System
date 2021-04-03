@@ -19,13 +19,10 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      - name: executing remote ssh commands using password
+      - name: Deploy
       - uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.HOST_USERNAME }}
           password: ${{ secrets.HOST_PASSWORD }}
-          script: cd /var/www/agile/Coffee-System/ && git pull && cd admin/ && ./deploy.sh
+          script: 'cd /var/www/agile/Coffee-System/ && git pull && cd admin/ && ./deploy.sh'
