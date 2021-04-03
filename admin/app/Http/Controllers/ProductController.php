@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 session_start();
 
 class ProductController extends Controller
@@ -53,7 +54,7 @@ class ProductController extends Controller
         $image->move('public/save/images/product',  $image->getClientOriginalName());
         $like = Product::where('name', $request->inputName)->get();
         if(!empty($like[0]->name)){
-            Session::put('message', '<p style="color:red;">Sản phẩm đã tồn tại, vui lòng nhập danh mục khác!!</p>');
+            Session::put('message', '<p style="color:red;">Sản phẩm đã tồn tại, vui lòng nhập sản phẩm khác!!</p>');
             return redirect('product/create');
         }
         $arr = array();
@@ -61,11 +62,10 @@ class ProductController extends Controller
         $arr['description'] = $request->inputDescription;
         $arr['image'] = $image->getClientOriginalName();
         $arr['price'] = $request->inputPrice;
-        $arr['sale'] = $request->inputSale;
         $arr['id_category'] = $request->inputCategory;
         $arr['status'] = $request->inputStatus;
 
-        Product::insert($arr);
+        $test = Product::insert($arr);
         Session::put('message', '<p style="color:green;">Thêm sản phẩm thành công</p>');
         return redirect('product/create');
     }
@@ -108,20 +108,17 @@ class ProductController extends Controller
     {
         //
         $image = $request->file('inputImage');
-        $imgae->move('public/save/images/product',  $image->getClientOriginalName());
+        $image->move('public/save/images/product',  $image->getClientOriginalName());
         $like = Product::where('name', $request->inputName)->get();
 
-        $arr = array();
-        $arr['name'] = $request->inputName;
-        $arr['description'] = $request->inputDescription;
-        $arr['image'] = $image->getClientOriginalName();
-        $arr['price'] = $request->inputPrice;
-        $arr['sale'] = $request->inputSale;
-        $arr['id_category'] = $request->inputCategory;
-        $arr['status'] = $request->inputStatus;
-        $arr['updated_at'] = $request->updated_at;
-
-        Product::where('id',$id)->update($arr);
+        Product::where('id',$id)->update([
+            'name' => $request->inputName,
+            'description' => $request->inputDescription,
+            'image' => $image->getClientOriginalName(),
+            'price' => $request->inputPrice,
+            'id_category' => $request->inputCategory,
+            'status' => $request->inputStatus
+        ]);
         Session::put('message', '<p style="color:green;">Thêm sản phẩm thành công</p>');
         return redirect('product');
     }
@@ -135,6 +132,8 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+        $del_img = Product::where('id',$id)->get('image');
+        Storage::delete('public/save/images/product/'+$del_img[0]->image);
         Product::where('id',$id)->delete();
         Session::put('message', '<p style="color:red;">Xóa sản phẩm thành công</p>');
         return redirect('product');

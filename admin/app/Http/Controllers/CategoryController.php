@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Carbon;
 session_start();
 
 class CategoryController extends Controller
@@ -43,7 +44,7 @@ class CategoryController extends Controller
     {
         //
         $image = $request->file('inputImage');
-        $image->move('public/save/images', $image->getClientOriginalName());
+        $image->move('public/save/images/category',  $image->getClientOriginalName());
         $like = Category::where('name', $request->inputName)->get();
         if(!empty($like[0]->name)){
             Session::put('message', '<p style="color:red;">Danh mục sản phẩm đã tồn tại, vui lòng nhập danh mục khác!!</p>');
@@ -52,7 +53,7 @@ class CategoryController extends Controller
         $arr = array([
             'name' => $request->inputName,
             'description' => $request->inputDescription,
-            'image' => $image->getClientOriginalName()
+            'image' =>  $image->getClientOriginalName()
         ]);
 
         Category::insert($arr);
@@ -99,18 +100,18 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
         //
         $image = $request->file('inputImage');
-        $image->move('public/save/images', $image->getClientOriginalName());
-        $arr = array([
+        $image->move('public/save/images/category',  $image->getClientOriginalName());
+
+        Category::where('id', $id)->update([
             'name' => $request->inputName,
             'description' => $request->inputDescription,
             'image' => $image->getClientOriginalName()
         ]);
-
-        Category::insert($arr);
+        
         Session::put('message', '<p style="color: green;">Cập nhật danh mục sản phẩm thành công</p>');
         return redirect('category');
     }

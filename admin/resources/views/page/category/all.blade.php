@@ -55,8 +55,8 @@
                       <th style="width: 20%">
                           Tên danh mục
                       </th>
-                      <th style="width: 20%">
-                          Hình danh mục
+                      <th style="width: 15%">
+                          Hình ảnh danh mục
                       </th>
                       <th>
                           Mô tả danh mục
@@ -72,15 +72,12 @@
                           {{$cate->id}}
                       </td>
                       <td>
-                          <p>
+                          <strong>
                               {{$cate->name}}
-                          </p>
-                          <small>
-                              {{$cate->created_at}}
-                          </small>
+                          </strong>
                       </td>
                       <td>
-                          <img src="{{asset('public/save/images')}}/{{$cate->image}}" style="witdh:50px; height:50px;" alt="">
+                      <img src="{{asset('public/save/images/category')}}/{{$cate->image}}" style="width: 50px; height: 50px;" alt="">
                       </td>
                       <td class="project_progress">
                           {{$cate->description}}

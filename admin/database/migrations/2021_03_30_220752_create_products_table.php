@@ -19,10 +19,9 @@ class CreateProductsTable extends Migration
             $table->string('description', 100)->default('text'); // mô tả sản phẩm
             $table->string('image', 100)->default('text'); // hình ảnh sản phẩm
             $table->double('price'); //giá tiền
-            $table->integer('sale'); //giảm giá
             $table->integer('id_category')->unsigned()->default(10); // danh mục sản phẩm
             $table->string('status'); // tình trạng sản phẩm
-            $table->timestamps();
+            
         });
     }
 

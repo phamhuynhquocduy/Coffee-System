@@ -33,6 +33,15 @@
               </div>
             </div>
             <div class="card-body">
+              <div class="form-group">
+              <?php
+              $message = Session::get('message');
+              if($message){
+                echo $message;
+                Session::put('message', null);
+              }
+              ?>
+              </div>
               <form action="{{route('product.store')}}" method="post" enctype="multipart/form-data">
               {{ csrf_field() }}
                 <div class="form-group">
@@ -59,10 +68,6 @@
                 <div class="form-group">
                   <label for="inputProjectLeader">Giá tiền sản phẩm</label>
                   <input type="text" name="inputPrice" class="form-control" required>
-                </div>
-                <div class="form-group">
-                  <label for="inputProjectLeader">Giảm giá</label>
-                  <input type="number" class="form-control" name="inputSale" max="100" min="0">
                 </div>
                 <div class="form-group">
                   <label for="inputStatus">Trạng thái sản phẩm</label>

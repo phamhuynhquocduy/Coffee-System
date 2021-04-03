@@ -67,10 +67,6 @@
                   <input type="text" value="{{$edit->price}}" name="inputPrice" class="form-control" required>
                 </div>
                 <div class="form-group">
-                  <label for="inputProjectLeader">Giảm giá</label>
-                  <input type="number" value="{{$edit->sale}}" class="form-control" name="inputSale" max="100" min="0">
-                </div>
-                <div class="form-group">
                   <label for="inputStatus">Trạng thái sản phẩm</label>
                   <select name="inputStatus" value="{{$edit->status}}" class="form-control custom-select">
                     <option value="Còn">Còn</option>

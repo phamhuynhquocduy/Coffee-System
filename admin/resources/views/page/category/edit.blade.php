@@ -43,7 +43,7 @@
               ?>
               </div>
               @foreach ($edit_cate as $edit)
-                  <form action="{{route('category.update',$edit->id)}}" method="POST" enctype="multipart/form-data">
+                  <form action="{{route('category.update',$edit->id)}}" method="POST"  enctype="multipart/form-data">
                     {{csrf_field()}}
                     <div class="form-group">
                       <label for="inputName">Tên danh mục</label>
@@ -54,9 +54,9 @@
                       <textarea name="inputDescription" class="form-control" rows="4">{{$edit->description}}</textarea>
                     </div>
                     <div class="form-group">
-                      <img src="{{asset('public/save/images/category')}}/{{$edit->image}}" alt=""> <br>
-                      <label for="inputClientCompany">Hình ảnh danh mục</label>
-                      <input type="file" name="inputImage" class="form-control">
+                      <img src="{{asset('public/save/images/category')}}/{{$edit->image}}" style="width: 80px; height: 80px;" alt=""> <br>
+                      <label for="inputDescription">Hình ảnh danh mục</label>
+                      <input type="file" class="form-control" name="inputImage" id="">
                     </div>
                 </div>
                 <!-- /.card-body -->

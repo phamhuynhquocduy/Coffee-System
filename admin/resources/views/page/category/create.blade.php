@@ -42,7 +42,7 @@
               }
               ?>
               </div>
-              <form action="{{route('category.store')}}" method="POST" enctype="multipart/form-data">
+              <form action="{{route('category.store')}}" method="POST"  enctype="multipart/form-data">
                 {{csrf_field()}}
                 <div class="form-group">
                   <label for="inputName">Tên danh mục</label>
@@ -53,8 +53,8 @@
                   <textarea name="inputDescription" class="form-control" rows="4"></textarea>
                 </div>
                 <div class="form-group">
-                  <label for="inputClientCompany">Hình ảnh danh mục</label>
-                  <input type="file" name="inputImage" class="form-control">
+                  <label for="inputDescription">Hình ảnh danh mục</label>
+                  <input type="file" class="form-control" name="inputImage" id="">
                 </div>
             </div>
             <!-- /.card-body -->

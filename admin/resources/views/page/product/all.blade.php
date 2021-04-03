@@ -86,10 +86,6 @@
                           <strong>
                               {{$list->name}}
                           </strong>
-                          <br/>
-                          <small>
-                              {{$list->updated_at}}
-                          </small>
                       </td>
                       <td>
                           <img style="width: 50px; height:50px;" src="{{asset('public/save/images/product')}}/{{$list->image}}" alt="">
@@ -99,12 +95,8 @@
                       </td>
                       <td class="project_progress">
                           <strong>
-                            Giảm còn: {{$list->price - $list->price*($list->sale/100)}} vnd
+                          Giá: {{$list->price}} vnd 
                           </strong>
-                          <br/>
-                          <small>
-                            Giá: {{$list->price}} vnd ({{$list->sale}} %)
-                          </small>
                       </td>
                       <td class="project-state">
                       @if ($list->status == 'Còn')

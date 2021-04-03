@@ -18,7 +18,6 @@ class CreateCategoriesTable extends Migration
             $table->string('name', 100)->default('text');
             $table->string('description', 100)->default('text');
             $table->string('image', 100)->default('text');
-            $table->timestamps();
         });
     }
 
