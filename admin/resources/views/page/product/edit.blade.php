@@ -51,7 +51,7 @@
                 </div>
                 <div class="form-group">
                   <label for="inputName">Tên sản phẩm</label>
-                  <input type="text" value="{{$edit->name}}" name="inputName" class="form-control" required>
+                  <input type="text" value="{{$edit->name}}" name="inputName"  maxlength="100" class="form-control" required>
                 </div>
                 <div class="form-group">
                   <label for="inputDescription">Mô tả sản phẩm</label>

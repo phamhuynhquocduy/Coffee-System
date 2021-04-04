@@ -55,23 +55,23 @@
                 </div>
                 <div class="form-group">
                   <label for="inputName">Tên sản phẩm</label>
-                  <input type="text" name="inputName" class="form-control" required="Vui lòng nhập trường này!!">
+                  <input type="text" name="inputName" class="form-control"  maxlength="100" required>
                 </div>
                 <div class="form-group">
                   <label for="inputDescription">Mô tả sản phẩm</label>
-                  <textarea name="inputDescription" class="form-control" rows="4" required="Vui lòng nhập trường này!!"></textarea>
+                  <textarea name="inputDescription" class="form-control" rows="4" required></textarea>
                 </div>
                 <div class="form-group">
                   <label for="inputClientCompany">Hình ảnh sản phẩm</label>
-                  <input type="file" name="inputImage" class="form-control" required="Vui lòng nhập trường này!!">
+                  <input type="file" name="inputImage" class="form-control" required>
                 </div>
                 <div class="form-group">
                   <label for="inputProjectLeader">Giá tiền sản phẩm</label>
-                  <input type="text" name="inputPrice" class="form-control" required="Vui lòng nhập trường này!!">
+                  <input type="text" name="inputPrice" class="form-control" required>
                 </div>
                 <div class="form-group">
                   <label for="inputStatus">Trạng thái sản phẩm</label>
-                  <select name="inputStatus" class="form-control custom-select" required="Vui lòng nhập trường này!!">
+                  <select name="inputStatus" class="form-control custom-select" required>
                     <option value="" selected disabled>Chọn một</option>
                     <option value="Còn">Còn</option>
                     <option value="Hết">Hết</option>

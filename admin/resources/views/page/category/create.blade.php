@@ -46,7 +46,7 @@
                 {{csrf_field()}}
                 <div class="form-group">
                   <label for="inputName">Tên danh mục</label>
-                  <input type="text" name="inputName" class="form-control" required>
+                  <input type="text" name="inputName" class="form-control" maxlength="100" required>
                 </div>
                 <div class="form-group">
                   <label for="inputDescription">Mô tả danh mục</label>

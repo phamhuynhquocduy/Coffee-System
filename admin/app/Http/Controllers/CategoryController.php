@@ -20,9 +20,6 @@ class CategoryController extends Controller
     {
         //
         $category = Category::paginate(10);
-        // echo '<pre>';
-        // print_r($category);
-        // echo '</pre>';
         return view('page.category.all',compact(['category']));
     }
 
@@ -115,7 +112,11 @@ class CategoryController extends Controller
             $arr['image'] = 'public/save/images/category/'.$name_image;
             Category::where('id', $id)->update($arr);
         }
-
+        $like = Category::where('name', $request->inputName)->get();
+        if(!empty($like[0]->name)){
+            Session::put('message', '<p style="color:red;">Danh mục sản phẩm đã tồn tại, vui lòng nhập danh mục khác!!</p>');
+            return redirect('category');
+        }
         Category::where('id', $id)->update([
             'name' => $request->inputName,
             'description' => $request->inputDescription,

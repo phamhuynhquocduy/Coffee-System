@@ -119,6 +119,10 @@ class ProductController extends Controller
         }
         
         $like = Product::where('name', $request->inputName)->get();
+        if(!empty($like[0]->name)){
+            Session::put('message', '<p style="color:red;">Sản phẩm đã tồn tại, vui lòng nhập sản phẩm khác!!</p>');
+            return redirect('product');
+        }
 
         Product::where('id',$id)->update([
             'name' => $request->inputName,
