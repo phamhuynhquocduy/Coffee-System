@@ -83,7 +83,7 @@ class HomeFragment : Fragment() {
                     val name = product.getString("name")
                     val description = product.getString("description")
                     val image =
-                        "http://45.77.29.150/public/save/images/product/" + product.getString("image")
+                        "http://45.77.29.150/" + product.getString("image")
                     val price = product.getDouble("price")
                     val idcategory = product.getInt("id_category")
                     val status = product.getString("status")
