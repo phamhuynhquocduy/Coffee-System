@@ -80,7 +80,7 @@
                           </strong>
                       </td>
                       <td>
-                      <img src="{{asset('{{$pro->image}}')}}" style="width: 50px; height: 50px;" alt="">
+                      <img src="{{asset('/')}}{{$pro->image}}" style="width: 50px; height: 50px;" alt="">
                       </td>
                       <td class="project_progress">
                           {{$pro->description}}
