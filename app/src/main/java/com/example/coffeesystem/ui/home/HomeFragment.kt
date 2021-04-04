@@ -2,7 +2,6 @@ package com.example.coffeesystem.ui.home
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.SearchView
 import androidx.annotation.RequiresApi
@@ -25,9 +24,9 @@ class HomeFragment : Fragment() {
     private val mReceiveOderList = ArrayList<Product>()
     private var requestQueue: RequestQueue? = null
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
@@ -40,20 +39,6 @@ class HomeFragment : Fragment() {
         //Menu
         setHasOptionsMenu(true)
 
-//        val receiveOrder = Product(1, "Quận 5 co", "https://www.hudsonvalleysojourner.com/wp-content/uploads/2013/10/Art-Cafe-Latte-Art.jpg", "Dịch vụ: Gói hàng, Bóc vác", 100.000, 1)
-//        val receiveOrder1 = Product(2, "Quận 1 a", "https://www.hudsonvalleysojourner.com/wp-content/uploads/2013/10/Art-Cafe-Latte-Art.jpg", "Dịch vụ: Gói hàng, Bóc vác", 100.000, 2)
-//        val receiveOrder2 = Product(3, "Quận 4 bb", "https://www.hudsonvalleysojourner.com/wp-content/uploads/2013/10/Art-Cafe-Latte-Art.jpg", "Dịch vụ: Gói hàng, Bóc vác", 150.000, 1)
-//        val receiveOrder3 = Product(3, "Quận 4 ccc", "https://www.hudsonvalleysojourner.com/wp-content/uploads/2013/10/Art-Cafe-Latte-Art.jpg", "Dịch vụ: Gói hàng, Bóc vác", 150.000, 1)
-//        val receiveOrder4 = Product(3, "Quận 4 ss", "https://www.hudsonvalleysojourner.com/wp-content/uploads/2013/10/Art-Cafe-Latte-Art.jpg", "Dịch vụ: Gói hàng, Bóc vác", 150.000, 1)
-//        val receiveOrder5 = Product(3, "Quận 4 ss", "https://www.hudsonvalleysojourner.com/wp-content/uploads/2013/10/Art-Cafe-Latte-Art.jpg", "Dịch vụ: Gói hàng, Bóc vác", 150.000, 1)
-//        val receiveOrder6 = Product(3, "Quận 4 a", "https://www.hudsonvalleysojourner.com/wp-content/uploads/2013/10/Art-Cafe-Latte-Art.jpg", "Dịch vụ: Gói hàng, Bóc vác", 150.000, 1)
-//        mReceiveOderList.add(receiveOrder)
-//        mReceiveOderList.add(receiveOrder1)
-//        mReceiveOderList.add(receiveOrder2)
-//        mReceiveOderList.add(receiveOrder3)
-//        mReceiveOderList.add(receiveOrder4)
-//        mReceiveOderList.add(receiveOrder5)
-//        mReceiveOderList.add(receiveOrder6)
          jsonParse()
         mAdapter.addItems(mReceiveOderList)
         val layoutManager = LinearLayoutManager(requireContext())
@@ -71,7 +56,8 @@ class HomeFragment : Fragment() {
 
     private fun searchEvent() {
         binding.searchBar.queryHint
-        binding.searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener, androidx.appcompat.widget.SearchView.OnQueryTextListener {
+        binding.searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String?): Boolean {
                 return false
             }
@@ -96,28 +82,24 @@ class HomeFragment : Fragment() {
                     val id = product.getInt("id")
                     val name = product.getString("name")
                     val description = product.getString("description")
-                    val image ="http://45.77.29.150/public/save/images/product/"+product.getString("image")
+                    val image =
+                        "http://45.77.29.150/public/save/images/product/" + product.getString("image")
                     val price = product.getDouble("price")
                     val idcategory = product.getInt("id_category")
                     val status = product.getString("status")
-                    mReceiveOderList.add(Product(id, name,image,description,price,idcategory))
+                    mReceiveOderList.add(Product(id, name, image, description, price, idcategory))
                     mAdapter.addItems(mReceiveOderList)
                 }
             } catch (e: JSONException) {
                 e.printStackTrace()
-                Log.d("errorrrrrrrrrrrrrrr",e.message+"")
             }
-        }, {
-            error -> error.printStackTrace()
-            Log.d("errorrrrrrrrrrrrrrr2",error.message+"")
+        }, { error ->
+            error.printStackTrace()
         })
         requestQueue?.add(request)
 }
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.home_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
-
-
 }

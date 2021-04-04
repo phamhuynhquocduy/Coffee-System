@@ -56,11 +56,37 @@ class ProductAdapter(private var mItems: ArrayList<Product>) :RecyclerView.Adapt
             mItems.addAll(mItemsCopy)
         }else {
             for (product: Product in mItemsCopy) {
-                if (product.name.toLowerCase(Locale.getDefault()).contains(charText)) {
+                if (convertString(product.name.toLowerCase(Locale.getDefault())).contains(convertString(charText))) {
                     mItems.add(product)
                 }
             }
         }
         notifyDataSetChanged()
+    }
+    fun convertString(string: String): String{
+        var searched=""
+        for(i in string){
+            var tmp = convert(i.toString())
+            searched += tmp
+        }
+        return searched
+    }
+    private fun convert(str: String): String {
+        var str = str
+        str = str.replace("[àáạảãâầấậẩẫăằắặẳẵ]".toRegex(), "a")
+        str = str.replace("[èéẹẻẽêềếệểễ]".toRegex(), "e")
+        str = str.replace("[ìíịỉĩ]".toRegex(), "i")
+        str = str.replace("[òóọỏõôồốộổỗơờớợởỡ]".toRegex(), "o")
+        str = str.replace("[ùúụủũưừứựửữ]".toRegex(), "u")
+        str = str.replace("[ỳýỵỷỹ]".toRegex(), "y")
+        str = str.replace("đ".toRegex(), "d")
+        str = str.replace("[ÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴ]".toRegex(), "A")
+        str = str.replace("[ÈÉẸẺẼÊỀẾỆỂỄ]".toRegex(), "E")
+        str = str.replace("[ÌÍỊỈĨ]".toRegex(), "I")
+        str = str.replace("[ÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠ]".toRegex(), "O")
+        str = str.replace("[ÙÚỤỦŨƯỪỨỰỬỮ]".toRegex(), "U")
+        str = str.replace("[ỲÝỴỶỸ]".toRegex(), "Y")
+        str = str.replace("Đ".toRegex(), "D")
+        return str
     }
 }
