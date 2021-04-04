@@ -33,6 +33,7 @@ class ProductAdapter(private var mItems: ArrayList<Product>) :RecyclerView.Adapt
         val dec = DecimalFormat("###,###.#")
         val price = dec.format(item.price)
         holder.mTvPrice!!.text= price
+        holder.tvDescription!!.text=item.description
         Picasso.get().load(item.image).into(holder.mImage)
         }
     inner class CustomViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
@@ -41,6 +42,7 @@ class ProductAdapter(private var mItems: ArrayList<Product>) :RecyclerView.Adapt
         var mImage  =itemView?.findViewById<ImageView>(R.id.img_product)
         var mImgBtnFavorite = itemView?.findViewById<ImageButton>(R.id.imgbtn_favorite)
         var mImgBtnCart = itemView?.findViewById<ImageButton>(R.id.imgbtn_cart)
+        var tvDescription = itemView?.findViewById<TextView>(R.id.tv_description);
     }
     fun addItems(items: ArrayList<Product>) {
         mItems.clear()
