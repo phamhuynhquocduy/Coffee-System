@@ -54,9 +54,9 @@
                       <textarea name="inputDescription" class="form-control" rows="4">{{$edit->description}}</textarea>
                     </div>
                     <div class="form-group">
-                      <img src="{{asset('public/save/images/category')}}/{{$edit->image}}" style="width: 80px; height: 80px;" alt=""> <br>
+                      <img src="{{asset('/')}}{{$edit->image}}" style="width: 80px; height: 80px;" alt=""> <br>
                       <label for="inputDescription">Hình ảnh danh mục</label>
-                      <input type="file" class="form-control" name="inputImage" id="" required>
+                      <input type="file" class="form-control" name="inputImage" id="">
                     </div>
                 </div>
                 <!-- /.card-body -->

@@ -21,7 +21,7 @@ class ProductController extends Controller
     {
         //
         $list_cate = Category::all();
-        $list_product = Product::all();
+        $list_product = Product::paginate(10);
         return view('page.product.all', compact(['list_cate', 'list_product']));
     }
     // convert json product
@@ -51,7 +51,8 @@ class ProductController extends Controller
     {
         //
         $image = $request->file('inputImage');
-        $image->move('public/save/images/product',  $image->getClientOriginalName());
+        $name_image = $image->getClientOriginalName();
+        $image->move('public/save/images/product/', $name_image );
         $like = Product::where('name', $request->inputName)->get();
         if(!empty($like[0]->name)){
             Session::put('message', '<p style="color:red;">Sản phẩm đã tồn tại, vui lòng nhập sản phẩm khác!!</p>');
@@ -60,7 +61,7 @@ class ProductController extends Controller
         $arr = array();
         $arr['name'] = $request->inputName;
         $arr['description'] = $request->inputDescription;
-        $arr['image'] = $image->getClientOriginalName();
+        $arr['image'] = 'public/save/images/product/'.$name_image;
         $arr['price'] = $request->inputPrice;
         $arr['id_category'] = $request->inputCategory;
         $arr['status'] = $request->inputStatus;
@@ -107,14 +108,21 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $arr =array();
         $image = $request->file('inputImage');
-        $image->move('public/save/images/product',  $image->getClientOriginalName());
+        
+        if($image){
+            $name_image = rand(0,200).$image->getClientOriginalName();
+            $image->move('public/save/images/product',  $name_image);
+            $arr['image'] = 'public/save/images/product/'.$name_image;
+            Product::where('id',$id)->update($arr);
+        }
+        
         $like = Product::where('name', $request->inputName)->get();
 
         Product::where('id',$id)->update([
             'name' => $request->inputName,
             'description' => $request->inputDescription,
-            'image' => $image->getClientOriginalName(),
             'price' => $request->inputPrice,
             'id_category' => $request->inputCategory,
             'status' => $request->inputStatus

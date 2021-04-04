@@ -58,9 +58,9 @@
                   <textarea name="inputDescription" class="form-control" rows="4" required>{{$edit->description}}</textarea>
                 </div>
                 <div class="form-group">
-                  <img src="{{asset('public/save/images/product')}}/{{$edit->image}}" style="witdh: 80px; height: 80px;" alt="" > <br>
+                  <img src="{{asset('{{$edit->image}}')}}" style="witdh: 80px; height: 80px;" alt="" > <br>
                   <label for="inputClientCompany">Hình ảnh sản phẩm</label>
-                  <input type="file" name="inputImage" class="form-control" required>
+                  <input type="file" name="inputImage" class="form-control">
                 </div>
                 <div class="form-group">
                   <label for="inputProjectLeader">Giá tiền sản phẩm</label>

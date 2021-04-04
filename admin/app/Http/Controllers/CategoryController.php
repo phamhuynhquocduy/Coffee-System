@@ -19,7 +19,10 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        $category = Category::all();
+        $category = Category::paginate(10);
+        // echo '<pre>';
+        // print_r($category);
+        // echo '</pre>';
         return view('page.category.all',compact(['category']));
     }
 
@@ -44,7 +47,8 @@ class CategoryController extends Controller
     {
         //
         $image = $request->file('inputImage');
-        $image->move('public/save/images/category/',  $image->getClientOriginalName());
+        $name_image = rand(0,200).$image->getClientOriginalName();
+        $image->move('public/save/images/category/',  $name_image);
         $like = Category::where('name', $request->inputName)->get();
         if(!empty($like[0]->name)){
             Session::put('message', '<p style="color:red;">Danh mục sản phẩm đã tồn tại, vui lòng nhập danh mục khác!!</p>');
@@ -53,7 +57,7 @@ class CategoryController extends Controller
         $arr = array([
             'name' => $request->inputName,
             'description' => $request->inputDescription,
-            'image' =>  $image->getClientOriginalName()
+            'image' =>  'public/save/images/category/'.$name_image
         ]);
 
         Category::insert($arr);
@@ -103,13 +107,18 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $arr = array();
         $image = $request->file('inputImage');
-        $image->move('public/save/images/category/',  $image->getClientOriginalName());
+        if($image){
+            $name_image = rand(0,200).$image->getClientOriginalName();
+            $image->move('public/save/images/category/',  $name_image);
+            $arr['image'] = 'public/save/images/category/'.$name_image;
+            Category::where('id', $id)->update($arr);
+        }
 
         Category::where('id', $id)->update([
             'name' => $request->inputName,
             'description' => $request->inputDescription,
-            'image' => $image->getClientOriginalName()
         ]);
         
         Session::put('message', '<p style="color: green;">Cập nhật danh mục sản phẩm thành công</p>');

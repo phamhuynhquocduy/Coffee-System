@@ -77,7 +77,7 @@
                           </strong>
                       </td>
                       <td>
-                      <img src="{{asset('public/save/images/category')}}/{{$cate->image}}" style="width: 50px; height: 50px;" alt="">
+                      <img src="{{$cate->image}}" style="width: 50px; height: 50px;" alt="">
                       </td>
                       <td class="project_progress">
                           {{$cate->description}}
@@ -99,11 +99,17 @@
               @endforeach
               </tbody>
           </table>
+          <br><br>
+          <div class="row col-lg-12 text-center">
+              <div class="col-sm-5"></div>
+              <div class="col-sm-4">{{$category->links('pagination::bootstrap-4')}}</div>
+              <div class="col-sm-3"></div>
+              
+          </div>
         </div>
         <!-- /.card-body -->
       </div>
       <!-- /.card -->
-
     </section>
     <!-- /.content -->
 @endsection
