@@ -56,7 +56,7 @@ class ProductAdapter(private var mItems: ArrayList<Product>) :RecyclerView.Adapt
             mItems.addAll(mItemsCopy)
         }else {
             for (product: Product in mItemsCopy) {
-                if (convertString(product.name.toLowerCase(Locale.getDefault())).contains(convertString(charText))) {
+                if (convertString(product.name.toLowerCase(Locale.getDefault())).contains(convertString(charText).toLowerCase(Locale.getDefault()))) {
                     mItems.add(product)
                 }
             }
