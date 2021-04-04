@@ -41,8 +41,12 @@ class ProductAdapter(private var mItems: ArrayList<Product>) :RecyclerView.Adapt
     }
     fun addItems(items: ArrayList<Product>) {
         mItems.clear()
+        mItemsCopy.clear()
         mItems.addAll(items)
         mItemsCopy.addAll(items)
+        Log.d("dddddddddddddddddd",mItems.size.toString())
+        Log.d("ddddddddddddddddddde",mItemsCopy.size.toString())
+
         notifyDataSetChanged()
     }
     interface ServiceCallback {
@@ -51,10 +55,13 @@ class ProductAdapter(private var mItems: ArrayList<Product>) :RecyclerView.Adapt
 
     fun filterName(charText: String) {
         charText.toLowerCase(Locale.getDefault())
+//        Log.d("dddddddddddddddddd",mItems.size.toString())
+//        Log.d("ddddddddddddddddddde",mItemsCopy.size.toString())
         mItems.clear()
         if (charText.isEmpty()){
             mItems.addAll(mItemsCopy)
         }else {
+            mItems.clear()
             for (product: Product in mItemsCopy) {
                 if (convertString(product.name.toLowerCase(Locale.getDefault())).contains(convertString(charText).toLowerCase(Locale.getDefault()))) {
                     mItems.add(product)
