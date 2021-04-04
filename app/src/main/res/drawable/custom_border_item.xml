@@ -5,12 +5,7 @@
     <solid
         android:color="@color/white">
     </solid>
-    <size
-        android:width="100sp"
-        android:height="100sp">
-    </size>
-    <stroke
-        android:width="2sp"
-        android:color="#CDCDB4">
-    </stroke>
+    <corners
+        android:radius="20dp">
+    </corners>
 </shape>
