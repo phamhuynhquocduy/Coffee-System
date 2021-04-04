@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.coffeesystem.R
 import com.example.coffeesystem.model.Product
 import com.squareup.picasso.Picasso
+import java.text.DecimalFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -29,7 +30,9 @@ class ProductAdapter(private var mItems: ArrayList<Product>) :RecyclerView.Adapt
     override fun onBindViewHolder(holder: ProductAdapter.CustomViewHolder, position: Int) {
         val item: Product = mItems[position]
         holder.mTvName!!.text = item.name
-        holder.mTvPrice!!.text= item.price.toString()
+        val dec = DecimalFormat("###,###.#")
+        val price = dec.format(item.price)
+        holder.mTvPrice!!.text= price
         Picasso.get().load(item.image).into(holder.mImage)
         }
     inner class CustomViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
@@ -44,8 +47,6 @@ class ProductAdapter(private var mItems: ArrayList<Product>) :RecyclerView.Adapt
         mItemsCopy.clear()
         mItems.addAll(items)
         mItemsCopy.addAll(items)
-        Log.d("dddddddddddddddddd",mItems.size.toString())
-        Log.d("ddddddddddddddddddde",mItemsCopy.size.toString())
 
         notifyDataSetChanged()
     }
@@ -55,8 +56,6 @@ class ProductAdapter(private var mItems: ArrayList<Product>) :RecyclerView.Adapt
 
     fun filterName(charText: String) {
         charText.toLowerCase(Locale.getDefault())
-//        Log.d("dddddddddddddddddd",mItems.size.toString())
-//        Log.d("ddddddddddddddddddde",mItemsCopy.size.toString())
         mItems.clear()
         if (charText.isEmpty()){
             mItems.addAll(mItemsCopy)

@@ -53,7 +53,6 @@
                         android:text="52.000đ"
                         android:textSize="16sp"
                         android:layout_marginRight="10dp"
-                        android:textAlignment="textEnd"
                         android:textColor="@color/black">
                     </TextView>
                 </LinearLayout>
@@ -66,15 +65,15 @@
                 android:layout_weight="3">
                 <ImageButton
                     android:id="@+id/imgbtn_favorite"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:background="@color/white"
                     android:src="@drawable/ic_baseline_favorite_border_24">
                 </ImageButton>
                 <ImageButton
                     android:id="@+id/imgbtn_cart"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:background="@color/white"
                     android:src="@drawable/ic_baseline_shopping_cart_24"
                     android:layout_marginRight="10dp">
