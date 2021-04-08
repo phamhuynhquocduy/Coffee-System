@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/dashboard', 'App\Http\Controllers\DashboardController@dashboard')->name('dashboard');
+// login
+Route::get('/login', 'App\Http\Controllers\DashboardController@login')->name('login');
+// post-login
+Route::post('/post_login', 'App\Http\Controllers\DashboardController@post_login')->name('post-login');
+// view admin
+Route::get('/view-admin', 'App\Http\Controllers\DashboardController@view_admin');
 //product
 Route::prefix('product')->group(function () {
     Route::get('/', 'App\Http\Controllers\ProductController@index')->name('product.index');
@@ -26,7 +32,7 @@ Route::prefix('product')->group(function () {
 Route::get('product/data/all/json', 'App\Http\Controllers\ProductController@conver_product_json')->name('product-json');
 //category
 Route::prefix('category')->group(function () {
-    Route::get('', 'App\Http\Controllers\CategoryController@index')->name('category.index');
+    Route::get('/', 'App\Http\Controllers\CategoryController@index')->name('category.index');
     Route::get('/create', 'App\Http\Controllers\CategoryController@create')->name('category.create');
     Route::post('/save', 'App\Http\Controllers\CategoryController@store')->name('category.store');
     Route::get('/{id}/edit', 'App\Http\Controllers\CategoryController@edit')->name('category.edit');
@@ -35,3 +41,15 @@ Route::prefix('category')->group(function () {
 });
 //category json
 Route::get('category/data/all/json', 'App\Http\Controllers\CategoryController@conver_category_json')->name('category-json');
+//customer
+Route::prefix('customer')->group(function () {
+    Route::get('/', 'App\Http\Controllers\CustomerController@index')->name('customer.index');
+    Route::get('/create', 'App\Http\Controllers\CustomerController@create')->name('customer.create');
+    Route::post('/save', 'App\Http\Controllers\CustomerController@store')->name('customer.store');
+    Route::get('/{id}/edit', 'App\Http\Controllers\CustomerController@edit')->name('customer.edit');
+    Route::post('/{id}/update', 'App\Http\Controllers\CustomerController@update')->name('customer.update');
+    Route::get('/{id}/delete', 'App\Http\Controllers\CustomerController@destroy')->name('customer.destroy');
+});
+//category json
+Route::get('/customer/data/all/json', 'App\Http\Controllers\CustomerController@conver_customer_json')->name('customer-json');
+

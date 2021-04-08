@@ -104,7 +104,7 @@
           <img src="{{asset('public/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Admin</a>
+          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
         </div>
       </div>
 
@@ -229,19 +229,19 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
-                Tài khoản
+                Tài khoản khách hàng
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
+                <a href="{{ route('customer.create') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Thêm tài khoản</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
+                <a href="{{ route('customer.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tất cả tài khoản</p>
                 </a>
