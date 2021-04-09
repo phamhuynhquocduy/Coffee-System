@@ -1,6 +1,9 @@
+@file:Suppress("NAME_SHADOWING")
+
 package com.example.coffeesystem.ui.home
 
-import android.util.Log
+import android.app.Activity
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +11,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.coffeesystem.DetailProductActivity
 import com.example.coffeesystem.R
 import com.example.coffeesystem.model.Product
 import com.squareup.picasso.Picasso
@@ -35,6 +39,13 @@ class ProductAdapter(private var mItems: ArrayList<Product>) :RecyclerView.Adapt
         holder.mTvPrice!!.text= price
         holder.tvDescription!!.text=item.description
         Picasso.get().load(item.image).into(holder.mImage)
+        holder.itemView.setOnClickListener(){
+            val activity = holder.itemView.context as Activity
+            val intent = Intent(activity, DetailProductActivity::class.java)
+            intent.putExtra("Detail",item)
+            activity.startActivity(intent)
+
+        }
         }
     inner class CustomViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
         var mTvName = itemView?.findViewById<TextView>(R.id.tv_name)
@@ -64,7 +75,7 @@ class ProductAdapter(private var mItems: ArrayList<Product>) :RecyclerView.Adapt
         }else {
             mItems.clear()
             for (product: Product in mItemsCopy) {
-                if (convertString(product.name.toLowerCase(Locale.getDefault())).contains(convertString(charText).toLowerCase(Locale.getDefault()))) {
+                if (convertString(product.name!!.toLowerCase(Locale.getDefault())).contains(convertString(charText).toLowerCase(Locale.getDefault()))) {
                     mItems.add(product)
                 }
             }
@@ -98,3 +109,5 @@ class ProductAdapter(private var mItems: ArrayList<Product>) :RecyclerView.Adapt
         return str
     }
 }
+
+
