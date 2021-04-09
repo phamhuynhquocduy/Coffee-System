@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,7 +18,7 @@ class DatabaseSeeder extends Seeder
         $admin = [
             'name' => 'admin',
             'email' => 'admin@gmail.com',
-            'password' => md5('admin')
+            'password' => Hash::make('admin')
         ];
 
         User::insert($admin);

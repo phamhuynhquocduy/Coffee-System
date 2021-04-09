@@ -8,38 +8,50 @@ use Session;
 use App\Models\Category;
 use App\Models\User;
 use Auth;
+use Hash;
 
 class DashboardController extends Controller
 {
     //dashboard
     public function dashboard(){
-        $category = Category::all();
-        $product = Product::all();
-        return view('page.dashboard', compact(['category', 'product']));
+        if(Auth::check()){
+            $category = Category::all();
+            $product = Product::all();
+            return view('page.dashboard', compact(['category', 'product']));
+        }
+        else{
+            Session::put('message', '<p style="color:red;">Bạn cần phải đăng nhập</p>');
+            return redirect('login');
+        }
     }
 
     public function login(){
         return view('login');
     }
 
-    // public function post_login(Request $request){
-    //     $arr = [
-    //         'name' => $request->username,
-    //         'password' => md5($request->password)
-    //     ];
+    public function post_login(Request $request){
+        $arr = [
+            'name' => $request->username,
+            'password' => $request->password
+        ];
 
-    //     return response()->json($arr);
+        // return response()->json($arr);
 
-    //     if(Auth::guard('web')->attempt($arr)){
-    //         return view('page.dashboard');
-    //     }
-    //     else{
-    //         Session::put('message','<p style="color: red;>Tài khoản hoặc mật khẩu sai, vui lòng đăng nhập lại!!!</p>');
-    //         return redirect('login');
-    //     }
-    // }
+        if(Auth::guard('web')->attempt($arr)){
+            return redirect('dashboard');
+        }
+        else{
+            Session::put('message','<p style="color: red;">Tài khoản hoặc mật khẩu sai, vui lòng đăng nhập lại!!!</p>');
+            return redirect('login');
+        }
+    }
 
-    // public function view_admin(){
-    //     return response()->json(User::all());
-    // }
+    public function view_admin(){
+        return response()->json(User::all());
+    }
+    //logout
+    public function logout(){
+        Auth::logout();
+        return redirect('login');
+    }
 }

@@ -104,7 +104,7 @@
           <img src="{{asset('public/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Admin</a>
+          <a href="#" class="d-block">@if(Auth::check()) {{ Auth::user()->name }} @endif</a>
         </div>
       </div>
 
@@ -249,6 +249,15 @@
             </ul>
           </li>
           <!-- <li class="nav-header">EXAMPLES</li> -->
+          <!-- logout -->
+          <li class="nav-item">
+            <a href="{{ route('logout') }}" class="nav-link">
+              <i class="nav-icon fas fa-sign-out-alt"></i>
+              <p>
+                Logout
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

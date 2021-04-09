@@ -19,6 +19,8 @@ Route::get('/login', 'App\Http\Controllers\DashboardController@login')->name('lo
 Route::post('/post_login', 'App\Http\Controllers\DashboardController@post_login')->name('post-login');
 // view admin
 Route::get('/view-admin', 'App\Http\Controllers\DashboardController@view_admin');
+// logout
+Route::get('/logout', 'App\Http\Controllers\DashboardController@logout')->name('logout');
 //product
 Route::prefix('product')->group(function () {
     Route::get('/', 'App\Http\Controllers\ProductController@index')->name('product.index');

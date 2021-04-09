@@ -23,7 +23,17 @@
   <div class="card">
     <div class="card-body login-card-body">
       <p class="login-box-msg">Đăng nhập để bắt đầu</p>
-
+      <div class="row">
+        <div class="col-12">
+          <?php
+          $message = Session::get('message');
+          if($message){
+            echo $message;
+            Session::put('message', null);  
+          }
+          ?>
+        </div>
+      </div>
       <form action="{{ route('post-login') }}" method="post">
         {{ csrf_field() }}
         <div class="input-group mb-3">
@@ -65,7 +75,7 @@
       <!-- /.social-auth-links -->
 
       <p class="mb-1">
-        <a href="">Quên mật khẩu</a>
+        <a href="">Quên mật khẩu ?</a>
       </p>
       <p class="mb-0">
         
