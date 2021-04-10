@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.example.coffeesystem.ui.dashboard.DashboardFragment
 import com.example.coffeesystem.ui.home.HomeFragment
 import com.example.coffeesystem.ui.notifications.NotificationsFragment
+import com.example.coffeesystem.ui.profile.ProfileFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,7 +37,10 @@ class MainActivity : AppCompatActivity() {
                     loadFragment(DashboardFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
-
+                R.id.navigation_profile-> {
+                    loadFragment(ProfileFragment())
+                    return@setOnNavigationItemSelectedListener true
+                }
             }
             false
 
