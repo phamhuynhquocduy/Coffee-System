@@ -13,7 +13,7 @@
         android:layout_height="40dp"
         android:layout_gravity="right|top"
         android:background="@color/white"
-        android:src="@drawable/custom_border_radius"
+        android:src="@drawable/ic_baseline_cancel_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,7 +24,7 @@
         android:layout_marginTop="16dp"
         android:text="Mã Xác Thực"
         android:textStyle="bold"
-        android:textColor="@color/Cyan"
+        android:textColor="@color/DoubleDarkCyan"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.544"
