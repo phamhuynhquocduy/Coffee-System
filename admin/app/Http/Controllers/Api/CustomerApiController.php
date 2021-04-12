@@ -25,9 +25,10 @@ class CustomerApiController extends Controller
                             ->orWhere('phone', $request->phone)->first();
         
         if(!empty($check)){
-            return response()->json([
-                'message' => 'Tài khoản đã tồn tại'
-            ]);
+            // return response()->json([
+            //     'message' => 'Tài khoản đã tồn tại'
+            // ]);
+            return 'Error!';
         }
 
         Customer::create([
