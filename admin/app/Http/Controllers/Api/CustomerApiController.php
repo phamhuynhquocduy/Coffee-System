@@ -39,7 +39,8 @@ class CustomerApiController extends Controller
             'address' => $request->input('address')
         ]);
 
-        return response()->noContent();
+        // return response()->noContent();
+        return 'Success!';
     }
 
     //user
