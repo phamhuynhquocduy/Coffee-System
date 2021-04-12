@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Carbon;
 use Hash;
+use Auth;
 
 class CustomerController extends Controller
 {
@@ -89,7 +90,7 @@ class CustomerController extends Controller
     public function show($id)
     {
         //
-        
+        return response()->json(Customer::where('id', $id)->get());
     }
 
     /**
@@ -150,5 +151,18 @@ class CustomerController extends Controller
         Customer::where('id', $id)->delete();
         Session::put('message', '<p style="color: red;">Xóa tài khoản người dùng thành công</p>');
         return Redirect::to('customer');
+    }
+
+    public function login_customer(Request $request){
+        if(!empty(Customer::where([
+            ['username',$request->username],
+            ['password',$request->password]
+        ])))
+        {
+            return 'Success';
+        }
+        else{
+            return 'Error';
+        }
     }
 }

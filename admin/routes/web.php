@@ -45,9 +45,13 @@ Route::prefix('category')->group(function () {
 Route::get('category/data/all/json', 'App\Http\Controllers\CategoryController@conver_category_json')->name('category-json');
 //customer
 Route::prefix('customer')->group(function () {
+    //login customer
+    Route::post('/post-login','App\Http\Controllers\CustomerController@login_customer');
+
     Route::get('/', 'App\Http\Controllers\CustomerController@index')->name('customer.index');
     Route::get('/create', 'App\Http\Controllers\CustomerController@create')->name('customer.create');
     Route::post('/save', 'App\Http\Controllers\CustomerController@store')->name('customer.store');
+    Route::get('/{id}/show', 'App\Http\Controllers\CustomerController@show')->name('customer.show');
     Route::get('/{id}/edit', 'App\Http\Controllers\CustomerController@edit')->name('customer.edit');
     Route::post('/{id}/update', 'App\Http\Controllers\CustomerController@update')->name('customer.update');
     Route::get('/{id}/delete', 'App\Http\Controllers\CustomerController@destroy')->name('customer.destroy');
