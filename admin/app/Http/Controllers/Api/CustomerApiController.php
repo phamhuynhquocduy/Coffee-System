@@ -28,7 +28,7 @@ class CustomerApiController extends Controller
             // return response()->json([
             //     'message' => 'Tài khoản đã tồn tại'
             // ]);
-            return 'Error!';
+            return 'Tài khoản đã tồn tại!';
         }
 
         Customer::create([
