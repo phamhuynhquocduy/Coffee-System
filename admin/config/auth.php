@@ -54,7 +54,7 @@ return [
         ],
 
         'customer-api' => [
-            'driver' => 'token',
+            'driver' => 'sanctum',
             'provider' => 'customers',
             'hash' => false,
         ],
