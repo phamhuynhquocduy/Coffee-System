@@ -17,7 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-// reset password
-Route::get('/reset-password', 'App\Http\Controllers\ResetPasswordController@getSendMail')->name('get-send-mail');
-Route::post('/reset-password', 'App\Http\Controllers\ResetPasswordController@sendMail')->name('send-mail');
-Route::put('/reset-password/{token}', 'App\Http\Controllers\ResetPasswordController@reset')->name('reset-password');
+// login-customer
+Route::get('/login-customer', 'App\Http\Controllers\CustomerController@login');
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/users', 'UserController@index');
+});

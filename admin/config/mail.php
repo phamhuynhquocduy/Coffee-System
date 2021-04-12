@@ -36,9 +36,9 @@ return [
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'smtp.gmail.com'),
-            'port' => env('MAIL_PORT', 465),
-            'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
+            'host' => env('MAIL_HOST', 'smtp.mailtrap.io'),
+            'port' => env('MAIL_PORT', 2525),
+            'encryption' => env('MAIL_ENCRYPTION', 'tls'),
             'username' => env('MAIL_USERNAME'),
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
@@ -84,8 +84,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'duchoaikevin279@gmail.com'),
-        'name' => env('MAIL_FROM_NAME', 'Đức Trần Hoài'),
+        'address' => env('MAIL_FROM_ADDRESS', 'e8ce1e6cc84ad5'),
+        'name' => env('MAIL_FROM_NAME', 'Hoai Duc Tutorial'),
     ],
 
     /*
