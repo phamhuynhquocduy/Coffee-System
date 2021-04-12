@@ -13,4 +13,13 @@ class Customer extends Authenticatable
     use HasFactory,Notifiable,HasApiTokens;
 
     protected $table = "customers";
+
+    protected $fillable = [
+        'name',
+        'username',
+        'email',
+        'phone',
+        'address',
+        'password'
+    ];
 }

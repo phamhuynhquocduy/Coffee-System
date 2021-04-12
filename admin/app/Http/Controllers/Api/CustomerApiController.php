@@ -42,6 +42,11 @@ class CustomerApiController extends Controller
         return response()->noContent();
     }
 
+    //user
+    public function user(Request $request){
+        return response()->json($request->user());
+    }
+
     //login
     public function login(Request $request)
     {
