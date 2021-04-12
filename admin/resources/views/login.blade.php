@@ -75,7 +75,7 @@
       <!-- /.social-auth-links -->
 
       <p class="mb-1">
-        <a href="">Quên mật khẩu ?</a>
+        <a href="{{ route('get-send-mail') }}">Quên mật khẩu ?</a>
       </p>
       <p class="mb-0">
         

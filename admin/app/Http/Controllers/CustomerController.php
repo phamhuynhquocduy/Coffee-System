@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Carbon;
+use Hash;
 
 class CustomerController extends Controller
 {
@@ -42,19 +43,36 @@ class CustomerController extends Controller
      *///Save product method post
     public function store(Request $request)
     {
-        //
+        //phone
+        $required_phone = Customer::where('phone',$request->phone)->first();
+        if(!empty($required_phone)){
+            Session::put('message', '<p style="color: red;">Số điện thoại đã tồn tại vui lòng đăng ký bằng số khác!!!</p>');
+            return Redirect::to('customer/create');
+        }
+        //email
+        $required_email = Customer::where('email',$request->email)->first();
+        if(!empty($required_email)){
+            Session::put('message', '<p style="color: red;">Email đã tồn tại vui lòng đăng ký bằng số khác!!!</p>');
+            return Redirect::to('customer/create');
+        }
+        //username
+        $required_username = Customer::where('username',$request->username)->first();
+        if(!empty($required_username)){
+            Session::put('message', '<p style="color: red;">Username đã tồn tại vui lòng đăng ký bằng số khác!!!</p>');
+            return Redirect::to('customer/create');
+        }
         $arr = [
             'name' => $request->name,
             'username' => $request->username,
-            'password' => md5($request->password),
+            'password' => Hash::make($request->password),
             'email' => $request->email,
             'phone' => $request->phone,
             'address' => $request->address
         ];
 
         Customer::insert($arr);
-        Session::put('message', '<p style="color: green;>Thêm tài khoản thành công</p>');
-        return redirect('customer/create');
+        Session::put('message', '<p style="color: green;">Thêm tài khoản thành công</p>');
+        return Redirect::to('customer/create');
         
     }
     //trả dữ liệu ra json
@@ -97,18 +115,27 @@ class CustomerController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $update = [
-            'name' => $request->name,
-            'username' => $request->username,
-            'password' => md5($request->password),
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'address' => $request->address
-        ];
+        if($request->password == '')
+            $update = [
+                'name' => $request->name,
+                'username' => $request->username,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'address' => $request->address
+            ];
+        else 
+            $update = [
+                'name' => $request->name,
+                'username' => $request->username,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'phone' => $request->phone,
+                'address' => $request->address
+            ];
         
         Customer::where('id', $id)->update($update);
         Session::put('message', '<p style="color:green;">Cập nhật tài khoản người dùng thành công</p>');
-        return redirect('customer');
+        return Redirect::to('customer');
     }
 
     /**
@@ -122,6 +149,6 @@ class CustomerController extends Controller
         //
         Customer::where('id', $id)->delete();
         Session::put('message', '<p style="color: red;">Xóa tài khoản người dùng thành công</p>');
-        return redirect('customer');
+        return Redirect::to('customer');
     }
 }

@@ -52,6 +52,8 @@ Route::prefix('customer')->group(function () {
     Route::post('/{id}/update', 'App\Http\Controllers\CustomerController@update')->name('customer.update');
     Route::get('/{id}/delete', 'App\Http\Controllers\CustomerController@destroy')->name('customer.destroy');
 });
-//category json
+//customer json
 Route::get('/customer/data/all/json', 'App\Http\Controllers\CustomerController@conver_customer_json')->name('customer-json');
 
+// send mail
+Route::get('/send-mail', 'App\Http\Controllers\MailController@send_mail');

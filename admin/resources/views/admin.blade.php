@@ -325,6 +325,20 @@
 <!-- selectize -->
 <script src="{{asset('public/selectize/dist/js/standalone/selectize.min.js')}}"></script>
 </body>
+<script>
+  var input = document.getElementById('phone');
+  input.oninvalid = function(event) {
+    event.target.setCustomValidity('Số điện thoại không đúng định dạng!!!');
+  }
+  var username = document.getElementById('username');
+  username.oninvalid = function(event) {
+    event.target.setCustomValidity('Tài khoản không đúng định dạng!!!');
+  }
+  var password = document.getElementById('password');
+  password.oninvalid = function(event) {
+    event.target.setCustomValidity('Mật khẩu phải trên 6 ký tự');
+  }
+</script>
 <script type="text/javascript">
   $(document).ready(function () {
     $(".select").selectize();

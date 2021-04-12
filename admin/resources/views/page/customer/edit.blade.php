@@ -47,15 +47,15 @@
                 {{csrf_field()}}
                 <div class="form-group">
                   <label for="inputName">Tên khách hàng</label>
-                  <input type="text" name="name" value="{{$edit->name}}" class="form-control" placeholder="Tên khách hàng ..." maxlength="100" required>
+                  <input type="text" name="name" value="{{$edit->name}}" class="form-control" placeholder="Tên khách hàng ..." maxlength="50" required>
                 </div>
                 <div class="form-group">
                   <label for="inputDescription">Tài khoản</label>
-                  <input type="text" name="username" value="{{$edit->username}}" class="form-control" placeholder="Tên tài khoản ..." maxlength="100" required>
+                  <input type="text" name="username" value="{{$edit->username}}" class="form-control" placeholder="Tên tài khoản ..." maxlength="50" required>
                 </div>
                 <div class="form-group">
                   <label for="inputDescription">Mật khẩu mới</label>
-                  <input type="password" name="password" value="{{$edit->password}}" placeholder="Mật khẩu ..." class="form-control" maxlength="100" required>
+                  <input type="password" name="password" placeholder="Mật khẩu ..." class="form-control" maxlength="50">
                 </div>
                 <div class="form-group">
                   <label for="inputDescription">Email</label>
@@ -63,7 +63,7 @@
                 </div>
                 <div class="form-group">
                   <label for="inputDescription">Số điện thoại</label>
-                  <input type="text" name="phone" value="{{$edit->phone}}" placeholder="Số điện thoại ..." class="form-control" maxlength="100" required>
+                  <input type="text" name="phone" value="{{$edit->phone}}" placeholder="Số điện thoại ..." class="form-control" pattern="[0]{1}[0-9]{9}" minlength="10" maxlength="10" required>
                 </div>
                 <div class="form-group">
                   <label for="inputDescription">Địa chỉ</label>

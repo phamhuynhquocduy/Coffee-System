@@ -33,14 +33,19 @@
               </div>
             </div>
             <div class="card-body">
-              <div class="form-group">
-              <?php
-              $message = Session::get('message');
-              if($message){
-                echo $message;
-                Session::put('message', null);
-              }
-              ?>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="col-sm-1"></div>
+                  <div class="col-sm-11">
+                  <?php
+                  $message = Session::get('message');
+                  if($message){
+                    echo $message;
+                    Session::put('message', null);
+                  }
+                  ?>
+                  </div>
+                </div>
               </div>
               <form action="{{route('customer.store')}}" method="POST">
                 {{csrf_field()}}
@@ -50,11 +55,11 @@
                 </div>
                 <div class="form-group">
                   <label for="inputDescription">Tài khoản</label>
-                  <input type="text" name="username" class="form-control" placeholder="Tên tài khoản ..." maxlength="100" required>
+                  <input id="username" type="text" name="username" class="form-control" placeholder="Tên tài khoản ..." maxlength="50" pattern="[A-Za-z0-9].{5,}" required> 
                 </div>
                 <div class="form-group">
                   <label for="inputDescription">Mật khẩu</label>
-                  <input type="password" name="password" placeholder="Mật khẩu ..." class="form-control" maxlength="100" required>
+                  <input id="password" type="password" name="password" placeholder="Mật khẩu ..." class="form-control" minlength="6" maxlength="50" required>
                 </div>
                 <div class="form-group">
                   <label for="inputDescription">Email</label>
@@ -62,7 +67,7 @@
                 </div>
                 <div class="form-group">
                   <label for="inputDescription">Số điện thoại</label>
-                  <input type="text" name="phone" placeholder="Số điện thoại ..." class="form-control" maxlength="100" required>
+                  <input id="phone" type="text" name="phone" placeholder="Số điện thoại ..." class="form-control" pattern="[0]{1}[0-9]{9}" minlength="10" maxlength="10" required>
                 </div>
                 <div class="form-group">
                   <label for="inputDescription">Địa chỉ</label>
@@ -76,11 +81,11 @@
         <div class="col-md-1"></div>
       </div>
       <div class="row">
-        <div class="col-1"></div>
-        <div class="col-10">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
           <input type="submit" value="Thêm tài khoản" class="btn btn-success float-right">
         </div>
-        <div class="col-1"></div>
+        <div class="col-md-1"></div>
       </div>
       </form>
     </section>
