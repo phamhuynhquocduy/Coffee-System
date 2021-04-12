@@ -70,7 +70,7 @@ class CustomerApiController extends Controller
         ]);
     }  
     //logout
-    public function logout()
+    public function logout(Request $request)
     {
         $user = $request->user();
         $user->currentAccessToken()->delete();
