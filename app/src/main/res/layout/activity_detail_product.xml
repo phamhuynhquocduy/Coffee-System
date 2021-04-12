@@ -643,7 +643,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/custom_border_radius"
-                            android:text="Ít đá, nhiều đường..." />
+                            android:hint="Ít đá, nhiều đường..." />
                     </ScrollView>
                 </LinearLayout>
             </LinearLayout>
