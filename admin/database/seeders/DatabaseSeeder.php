@@ -16,8 +16,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $admin = [
-            'name' => 'admin',
-            'email' => 'admin@gmail.com',
+            'name' => 'admin123',
+            'email' => '521d6651b4-1d6551@inbox.mailtrap.io',
             'password' => Hash::make('admin')
         ];
 

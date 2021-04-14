@@ -28,4 +28,7 @@ Route::get('/customer/user', 'App\Http\Controllers\Api\CustomerApiController@use
 
 Route::put('/customer/update', 'App\Http\Controllers\Api\ProfileCustomerController@update')->middleware(['auth:customer-api']);
 
-Route::post('/customer/register', 'App\Http\Controllers\Api\CustomerApiController@register'); 
+Route::post('/customer/register', 'App\Http\Controllers\Api\CustomerApiController@register');
+
+// reset password
+Route::get('/customer/reset-password', 'App\Http\Controllers\Api\CustomerApiController@reset_password');

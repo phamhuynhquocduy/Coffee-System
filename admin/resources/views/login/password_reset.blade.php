@@ -16,13 +16,24 @@
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
-  <div class="login-logo">
-    <b>Reset password admin here. </b>
-  </div>
   <!-- /.login-logo -->
   <div class="card">
+    <div class="card-header text-center">
+      <h4><strong>Send Mail</strong></h4>
+    </div>
     <div class="card-body login-card-body">
-      <form action="{{ route('send-mail') }}" method="post">
+      <div class="row">
+        <div class="col-md-12">
+          <?php
+            $message = Session::get('message');
+            if($message){
+              echo $message;
+              Session::put('message', null);
+            }
+          ?>
+        </div>
+      </div>
+      <form action="{{ route('post-send-mail') }}" method="post">
         {{ csrf_field() }}
         <div class="input-group mb-3">
           <input type="email" name="email" class="form-control" placeholder="Email ... ">
@@ -34,7 +45,7 @@
         </div>
         <div class="row">
           <!-- /.btn -->
-            <button type="submit" class="btn btn-primary btn-block">Gửi mail</button>
+            <button type="submit" class="btn btn-primary btn-block">Gửi mail xác nhận</button>
           <!-- /.btn -->
         </div>
       </form>

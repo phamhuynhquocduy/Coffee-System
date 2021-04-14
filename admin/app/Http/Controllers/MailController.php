@@ -5,14 +5,25 @@ use Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use Session;
+use App\Models\User;
 
 class MailController extends Controller
 {
-    // send mail
-    public function send_mail()
+    // get send mail
+    public function get_send_mail(){
+        return view('login.password_reset');
+    }
+    // post send mail
+    public function post_send_mail(Request $request)
     {
+        // check mail in data
+        $check_mail = User::where('email', $request->email)->first();
+        if(empty($check_mail)){
+            return redirect('send-mail')->with(['message' => '<p style="color: red;">Email chưa đăng ký</p>']);
+        }
+
         $to_name = "Đức Trần Hoài";
-        $to_email =  "duchoaikevin279@gmail.com"; // send to this mail
+        $to_email =  "521d6651b4-1d6551@inbox.mailtrap.io"; // send to this mail
 
         $data = array(
             "name"=>"Mail từ tài khoản khách hàng",
@@ -24,6 +35,6 @@ class MailController extends Controller
             $message->from($to_email, $to_name); // send from this mail
         });
 
-        return redirect('dashboard');
+        return redirect('send-mail')->with(['message' => '<p style="color: green;">Đã gửi xác nhận tới email</p>']);
     }
 }
