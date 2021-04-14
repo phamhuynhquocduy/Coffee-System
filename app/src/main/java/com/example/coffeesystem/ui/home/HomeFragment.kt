@@ -14,6 +14,8 @@ import com.android.volley.toolbox.Volley
 import com.example.coffeesystem.R
 import com.example.coffeesystem.databinding.FragmentHomeBinding
 import com.example.coffeesystem.model.Product
+import com.example.coffeesystem.network.requestProduct
+import com.example.coffeesystem.network.url
 import org.json.JSONException
 
 class HomeFragment : Fragment() {
@@ -74,15 +76,14 @@ class HomeFragment : Fragment() {
 
     private fun jsonParse() {
         requestQueue = Volley.newRequestQueue(activity)
-        val url = "http://45.77.29.150/product/data/all/json"
-        val request = JsonArrayRequest(Request.Method.GET, url, null, { response ->
+        val request = JsonArrayRequest(Request.Method.GET, requestProduct, null, { response ->
             try {
                 for (i in 0 until response.length()) {
                     val product = response.getJSONObject(i)
                     val id = product.getInt("id")
                     val name = product.getString("name")
                     val description = product.getString("description")
-                    val image = "http://45.77.29.150/" + product.getString("image")
+                    val image = url + "/" + product.getString("image")
                     val price = product.getDouble("price")
                     val idcategory = product.getInt("id_category")
                     val status = product.getString("status")

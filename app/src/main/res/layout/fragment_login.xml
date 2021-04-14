@@ -35,42 +35,39 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="22dp"
+            android:hint="@string/user"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edittext_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="22dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginRight="32dp"
-                android:hint="Email"
-                android:inputType="textWebEmailAddress"
+                android:inputType="text"
                 android:paddingVertical="15sp"
-                android:singleLine="true"
-                android:textSize="17sp" />
-
+                android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="22dp"
+            app:passwordToggleEnabled="true"
+            android:hint="@string/pass">
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edittext_pass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="22dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginRight="32dp"
-                android:hint="Mật khẩu"
                 android:inputType="textPassword"
                 android:paddingVertical="15sp"
-                android:singleLine="true"
-                android:textSize="17sp" />
+                android:singleLine="true" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -129,6 +126,6 @@
             android:layout_marginRight="32dp"
             android:gravity="center"
             android:text=""
-            android:textColor="#FF0000" />
+            android:textColor="@color/red" />
     </LinearLayout>
 </LinearLayout>

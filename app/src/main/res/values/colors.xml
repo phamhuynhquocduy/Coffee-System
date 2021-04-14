@@ -11,4 +11,5 @@
     <color name="Cyan">#00CCCC</color>
     <color name="Sea">#99CCCC</color>
     <color name="DoubleDarkCyan">#006666</color>
+    <color name="red">#FF0000</color>
 </resources>

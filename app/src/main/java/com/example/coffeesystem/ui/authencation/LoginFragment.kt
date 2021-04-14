@@ -1,0 +1,93 @@
+package com.example.coffeesystem.ui.authencation
+
+import android.content.Intent
+import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.android.volley.AuthFailureError
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.example.coffeesystem.MainActivity
+import com.example.coffeesystem.R
+import com.example.coffeesystem.databinding.FragmentLoginBinding
+import com.example.coffeesystem.model.User
+import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
+import java.io.UnsupportedEncodingException
+
+
+class LoginFragment : Fragment() {
+    private var _binding: FragmentLoginBinding? = null
+    private val binding get() = _binding!!
+    private var requestQueue: RequestQueue? = null
+
+    override fun onCreateView(
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        view.findViewById<TextView>(R.id.txt_sign_in).setOnClickListener {
+            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        }
+        binding.buttonLogin.setOnClickListener(){
+            token()
+        }
+        //forgot password
+        binding.txtForgotPassword.setOnClickListener(){
+            startActivity(Intent(activity, ForgotActivity::class.java))
+        }
+    }
+    private fun token() {
+
+        requestQueue = Volley.newRequestQueue(activity)
+        val url = "http://45.77.29.150/api/customer/login"
+        val request: StringRequest = object : StringRequest(Request.Method.POST, url, Response.Listener { response ->
+            if (response != null) {
+                val jsonObject= JSONObject(response)
+                val token = jsonObject.getString("access_token")
+                val userObject = jsonObject.get("user") as JSONObject
+                val id =  userObject.getInt("id")
+                val username = userObject.getString("username")
+                val name =userObject.getString("name")
+                val phone = userObject.getString("phone")
+                val address = userObject.getString("address")
+                val email = userObject.getString("email")
+                val person =  User.getInstance(id,username,name,email,phone,address)
+
+                Log.e("person",person.toString())
+
+                startActivity(Intent(activity,MainActivity::class.java))
+                activity?.finish()
+            } else {
+                Log.e("response", "Data Null")
+            }
+        }, Response.ErrorListener {
+            Log.e("response", it.message.toString())
+        }) {
+            override fun getParams(): Map<String, String>? {
+                val params: MutableMap<String, String> = HashMap()
+                params["username"] = binding.edittextEmail.text.toString()
+                params["password"] = binding.edittextPass.text.toString()
+                return params
+            }
+        }
+        requestQueue?.add(request)
+    }
+}
