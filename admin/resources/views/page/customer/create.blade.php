@@ -55,7 +55,7 @@
                 </div>
                 <div class="form-group">
                   <label for="inputDescription">Tài khoản</label>
-                  <input id="username" type="text" name="username" class="form-control" placeholder="Tên tài khoản ..." maxlength="50" pattern="[A-Za-z0-9].{5,}" required> 
+                  <input id="username" type="text" name="username" class="form-control" placeholder="Tên tài khoản ..." maxlength="50" pattern="[A-Za-z0-9]{5,}" required> 
                 </div>
                 <div class="form-group">
                   <label for="inputDescription">Mật khẩu</label>
