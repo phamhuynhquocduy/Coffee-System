@@ -23,6 +23,7 @@ import java.util.regex.Pattern
 const val EMAIL_PATTERN="^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
 const val PHONE_PATTERN="^0[0-9]{9,10}$";
 const val PASS_PATTERN="^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*+=?/-]).{8,15}$";
+const val USER_PATTERN="^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).{6,15}$";
 
 
 class SigninFragment : Fragment() {
@@ -107,16 +108,24 @@ class SigninFragment : Fragment() {
         binding.edittextUserName.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-            override fun afterTextChanged(s: Editable) =
-                    if (binding.edittextUserName.text.isEmpty()) {
-                        binding.tilUserName.error = "Không được để trống"
-                        binding.buttonSignin.isEnabled = false
-                        checkUserName = false
-                    } else {
-                        binding.tilUserName.error = null
-                        checkUserName = true
-                        checkError()
-                    }
+            override fun afterTextChanged(s: Editable) {
+                val patternDate: Pattern = Pattern.compile(USER_PATTERN, Pattern.CASE_INSENSITIVE)
+                val matcher: Matcher = patternDate.matcher(binding.edittextUserName.text.toString().trim())
+                if (binding.edittextUserName.text.isEmpty()) {
+                    binding.tilUserName.error = "Không được để trống"
+                    binding.buttonSignin.isEnabled = false
+                    checkUserName = false
+                }
+                else if (!matcher.matches()) {
+                    binding.tilUserName.error = "Tên tài khoản từ 6 ký tự và không chứ ký tự đặc biệt"
+                    binding.buttonSignin.isEnabled = false
+                    checkUserName = false
+                } else {
+                    binding.tilUserName.error = null
+                    checkUserName = true
+                    checkError()
+                }
+            }
         })
         binding.edittextName.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}

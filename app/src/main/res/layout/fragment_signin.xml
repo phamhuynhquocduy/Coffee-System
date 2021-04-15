@@ -167,6 +167,7 @@
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                android:enabled="false"
                 android:background="@drawable/custom_border_radius"/>
             <TextView
                 android:layout_width="match_parent"
