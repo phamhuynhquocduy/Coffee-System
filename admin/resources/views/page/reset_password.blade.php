@@ -23,15 +23,27 @@
         <h4><strong>Đặt lại mật khẩu</strong></h4>
       </div>
       <div class="card-body">
+        <div class="row"> 
+          <?php
+          $message = Session::get('message');
+          if($message){
+            echo $message;
+            Session::put('message', null);
+          }
+          ?>
+        </div>
         <div class="row col-md-12">
           @foreach ($reset as $r)
-          <form action="{{ route('post-reset-password-api') }}" method="post">
+          <form action="{{ route('post-reset-password-api', $r->token) }}" method="post">
             {{ csrf_field() }}
-            <div class="row">
               <p class="text-center">{{ $r->email }}</p>
-              <input type="password" name="password" class="form-control" placeholder="New password ... "> <br>
-              <input type="password" name="re_password" class="form-control" placeholder="Re new password ... "> <br>
-            </div>
+              <div>
+                <input type="password" name="password" class="form-control" placeholder="New password ... ">
+              </div>
+              <br>
+              <div>
+                <input type="password" name="re_password" class="form-control" placeholder="Re new password ... "> <br>
+              </div>
             <div class="row">
               <!-- /.btn -->
                 <button type="submit" class="btn btn-primary btn-block">Đổi mật khẩu</button>

@@ -20,6 +20,10 @@ class CustomerController extends Controller
     public function index()
     {
         //
+        if(empty(Auth::check())){
+            Session::put('message', '<p style="color: red;">Bạn cần phải đăng nhập</p>');
+            return view('login');
+        }
         $customer = Customer::paginate(10);
         return view('page.customer.all', compact(['customer']));
     }
@@ -32,6 +36,10 @@ class CustomerController extends Controller
     public function create()
     {
         //
+        if(empty(Auth::check())){
+            Session::put('message', '<p style="color: red;">Bạn cần phải đăng nhập</p>');
+            return view('login');
+        }
         return view('page.customer.create');
         
     }
@@ -77,7 +85,8 @@ class CustomerController extends Controller
         
     }
     //trả dữ liệu ra json
-    public function conver_customer_json(){
+    public function conver_customer_json()
+    {
         return response()->json(Customer::all());
     }
 
@@ -90,6 +99,10 @@ class CustomerController extends Controller
     public function show($id)
     {
         //
+        if(empty(Auth::check())){
+            Session::put('message', '<p style="color: red;">Bạn cần phải đăng nhập</p>');
+            return view('login');
+        }
         return response()->json(Customer::where('id', $id)->get());
     }
 
@@ -102,6 +115,10 @@ class CustomerController extends Controller
     public function edit($id)
     {
         //
+        if(empty(Auth::check())){
+            Session::put('message', '<p style="color: red;">Bạn cần phải đăng nhập</p>');
+            return view('login');
+        }
         $edit_customer = Customer::where('id', $id)->get();
         return view('page.customer.edit', compact(['edit_customer']));
     }
@@ -146,6 +163,10 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         //
+        if(empty(Auth::check())){
+            Session::put('message', '<p style="color: red;">Bạn cần phải đăng nhập</p>');
+            return view('login');
+        }
         Customer::where('id', $id)->delete();
         Session::put('message', '<p style="color: red;">Xóa tài khoản người dùng thành công</p>');
         return Redirect::to('customer');

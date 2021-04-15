@@ -43,8 +43,11 @@ class CategoryController extends Controller
     {
         //
         $image = $request->file('inputImage');
-        $name_image = rand(0,200).$image->getClientOriginalName();
-        $image->move('public/save/images/category/',  $name_image);
+        if($image){
+            $name_image = rand(0,200).$image->getClientOriginalName();
+            $image->move('public/save/images/category/',  $name_image);
+            $arr = (['image' =>  'public/save/images/category/'.$name_image]);
+        }
         $like = Category::where('name', $request->inputName)->get();
         if(!empty($like[0]->name)){
             Session::put('message', '<p style="color:red;">Danh mục sản phẩm đã tồn tại, vui lòng nhập danh mục khác!!</p>');
@@ -53,7 +56,6 @@ class CategoryController extends Controller
         $arr = array([
             'name' => $request->inputName,
             'description' => $request->inputDescription,
-            'image' =>  'public/save/images/category/'.$name_image
         ]);
 
         Category::insert($arr);

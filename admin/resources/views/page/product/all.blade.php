@@ -52,6 +52,9 @@
                       <th style="width: 1%">
                           #
                       </th>
+                      <th style="width: 10%">
+                          Tên danh mục
+                      </th>
                       <th style="width: 15%">
                           Tên sản phẩm
                       </th>
@@ -73,6 +76,15 @@
                   <tr>
                       <td>
                           {{$pro->id}}
+                      </td>
+                      <td>
+                          <strong>
+                          @foreach ($list_cate as $cate)
+                            @if ($cate->id == $pro->id_category)
+                              {{$cate->name}}
+                            @endif
+                          @endforeach
+                          </strong>
                       </td>
                       <td>
                           <strong>
