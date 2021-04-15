@@ -9,21 +9,17 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.android.volley.AuthFailureError
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
-import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.coffeesystem.MainActivity
 import com.example.coffeesystem.R
 import com.example.coffeesystem.databinding.FragmentLoginBinding
 import com.example.coffeesystem.model.User
-import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
-import java.io.UnsupportedEncodingException
 
 
 class LoginFragment : Fragment() {
@@ -38,6 +34,11 @@ class LoginFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    companion object{
+        @JvmStatic lateinit var person : User
+        @JvmStatic lateinit var token :String
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -60,21 +61,23 @@ class LoginFragment : Fragment() {
         val url = "http://45.77.29.150/api/customer/login"
         val request: StringRequest = object : StringRequest(Request.Method.POST, url, Response.Listener { response ->
             if (response != null) {
-                val jsonObject= JSONObject(response)
-                val token = jsonObject.getString("access_token")
-                val userObject = jsonObject.get("user") as JSONObject
-                val id =  userObject.getInt("id")
-                val username = userObject.getString("username")
-                val name =userObject.getString("name")
-                val phone = userObject.getString("phone")
-                val address = userObject.getString("address")
-                val email = userObject.getString("email")
-                val person =  User.getInstance(id,username,name,email,phone,address)
-
-                Log.e("person",person.toString())
-
-                startActivity(Intent(activity,MainActivity::class.java))
-                activity?.finish()
+                try {
+                    val jsonObject= JSONObject(response)
+                    token = jsonObject.getString("access_token")
+                    val userObject = jsonObject.get("user") as JSONObject
+                    val id =  userObject.getInt("id")
+                    val username = userObject.getString("username")
+                    val name =userObject.getString("name")
+                    val phone = userObject.getString("phone")
+                    val address = userObject.getString("address")
+                    val email = userObject.getString("email")
+                    person =  User(id,username,name,email,phone,address)
+                    Log.e("response", response)
+                    startActivity(Intent(activity,MainActivity::class.java))
+                    activity?.finish()
+                }catch ( e: JSONException){
+                    binding.textviewNotification.text = "Đăng nhập không thành công"
+                }
             } else {
                 Log.e("response", "Data Null")
             }

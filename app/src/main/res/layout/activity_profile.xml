@@ -23,11 +23,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Đăng ký"
+            android:text="@string/edit_profile"
             android:textColor="@color/white"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textSize="25sp" />
     </androidx.appcompat.widget.Toolbar>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -53,6 +54,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxLength="20"
+                    android:enabled="false"
                     android:inputType="textPersonName"
                     android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -93,26 +95,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxLength="50"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:enabled="false"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_pass"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:passwordToggleEnabled="true"
-                android:layout_marginStart="22dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="22dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:hint="@string/pass">
-
-                <EditText
-                    android:id="@+id/edittext_pass"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPassword" />
-            </com.google.android.material.textfield.TextInputLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -136,7 +122,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:enabled="false"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -159,37 +146,16 @@
 
             <Button
                 android:id="@+id/button_signin"
-                android:layout_width="200dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Đăng Ký"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/custom_border_radius"
+                android:text="Cập Nhật Tài Khoản"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:enabled="false"
-                android:background="@drawable/custom_border_radius"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="32dp"
-                android:text="Bạn đã có tài khoản?"
-                android:gravity="center"
-                android:textColor="#000000"
-                android:textSize="16sp" />
+                android:textAllCaps="false"/>
 
-            <TextView
-                android:id="@+id/txt_sign_in"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="32dp"
-                android:gravity="center"
-                android:text="Đăng nhập ngay"
-                android:textColor="#0099FF" />
             <TextView
                 android:id="@+id/textview_notification"
                 android:layout_width="match_parent"
