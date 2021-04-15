@@ -12,20 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CoffeeSystem.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.authencation.ForgotActivity"></activity>
+        <activity android:name=".ui.profile.ProfileActivity"></activity>
+        <activity android:name=".ui.authencation.ForgotActivity" />
         <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="adjustPan"
             android:label="@string/title_activity_login"
-            android:theme="@style/Theme.CoffeeSystem.NoActionBar.NoActionBar" />
+            android:theme="@style/Theme.CoffeeSystem.NoActionBar.NoActionBar"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".DetailProductActivity"
             android:label="@string/title_activity_detail_product"
             android:theme="@style/Theme.CoffeeSystem.NoActionBar" />
         <activity
             android:name=".ui.authencation.LoginActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

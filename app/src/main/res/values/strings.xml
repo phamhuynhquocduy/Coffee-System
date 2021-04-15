@@ -22,4 +22,5 @@
     <string name="email">Email</string>
     <string name="phone">Số điện thoại</string>
     <string name="address">Địa chỉ</string>
+    <string name="edit_profile">Cập Nhật Thông Tin</string>
 </resources>
