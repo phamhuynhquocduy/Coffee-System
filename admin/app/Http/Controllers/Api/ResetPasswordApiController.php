@@ -41,8 +41,8 @@ class ResetPasswordApiController extends Controller
         $mail_c = $request->email;
 
         $data = array(
-            "name"=>"Mail từ tài khoản khách hàng",
-            "body"=>"Mail gửi về vấn đề hàng hóa",
+            "name"=>"Amin",
+            "body"=>"Mail gửi về vấn đề đổi mật khẩu",
             "token" => $tokenResult,
         );
         // gửi mail chứa link token -> new password layout
