@@ -53,7 +53,7 @@ class ResetPasswordApiController extends Controller
         });
         $message1 = '<p style="color: green;">Đã gửi thư xác nhận, vui lòng kiểm tra email!</p>';
         // $request->session()->put('message', '<p style="color: green;">Đã gửi thư xác nhận, vui lòng kiểm tra email!</p>');
-        return view('login.password_reset_api', compact(['message1']));
+        return redirect()->back();
     }
 
     public function reset_password_api($token){
