@@ -23,6 +23,7 @@ import com.example.coffeesystem.model.User
 import com.example.coffeesystem.network.requestLogout
 import com.example.coffeesystem.network.requestProduct
 import com.example.coffeesystem.network.url
+import com.example.coffeesystem.ui.authencation.LoginActivity
 import com.example.coffeesystem.ui.authencation.LoginFragment
 import com.example.coffeesystem.ui.home.HomeFragment
 import org.json.JSONException
@@ -54,6 +55,12 @@ class ProfileFragment : Fragment() {
         binding.btnLogout.setOnClickListener {
             requestLogout()
         }
+//        if(isLogin()){
+//            binding.btnLogout.text = "Đăng nhập"
+//            startActivity(Intent(activity,LoginActivity::class.java))
+//        }else{
+//            binding.btnLogout.text = "Đăng xuất"
+//        }
     }
     private fun requestLogout() {
         requestQueue = Volley.newRequestQueue(activity)

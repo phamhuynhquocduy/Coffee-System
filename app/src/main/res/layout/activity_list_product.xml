@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.dashboard.DashboardFragment">
+    tools:context=".ui.dashboard.ListProductActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -20,16 +20,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Danh Mục"
+            android:text="Danh Sách"
             android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_category"
+        android:id="@+id/rv_list_product_category"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="231dp"
-        tools:layout_editor_absoluteY="140dp" />
+        tools:layout_editor_absoluteX="260dp"
+        tools:layout_editor_absoluteY="184dp" />
 </LinearLayout>

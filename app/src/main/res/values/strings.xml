@@ -23,4 +23,9 @@
     <string name="phone">Số điện thoại</string>
     <string name="address">Địa chỉ</string>
     <string name="edit_profile">Cập Nhật Thông Tin</string>
+    <string name="contact">Liện hệ</string>
+    <string name="rule">Điều khoản</string>
+    <string name="change_password">Đổi mật khẩu</string>
+    <string name="history_bill">Lịch sử đơn hàng</string>
+    <string name="location_store">Vị trí cửa hàng</string>
 </resources>
