@@ -25,8 +25,7 @@ class ResetPasswordApiController extends Controller
 
         $check_email = Customer::where('email', $request->email)->first();
         if(empty($check_email)){
-            $error = '<p style="color: red;">Email chưa đăng ký!</p>';
-            return redirect()->back()->with('error',$error);
+            return 'Vui lòng quay lại trang và kiểm tra lại email';
         }
         
         $tokenResult = $check_email->createToken('authToken')->plainTextToken;
@@ -53,7 +52,7 @@ class ResetPasswordApiController extends Controller
         });
         $message1 = '<p style="color: green;">Đã gửi thư xác nhận, vui lòng kiểm tra email!</p>';
         // $request->session()->put('message', '<p style="color: green;">Đã gửi thư xác nhận, vui lòng kiểm tra email!</p>');
-        return redirect()->back();
+        return 'Gửi mail thành công, vui lòng kiểm tra email';
     }
 
     public function reset_password_api($token){

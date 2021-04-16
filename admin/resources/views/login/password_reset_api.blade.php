@@ -22,16 +22,6 @@
       <h4><strong>Send Mail</strong></h4>
     </div>
     <div class="card-body login-card-body">
-      <div class="row">
-        <div class="col-md-12">
-          <?php
-            if(!empty($error)){
-              echo $error;
-              $error = '';
-            }
-          ?>
-        </div>
-      </div>
       <form action="{{ route('post-send-mail-api') }}" method="post">
         {{ csrf_field() }}
         <div class="input-group mb-3">
