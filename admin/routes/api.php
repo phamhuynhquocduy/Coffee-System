@@ -33,5 +33,9 @@ Route::put('/customer/update-password', 'App\Http\Controllers\Api\ProfileCustome
 Route::post('/customer/register', 'App\Http\Controllers\Api\CustomerApiController@register');
 
 
-
+// -------------------------------
 Route::get('/customer/check_data_reset', 'App\Http\Controllers\Api\ResetPasswordApiController@check_reset_passwords');
+
+// reset password
+Route::get('/customer/reset-password/{token}', 'App\Http\Controllers\Api\ResetPasswordApiController@reset_password_api')->name('reset-password-api');
+Route::post('/customer/reset-password/{token}', 'App\Http\Controllers\Api\ResetPasswordApiController@post_reset_password')->name('post-reset-password-api');
