@@ -25,10 +25,10 @@
       <div class="card-body">
         <div class="row"> 
           <?php
-          $message = Session::get('message');
+          $message = session()->get('message');
           if($message){
             echo $message;
-            Session::put('message', null);
+            session()->put('message', null);
           }
           ?>
         </div>
