@@ -70,21 +70,17 @@ class ResetPasswordApiController extends Controller
         if($request->password != $request->re_password){
             return '<p style="color:red;">Đổi mật khẩu không thành công, vui lòng quay lại trang và kiểm tra lại mật khẩu</p>';
         }
-        $email = DB::table('password_resets')->get();
+        $email = DB::table('password_resets')->where('token', $token)->get();
 
-        $update_password = [
-            'password' => Hash::make($request->password)
-        ];
-
-        $data = Customer::where('email', $email[0]->email)->get();
+        Customer::where('email', $email[0]->email)->update(['password'=>Hash::make($request->password)]);
         // $token = '';
         DB::table('password_resets')->where('email', $email[0]->email)->update(['token' => '']);
-        // return '<p style="color:green;">Đổi mật khẩu thành công</p>';
-        return response()->json($data);
+        return '<p style="color:green;">Đổi mật khẩu thành công</p>';
+        // return response()->json($data);
     }
 
     public function check_reset_passwords(){
         $email = DB::table('password_resets')->get();
-        return response()->json($email);
+        return response()->json($email[0]->email);
     }
 }
