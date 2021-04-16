@@ -31,6 +31,12 @@ class ProfileCustomerController extends Controller
             'password' => 'required'
         ]);
 
+        $check_password_old = Customer::where('password', $request->old_password)->first();
+
+        if(empty($check_password_old)){
+            return 'Mật khẩu cũ sai, vui lòng kiểm tra lại!'; 
+        }
+
         if($request->password != $request->re_password){
             return 'Lỗi không đúng mật khẩu';
         }
