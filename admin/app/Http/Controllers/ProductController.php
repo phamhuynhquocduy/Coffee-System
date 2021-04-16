@@ -147,11 +147,9 @@ class ProductController extends Controller
         return redirect('product');
     }
     // get json theo nhóm 
-    public function one_cate_all_pro(Request $request)
+    public function one_cate_all_pro($id)
     {
-        $get_id_cate = Category::where('name', $request->name_category)->get();
-
-        $get_all_pro_one_cate = Product::where('id_category', $get_id_cate[0]->id)->get();
+        $get_all_pro_one_cate = Product::where('id_category', $id)->get();
 
         return response()->json($get_all_pro_one_cate);
     }

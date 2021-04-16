@@ -45,7 +45,7 @@ Route::prefix('category')->group(function () {
 Route::get('category/data/all/json', 'App\Http\Controllers\CategoryController@conver_category_json')->name('category-json');
 
 // json 1 cate to all product
-Route::post('/data/json/one-cate-all-product','App\Http\Controllers\ProductController@one_cate_all_pro');
+Route::get('/data/json/{id}/one-cate-all-product','App\Http\Controllers\ProductController@one_cate_all_pro');
 
 //customer
 Route::prefix('customer')->group(function () {
