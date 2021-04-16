@@ -34,7 +34,11 @@ class ProfileActivity : AppCompatActivity() {
         binding.edittextAddress.setText(LoginFragment.person.address)
 
         binding.buttonUpdate.setOnClickListener {
-            requestEdit()
+            if (binding.edittextName.text.toString().isNotEmpty()|| binding.edittextAddress.text.toString().isNotEmpty()){
+                requestEdit()
+            }else{
+                Toast.makeText(this,"Cần nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show()
+            }
         }
     }
     private fun requestEdit() {
@@ -45,10 +49,13 @@ class ProfileActivity : AppCompatActivity() {
         val objRegData = JSONObject(params as Map<*, *>)
 
         val request: JsonObjectRequest = object : JsonObjectRequest(Method.PUT, requestUpdateProfile,objRegData,Response.Listener { response ->
-            Log.e("responseupdateprofile", response.toString())
-            Toast.makeText(this,"Sửa thông tin thành công", Toast.LENGTH_SHORT).show()
-            person.address = binding.edittextAddress.text.toString()
-            person.name = binding.edittextName.text.toString()
+            if(response!=null){
+                Log.e("responseupdateprofile", response.toString())
+                Toast.makeText(this,"Sửa thông tin thành công", Toast.LENGTH_SHORT).show()
+                person.address = binding.edittextAddress.text.toString()
+                person.name = binding.edittextName.text.toString()
+            }else{
+            }
         }, Response.ErrorListener {
             Log.e("responseupdateerrorr", it.message.toString())
         }) {
