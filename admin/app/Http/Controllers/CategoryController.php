@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Carbon;
+use Auth;
 
 class CategoryController extends Controller
 {
@@ -18,6 +19,10 @@ class CategoryController extends Controller
     public function index()
     {
         //
+        if(empty(Auth::check())){
+            Session::put('message', '<p style="color: red;">Bạn cần phải đăng nhập</p>');
+            return view('login');
+        }
         $category = Category::paginate(10);
         return view('page.category.all',compact(['category']));
     }
@@ -30,6 +35,10 @@ class CategoryController extends Controller
     public function create()
     {
         //
+        if(empty(Auth::check())){
+            Session::put('message', '<p style="color: red;">Bạn cần phải đăng nhập</p>');
+            return view('login');
+        }
         return view('page.category.create');
     }
 
@@ -77,6 +86,10 @@ class CategoryController extends Controller
     public function show($id)
     {
         //
+        if(empty(Auth::check())){
+            Session::put('message', '<p style="color: red;">Bạn cần phải đăng nhập</p>');
+            return view('login');
+        }
         $info_cate = Category::where('id', $id)->get();
 
         return view('page.category.view', compact(['info_cate']));
@@ -91,6 +104,10 @@ class CategoryController extends Controller
     public function edit($id)
     {
         //
+        if(empty(Auth::check())){
+            Session::put('message', '<p style="color: red;">Bạn cần phải đăng nhập</p>');
+            return view('login');
+        }
         $edit_cate = Category::where('id', $id)->get();
         return view('page.category.edit', compact(['edit_cate']));
     }
@@ -136,6 +153,10 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
+        if(empty(Auth::check())){
+            Session::put('message', '<p style="color: red;">Bạn cần phải đăng nhập</p>');
+            return view('login');
+        }
         Category::where('id', $id)->delete();
         Session::put('message', '<p style="color:red;">Xóa danh mục sản phẩm thành công</p>');
         return redirect('category');

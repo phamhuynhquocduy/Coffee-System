@@ -19,6 +19,10 @@ class ProductController extends Controller
     public function index()
     {
         //
+        if(empty(Auth::check())){
+            Session::put('message', '<p style="color: red;">Bạn cần phải đăng nhập</p>');
+            return view('login');
+        }
         $list_cate = Category::all();
         $list_product = Product::paginate(10);
         return view('page.product.all', compact(['list_cate', 'list_product']));
@@ -36,6 +40,10 @@ class ProductController extends Controller
     public function create()
     {
         //
+        if(empty(Auth::check())){
+            Session::put('message', '<p style="color: red;">Bạn cần phải đăng nhập</p>');
+            return view('login');
+        }
         $list_cate = Category::all();
         return view('page.product.create', compact(['list_cate']));
     }
@@ -92,6 +100,10 @@ class ProductController extends Controller
     public function edit($id)
     {
         //
+        if(empty(Auth::check())){
+            Session::put('message', '<p style="color: red;">Bạn cần phải đăng nhập</p>');
+            return view('login');
+        }
         $list_cate = Category::all();
         $edit_pro = Product::where('id', $id)->get();
         return view('page.product.edit', compact(['list_cate','edit_pro']));
@@ -142,6 +154,10 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
+        if(empty(Auth::check())){
+            Session::put('message', '<p style="color: red;">Bạn cần phải đăng nhập</p>');
+            return view('login');
+        }
         Product::where('id',$id)->delete();
         Session::put('message', '<p style="color:red;">Xóa sản phẩm thành công</p>');
         return redirect('product');
