@@ -35,7 +35,7 @@ class ResetPasswordApiController extends Controller
             'token' => $tokenResult
         ]);
 
-        $to_name = "Đức Trần Hoài";
+        $to_name = "AdminTHD";
         $to_email =  "521d6651b4-1d6551@inbox.mailtrap.io"; // send to this mail
 
         $mail_c = $request->email;
