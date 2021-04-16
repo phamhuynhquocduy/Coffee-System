@@ -50,8 +50,6 @@ class ResetPasswordApiController extends Controller
             $message->to($mail_c)->subject('Test thử gửi mail google'); // send this mail with subject
             $message->from($to_email, $to_name); // send from this mail
         });
-        $message1 = '<p style="color: green;">Đã gửi thư xác nhận, vui lòng kiểm tra email!</p>';
-        // $request->session()->put('message', '<p style="color: green;">Đã gửi thư xác nhận, vui lòng kiểm tra email!</p>');
         return 'Gửi mail thành công, vui lòng kiểm tra email';
     }
 
