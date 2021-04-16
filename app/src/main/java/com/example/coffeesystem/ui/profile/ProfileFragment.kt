@@ -55,6 +55,9 @@ class ProfileFragment : Fragment() {
         binding.btnLogout.setOnClickListener {
             requestLogout()
         }
+        binding.btnPass.setOnClickListener(){
+            startActivity(Intent(activity, ChangePasswordActivity::class.java))
+        }
 //        if(isLogin()){
 //            binding.btnLogout.text = "Đăng nhập"
 //            startActivity(Intent(activity,LoginActivity::class.java))
