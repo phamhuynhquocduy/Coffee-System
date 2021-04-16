@@ -2,12 +2,20 @@ package com.example.coffeesystem.ui.profile
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.example.coffeesystem.databinding.ActivityProfileBinding
+import com.example.coffeesystem.network.requestUpdateProfile
 import com.example.coffeesystem.ui.authencation.LoginFragment
 
 class ProfileActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityProfileBinding
+    private var requestQueue: RequestQueue? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +28,26 @@ class ProfileActivity : AppCompatActivity() {
         binding.edittextPhone.setText(LoginFragment.person.phone)
         binding.edittextUserName.setText(LoginFragment.person.username)
         binding.edittextAddress.setText(LoginFragment.person.address)
-    }
 
+        binding.buttonUpdate.setOnClickListener {
+            requestEdit()
+        }
+    }
+    private fun requestEdit() {
+        requestQueue = Volley.newRequestQueue(this)
+        val request: StringRequest = object : StringRequest(Method.PUT, requestUpdateProfile, Response.Listener { response ->
+            Log.e("responseupdateprofile", response)
+        }, Response.ErrorListener {
+            Log.e("responseupdateerrorr", it.message.toString())
+        }) {
+            override fun getHeaders(): MutableMap<String, String> {
+                val params: MutableMap<String, String> = HashMap()
+                params["X-Requested-With"] = "XMLHttpRequest"
+                params["Authorization"] =  "Bearer "+ LoginFragment.token
+                params["name"] = binding.edittextName.text.toString()
+                return params
+            }
+        }
+        requestQueue?.add(request)
+    }
 }

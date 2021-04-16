@@ -47,16 +47,17 @@ class LoginFragment : Fragment() {
         view.findViewById<TextView>(R.id.txt_sign_in).setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
+        //login
         binding.buttonLogin.setOnClickListener(){
-            token()
+            requestLogin()
         }
         //forgot password
         binding.txtForgotPassword.setOnClickListener(){
+
             startActivity(Intent(activity, ForgotActivity::class.java))
         }
     }
-    private fun token() {
-
+    private fun requestLogin() {
         requestQueue = Volley.newRequestQueue(activity)
         val url = "http://45.77.29.150/api/customer/login"
         val request: StringRequest = object : StringRequest(Request.Method.POST, url, Response.Listener { response ->

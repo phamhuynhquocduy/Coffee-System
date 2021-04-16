@@ -23,7 +23,7 @@ import java.util.regex.Pattern
 const val EMAIL_PATTERN="^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
 const val PHONE_PATTERN="^0[0-9]{9,10}$";
 const val PASS_PATTERN="^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*+=?/-]).{8,15}$";
-const val USER_PATTERN="^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).{6,15}$";
+const val USER_PATTERN="[a-zA-Z0-9]{6,15}";
 
 
 class SigninFragment : Fragment() {
