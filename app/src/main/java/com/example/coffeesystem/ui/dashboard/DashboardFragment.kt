@@ -1,6 +1,7 @@
 package com.example.coffeesystem.ui.dashboard
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -52,6 +53,7 @@ class DashboardFragment : Fragment() {
     private fun jsonParse() {
         requestQueue = Volley.newRequestQueue(activity)
         val request = JsonArrayRequest(Request.Method.GET, requestCategory, null, { response ->
+            Log.e("category",response.toString())
             try {
                 for (i in 0 until response.length()) {
                     val product = response.getJSONObject(i)
