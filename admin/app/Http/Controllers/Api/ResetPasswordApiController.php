@@ -76,10 +76,11 @@ class ResetPasswordApiController extends Controller
             'password' => Hash::make($request->password)
         ];
 
-        Customer::where('email', $email[0]->email)->update($update_password);
+        $data = Customer::where('email', $email[0]->email)->get();
         // $token = '';
         DB::table('password_resets')->where('email', $email[0]->email)->update(['token' => '']);
-        return '<p style="color:green;">Đổi mật khẩu thành công</p>';
+        // return '<p style="color:green;">Đổi mật khẩu thành công</p>';
+        return response()->json($data);
     }
 
     public function check_reset_passwords(){
