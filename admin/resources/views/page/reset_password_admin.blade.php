@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Reset Customer | Coffee System</title>
+  <title>Reset Admin | Coffee System</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -16,39 +16,41 @@
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
-  <!-- /.login-logo -->
-  <div class="card">
-    <div class="card-header text-center">
-      <h4><strong>Send Mail Api</strong></h4>
-    </div>
-    <div class="card-body login-card-body">
-      <div class="row">
-        <div class="col-md-12">
+  <div class="row">
+    <!-- /.login-logo -->
+    <div class="card">
+      <div class="card-header text-center">
+        <h4><strong>Đặt lại mật khẩu Admin</strong></h4>
+      </div>
+      <div class="card-body">
+        <div class="row"> 
           <?php
-            $message = Session::get('message');
-            if($message){
-              echo $message;
-              Session::put('message', null);
-            }
+          $message = Session::get('message');
+          if($message){
+            echo $message;
+            Session::put('message', null);
+          }
           ?>
         </div>
-      </div>
-      <form action="{{ route('post-send-mail-api') }}" method="post">
-        {{ csrf_field() }}
-        <div class="input-group mb-3">
-          <input type="email" name="email" class="form-control" placeholder="Email ... ">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-email"></span>
+        <div class="row col-md-12">
+          <form action="" method="post">
+            {{ csrf_field() }}
+              <p class="text-center"></p>
+              <div>
+                <input type="password" name="password" class="form-control" placeholder="New password ... ">
+              </div>
+              <br>
+              <div>
+                <input type="password" name="re_password" class="form-control" placeholder="Re new password ... "> <br>
+              </div>
+            <div class="row">
+              <!-- /.btn -->
+                <button type="submit" class="btn btn-primary btn-block">Đổi mật khẩu</button>
+              <!-- /.btn -->
             </div>
-          </div>
+          </form>
         </div>
-        <div class="row">
-          <!-- /.btn -->
-            <button type="submit" class="btn btn-primary btn-block">Gửi mail xác nhận</button>
-          <!-- /.btn -->
-        </div>
-      </form>
+      </div>
     </div>
   </div>
 </div>

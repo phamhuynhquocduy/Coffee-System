@@ -24,14 +24,15 @@ class MailController extends Controller
 
         $to_name = "Đức Trần Hoài";
         $to_email =  "521d6651b4-1d6551@inbox.mailtrap.io"; // send to this mail
+        $send_email = $request->email;
 
         $data = array(
-            "name"=>"Mail từ tài khoản khách hàng",
-            "body"=>"Mail gửi về vấn đề hàng hóa"
+            "name"=>"Mail từ Admin",
+            "body"=>"Mail gửi về vấn đề đổi mật khẩu"
         ); // body of mail.blade.php
 
-        Mail::send('page.send_mail', $data, function ($message) use ($to_name, $to_email) {
-            $message->to($to_email)->subject('Test thử gửi mail google'); // send this mail with subject
+        Mail::send('page.send_mail', $data, function ($message) use ($to_name, $to_email, $send_email) {
+            $message->to($send_email)->subject('Test thử gửi mail google'); // send this mail with subject
             $message->from($to_email, $to_name); // send from this mail
         });
 
