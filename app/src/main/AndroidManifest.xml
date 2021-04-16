@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CoffeeSystem.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.dashboard.ListProductActivity"></activity>
+        <activity android:name=".ui.profile.ChangePasswordActivity"></activity>
+        <activity android:name=".ui.dashboard.ListProductActivity" />
         <activity android:name=".ui.profile.ProfileActivity" />
         <activity android:name=".ui.authencation.ForgotActivity" />
         <activity
