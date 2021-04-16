@@ -50,21 +50,23 @@ class CategoryController extends Controller
      *///Save product method post
     public function store(Request $request)
     {
-        //
-        $image = $request->file('inputImage');
-        if($image){
-            $name_image = rand(0,200).$image->getClientOriginalName();
-            $image->move('public/save/images/category/',  $name_image);
-            $arr = (['image' =>  'public/save/images/category/'.$name_image]);
-        }
+        // check name
         $like = Category::where('name', $request->inputName)->get();
         if(!empty($like[0]->name)){
             Session::put('message', '<p style="color:red;">Danh mục sản phẩm đã tồn tại, vui lòng nhập danh mục khác!!</p>');
             return redirect('category/create');
         }
+        // check image
+        if($request->hasFile('inputImage')){
+            $image = $request->file('inputImage');
+            $name_image = rand(0,200).$image->getClientOriginalName();
+            $image->move('public/save/images/category/',  $name_image);   
+        }
+        
         $arr = array([
             'name' => $request->inputName,
             'description' => $request->inputDescription,
+            'image' => 'public/save/images/category/'.$name_image
         ]);
 
         Category::insert($arr);

@@ -27,24 +27,25 @@ class ProfileCustomerController extends Controller
 
     public function update_password(Request $request)
     {
-        $request->validate([
-            'password' => 'required'
-        ]);
-
-        $check_password_old = Customer::where('password', Hash::make($request->old_password))->get();
-
-        if(empty($check_password_old)){
-            return 'Mật khẩu cũ sai, vui lòng kiểm tra lại!'; 
-        }
-
-        if($request->password != $request->re_password){
-            return 'Lỗi không đúng mật khẩu';
-        }
-
+        // $request->validate([
+        //     'password' => 'required'
+        // ]);
         $user = $request->user();
-        $new_password = Hash::make($request->password);
-        $user->update(['password'=>$new_password]);
 
-        return response()->json($user);
+        $check_password_old = Hash::make($request->old_password);
+
+        // if(empty($check_password_old)){
+        //     return 'Mật khẩu cũ sai, vui lòng kiểm tra lại!'; 
+        // }
+
+        // if($request->password != $request->re_password){
+        //     return 'Lỗi không đúng mật khẩu';
+        // }
+
+        // $new_password = Hash::make($request->password);
+        // $user->update(['password'=>$new_password]);
+
+        // return response()->json($user);
+        return response()->json(["pass"=>$check_password_old, "user" => $user]);
     }
 }
