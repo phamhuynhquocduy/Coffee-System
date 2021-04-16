@@ -1,6 +1,7 @@
 package com.example.coffeesystem.ui.authencation
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -53,8 +54,9 @@ class LoginFragment : Fragment() {
         }
         //forgot password
         binding.txtForgotPassword.setOnClickListener(){
-
-            startActivity(Intent(activity, ForgotActivity::class.java))
+            val intent = Intent(Intent.ACTION_VIEW).setData(Uri.parse("http://45.77.29.150/customer/send-mail-api"))
+            startActivity(intent)
+//            startActivity(Intent(activity, ForgotActivity::class.java))
         }
     }
     private fun requestLogin() {
@@ -63,20 +65,20 @@ class LoginFragment : Fragment() {
         val request: StringRequest = object : StringRequest(Request.Method.POST, url, Response.Listener { response ->
             if (response != null) {
                 try {
-                    val jsonObject= JSONObject(response)
+                    val jsonObject = JSONObject(response)
                     token = jsonObject.getString("access_token")
                     val userObject = jsonObject.get("user") as JSONObject
-                    val id =  userObject.getInt("id")
+                    val id = userObject.getInt("id")
                     val username = userObject.getString("username")
-                    val name =userObject.getString("name")
+                    val name = userObject.getString("name")
                     val phone = userObject.getString("phone")
                     val address = userObject.getString("address")
                     val email = userObject.getString("email")
-                    person =  User(id,username,name,email,phone,address)
+                    person = User(id, username, name, email, phone, address)
                     Log.e("response", response)
-                    startActivity(Intent(activity,MainActivity::class.java))
+                    startActivity(Intent(activity, MainActivity::class.java))
                     activity?.finish()
-                }catch ( e: JSONException){
+                } catch (e: JSONException) {
                     binding.textviewNotification.text = "Đăng nhập không thành công"
                 }
             } else {
