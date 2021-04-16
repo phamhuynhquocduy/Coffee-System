@@ -11,9 +11,9 @@ import com.android.volley.toolbox.Volley
 import com.example.coffeesystem.R
 import com.example.coffeesystem.databinding.ActivityChangePasswordBinding
 import com.example.coffeesystem.network.requestUpdatePass
-import com.example.coffeesystem.network.requestUpdateProfile
 import com.example.coffeesystem.ui.authencation.LoginFragment
 import org.json.JSONObject
+import java.lang.Exception
 
 class ChangePasswordActivity : AppCompatActivity() {
 
@@ -29,7 +29,11 @@ class ChangePasswordActivity : AppCompatActivity() {
         setContentView(view)
 
         binding.buttonChangePassword.setOnClickListener(){
-            requestEdit()
+            if(binding.txtNewPassword.text.toString().isNotEmpty()||binding.txtConfirmNewPassword.text.toString().isNotEmpty()||binding.txtOldPassword.text.isNotEmpty()){
+                requestEdit()
+            }else{
+                Toast.makeText(this,"Cần nhập đầy đủ thông tin",Toast.LENGTH_SHORT).show()
+            }
         }
     }
     private fun requestEdit() {
@@ -40,10 +44,16 @@ class ChangePasswordActivity : AppCompatActivity() {
         val objRegData = JSONObject(params as Map<*, *>)
 
         val request: JsonObjectRequest = object : JsonObjectRequest(Method.PUT, requestUpdatePass,objRegData, Response.Listener { response ->
-            Log.e("responseupdatepass", response.toString())
-            Toast.makeText(this,"Đổi mật khẩu thành công",Toast.LENGTH_SHORT).show()
+            try {
+                Log.e("responseupdatepass", response.toString())
+                Toast.makeText(this,"Đổi mật khẩu thành công",Toast.LENGTH_SHORT).show()
+            }catch (e :Exception){
+                Log.e("responseupdateerrorr", response.toString())
+                Toast.makeText(this,"Đổi mật khẩu  không thành công",Toast.LENGTH_SHORT).show()
+            }
         }, Response.ErrorListener {
             Log.e("responseupdateerrorr", it.message.toString())
+            Toast.makeText(this,"Đổi mật khẩu không thành công",Toast.LENGTH_SHORT).show()
         }) {
             override fun getHeaders(): MutableMap<String, String> {
                 val params: MutableMap<String, String> = HashMap()
