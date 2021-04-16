@@ -54,6 +54,8 @@ class ProfileFragment : Fragment() {
         }
         binding.btnLogout.setOnClickListener {
             requestLogout()
+            startActivity(Intent(activity, MainActivity::class.java))
+
         }
         binding.btnPass.setOnClickListener(){
             startActivity(Intent(activity, ChangePasswordActivity::class.java))

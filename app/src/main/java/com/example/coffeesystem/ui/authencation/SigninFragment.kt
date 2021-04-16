@@ -69,6 +69,7 @@ class SigninFragment : Fragment() {
             }
         }, Response.ErrorListener {
             Log.e("response", it.message + "")
+            Toast.makeText(activity, "Đăng ký không thành công", Toast.LENGTH_SHORT).show()
         }) {
             override fun getParams(): Map<String, String>? {
                 val params: MutableMap<String, String> = HashMap()
