@@ -64,3 +64,11 @@ Route::get('/customer/data/all/json', 'App\Http\Controllers\CustomerController@c
 Route::get('/send-mail', 'App\Http\Controllers\MailController@get_send_mail')->name('get-send-mail');
 // post send email
 Route::post('/send-mail', 'App\Http\Controllers\MailController@post_send_mail')->name('post-send-mail');
+//----------------------------------------------
+//get send mail
+Route::get('/customer/send-mail-api', 'App\Http\Controllers\Api\ResetPasswordApiController@get_send_email_api');
+//post send mail
+Route::post('/customer/send-mail-api', 'App\Http\Controllers\Api\ResetPasswordApiController@send_email_api')->name('post-send-mail-api');
+
+Route::get('/customer/reset-password/{token}', 'App\Http\Controllers\Api\ResetPasswordApiController@reset_password_api')->name('reset-password-api');
+Route::post('/customer/reset-password/{token}', 'App\Http\Controllers\Api\ResetPasswordApiController@post_reset_password')->name('post-reset-password-api');
