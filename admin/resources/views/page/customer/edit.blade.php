@@ -51,7 +51,7 @@
                 </div>
                 <div class="form-group">
                   <label for="inputDescription">Tài khoản</label>
-                  <input type="text" name="username" value="{{$edit->username}}" class="form-control" placeholder="Tên tài khoản ..." maxlength="50" required>
+                  <input type="text" disabled="disabled" name="username" value="{{$edit->username}}" class="form-control" placeholder="Tên tài khoản ..." maxlength="50" required>
                 </div>
                 <div class="form-group">
                   <label for="inputDescription">Mật khẩu mới</label>
