@@ -21,15 +21,18 @@ class CustomerApiController extends Controller
             'password' => 'required',
         ]);
         
-        $check = Customer::where('username', $request->username)
-                            ->orWhere('email', $request->email)
-                            ->orWhere('phone', $request->phone)->first();
+        $check_username = Customer::where('username', $request->username)->first();
+        $check_email = Customer::where('email', $request->email)->first();
+        $check_phone = Customer::where('phone', $request->phone)->first();
         
-        if(!empty($check)){
-            // return response()->json([
-            //     'message' => 'Tài khoản đã tồn tại'
-            // ]);
-            return 'Tài khoản đã tồn tại!';
+        if(!empty($check_username)){
+            return 'Tài khoản đã đăng ký!';
+        }
+        if(!empty($check_email)){
+            return 'Email đã đăng ký!';
+        }
+        if(!empty($check_phone)){
+            return 'Số điện thoai đã đăng ký!';
         }
 
         Customer::create([
