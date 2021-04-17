@@ -19,7 +19,7 @@
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-header text-center">
-      <h4><strong>Send Mail Api</strong></h4>
+      <h4><strong>Quên mật khẩu</strong></h4>
     </div>
     <div class="card-body login-card-body">
       <div class="row">
