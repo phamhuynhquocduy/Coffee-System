@@ -16,7 +16,7 @@
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
-  <div class="row">
+  <div>
     <!-- /.login-logo -->
     <div class="card">
       <div class="card-header text-center">
