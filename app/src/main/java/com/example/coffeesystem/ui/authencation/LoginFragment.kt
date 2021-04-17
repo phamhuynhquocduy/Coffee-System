@@ -1,5 +1,6 @@
 package com.example.coffeesystem.ui.authencation
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -75,6 +76,17 @@ class LoginFragment : Fragment() {
                     val address = userObject.getString("address")
                     val email = userObject.getString("email")
                     person = User(id, username, name, email, phone, address)
+                    with(
+                        requireContext().getSharedPreferences(
+                            "preference_login_key", Context.MODE_PRIVATE
+                        ).edit()
+                    ) {
+                        putString(
+                            "preference_login_status",
+                            token
+                        )
+                        commit()
+                    }
                     Log.e("response", response)
                     startActivity(Intent(activity, MainActivity::class.java))
                     activity?.finish()

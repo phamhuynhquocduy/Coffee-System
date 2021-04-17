@@ -1,5 +1,6 @@
 package com.example.coffeesystem.ui.profile
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -34,11 +35,6 @@ class ProfileFragment : Fragment() {
     private val binding get() = _binding!!
     private var requestQueue: RequestQueue? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
@@ -50,27 +46,74 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnProfile.setOnClickListener() {
-            startActivity(Intent(activity, ProfileActivity::class.java))
+            val sharedPref = requireContext().getSharedPreferences("preference_login_key", Context.MODE_PRIVATE)
+            with(
+                sharedPref.getString(
+                    "preference_login_status",
+                    null
+                )
+            ) {
+                if (this !=null) {
+                    startActivity(Intent(activity, ProfileActivity::class.java))
+                }else{
+                    startActivity(Intent(activity, LoginActivity::class.java))
+                }
+            }
+
+        }
+        val sharedPref = requireContext().getSharedPreferences("preference_login_key", Context.MODE_PRIVATE)
+        with(
+            sharedPref.getString(
+                "preference_login_status",
+                null
+            )
+        ) {
+            if (this !=null) {
+                Log.e("share",this)
+                binding.btnLogout.text ="Đăng xuất"
+                sharedPref.edit()
+            }else{
+                binding.btnLogout.text ="Đăng nhập"
+            }
         }
         binding.btnLogout.setOnClickListener {
-            requestLogout()
-            startActivity(Intent(activity, MainActivity::class.java))
-
+            val sharedPref = requireContext().getSharedPreferences("preference_login_key", Context.MODE_PRIVATE)
+            with(
+                sharedPref.getString(
+                    "preference_login_status",
+                    null
+                )
+            ) {
+                if (this !=null) {
+                    requestLogout()
+                }else{
+                    startActivity(Intent(activity, LoginActivity::class.java))
+                }
+            }
         }
         binding.btnPass.setOnClickListener(){
             startActivity(Intent(activity, ChangePasswordActivity::class.java))
         }
-//        if(isLogin()){
-//            binding.btnLogout.text = "Đăng nhập"
-//            startActivity(Intent(activity,LoginActivity::class.java))
-//        }else{
-//            binding.btnLogout.text = "Đăng xuất"
-//        }
     }
     private fun requestLogout() {
         requestQueue = Volley.newRequestQueue(activity)
         val request: StringRequest = object : StringRequest(Request.Method.POST, requestLogout, Response.Listener { response ->
             Log.e("responselogout", response)
+            with(
+                requireContext().getSharedPreferences(
+                    "preference_login_key", Context.MODE_PRIVATE
+                ).edit()
+            ) {
+                putString(
+                    "preference_login_status",
+                    null
+                )
+                commit()
+            }
+            binding.btnLogout.text ="Đăng nhập"
+            val transaction = activity?.supportFragmentManager?.beginTransaction()
+            transaction?.replace(R.id.nav_host_fragment, HomeFragment())
+            transaction?.commit()
         }, Response.ErrorListener {
             Log.e("responselogouterror", it.message.toString())
         }) {

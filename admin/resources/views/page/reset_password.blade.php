@@ -16,7 +16,7 @@
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
-  <div class="row">
+  <div>
     <!-- /.login-logo -->
     <div class="card">
       <div class="card-header text-center">
@@ -32,7 +32,7 @@
           }
           ?>
         </div>
-        <div class="row col-md-12">
+        <div>
           @foreach ($reset as $r)
           <form action="{{ route('post-reset-password-api', $r->token) }}" method="post">
             {{ csrf_field() }}
