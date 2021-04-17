@@ -32,7 +32,7 @@
           }
           ?>
         </div>
-        <div class="row col-md-12">
+        <div>
           @foreach ($reset as $r)
           <form action="{{ route('post-reset-password-api', $r->token) }}" method="post">
             {{ csrf_field() }}
