@@ -57,7 +57,7 @@
                   <label for="inputDescription">Tài khoản</label>
                   <input id="username" type="text" 
                   onkeyup="if (/[^|a-zA-Z0-9]+/g.test(this.value)) this.value = this.value.replace(/[^|a-zA-Z0-9]+/g,'')" 
-                  name="username" class="form-control" placeholder="Tên tài khoản ..." minlength="8" maxlength="50" pattern="" required> 
+                  name="username" class="form-control" placeholder="Tên tài khoản ..." minlength="5" maxlength="50" required> 
                 </div>
                 <div class="form-group">
                   <label for="inputDescription">Mật khẩu</label>

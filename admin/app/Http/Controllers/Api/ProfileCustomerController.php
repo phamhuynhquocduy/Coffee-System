@@ -30,22 +30,23 @@ class ProfileCustomerController extends Controller
         // $request->validate([
         //     'password' => 'required'
         // ]);
+
         $user = $request->user();
 
-        $check_password_old = Hash::make($request->old_password);
+        if(!Hash::check($request->old_password, $user->password)){
+            return 'Mật khẩu củ sai, vui lòng kiểm tra lại'; 
+        }
 
-        // if(empty($check_password_old)){
-        //     return 'Mật khẩu cũ sai, vui lòng kiểm tra lại!'; 
-        // }
+        if($request->password != $request->re_password){
+            return 'Lỗi không đúng mật khẩu';
+        }
 
-        // if($request->password != $request->re_password){
-        //     return 'Lỗi không đúng mật khẩu';
-        // }
+        $new_password = Hash::make($request->password);
+        $user->update(['password'=>$new_password]);
 
-        // $new_password = Hash::make($request->password);
-        // $user->update(['password'=>$new_password]);
-
-        // return response()->json($user);
-        return response()->json(["pass"=>$check_password_old, "user" => $user]);
+        return response()
+                ->json(['message' => 'Đổi mật khẫu thành công',
+                        'user' => $user
+        ]);
     }
 }

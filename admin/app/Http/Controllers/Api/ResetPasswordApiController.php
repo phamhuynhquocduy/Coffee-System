@@ -81,6 +81,6 @@ class ResetPasswordApiController extends Controller
 
     public function check_reset_passwords(){
         $email = DB::table('password_resets')->get();
-        return response()->json($email[0]->email);
+        return response()->json($email);
     }
 }
