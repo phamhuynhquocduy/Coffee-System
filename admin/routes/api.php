@@ -42,4 +42,4 @@ Route::post('/customer/reset-password/{token}', 'App\Http\Controllers\Api\ResetP
 
 
 // ------------------------------
-Route::get('/product/filter/{id}/category', 'App\Http\Controllers\Api\ProductApiController@filter_attribute');
+Route::get('/product/filter/category/{id}', 'App\Http\Controllers\Api\ProductApiController@filter_attribute');
