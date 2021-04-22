@@ -39,3 +39,7 @@ Route::get('/customer/check_data_reset', 'App\Http\Controllers\Api\ResetPassword
 // reset password
 Route::get('/customer/reset-password/{token}', 'App\Http\Controllers\Api\ResetPasswordApiController@reset_password_api')->name('reset-password-api');
 Route::post('/customer/reset-password/{token}', 'App\Http\Controllers\Api\ResetPasswordApiController@post_reset_password')->name('post-reset-password-api');
+
+
+// ------------------------------
+Route::get('/product/filter/{id}/category', 'App\Http\Controllers\Api\ProductApiController@filter_attribute');
