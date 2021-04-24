@@ -27,26 +27,23 @@ class ProfileCustomerController extends Controller
 
     public function update_password(Request $request)
     {
-        // $request->validate([
-        //     'password' => 'required'
-        // ]);
+        $request->validate([
+            'password' => 'required'
+        ]);
 
         $user = $request->user();
 
         if(!Hash::check($request->old_password, $user->password)){
-            return 'Mật khẩu củ sai, vui lòng kiểm tra lại'; 
+            return 'Mật khẩu củ sai, vui lòng kiểm tra lại!'; 
         }
 
         if($request->password != $request->re_password){
-            return 'Lỗi không đúng mật khẩu';
+            return 'Lỗi không đúng mật khẩu mới!';
         }
 
         $new_password = Hash::make($request->password);
         $user->update(['password'=>$new_password]);
 
-        return response()
-                ->json(['message' => 'Đổi mật khẫu thành công',
-                        'user' => $user
-        ]);
+        return 'Đổi mật khẩu thành công';
     }
 }

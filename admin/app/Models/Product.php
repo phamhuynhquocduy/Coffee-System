@@ -12,4 +12,12 @@ class Product extends Model
     protected $table = "products";
 
     public $timestamps = false;
+
+    public function attribute_values(){
+        return $this->hasMany('App\Models\AttributeValues', 'id_product', 'id');
+    }
+
+    public function category(){
+        return $this->belongsTo('App\Models\Category', 'id_category', 'id');
+    }
 }

@@ -12,4 +12,8 @@ class Category extends Model
     protected $table = "categories";
 
     public $timestamps = false;
+
+    public function product(){
+        return $this->hasMany('App\Models\Product', 'id_category', 'id');
+    }
 }
