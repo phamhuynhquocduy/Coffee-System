@@ -34,11 +34,11 @@ class ProfileCustomerController extends Controller
         $user = $request->user();
 
         if(!Hash::check($request->old_password, $user->password)){
-            return 'Mật khẩu củ sai, vui lòng kiểm tra lại!'; 
+            return 'Mật khẩu cũ sai, vui lòng kiểm tra lại!'; 
         }
 
         if($request->password != $request->re_password){
-            return 'Lỗi không đúng mật khẩu mới!';
+            return 'Mật khẩu xác nhận không đúng!';
         }
 
         $new_password = Hash::make($request->password);
