@@ -10,22 +10,20 @@ use App\Models\Category;
 class ProductApiController extends Controller
 {
     //
-    public function filter_attribute($id){
-        $category_profile = Category::where('id', $id)->get();
-        
-        if(empty($category_profile[0]->id)){
-            return 'Không có kết quả trả về';
-        } 
-        
-        $all_product_category_profile = Product::where('id_category', $id)->get();
+    public function filter_attribute(){
+        $category_profile = Category::all();
 
-        return response()->json([
-            'id' => $category_profile[0]->id,
-            'name' => $category_profile[0]->name,
-            'description' => $category_profile[0]->description,
-            'image' => $category_profile[0]->image,
-            'product' => $all_product_category_profile
-        ]);
+        foreach($category_profile as $key)
+        {
+            $arr = array();
+            $arr['id'] = $key->id;
+            $arr['name'] = $key->name;
+            $arr['description'] = $key->description;
+            $arr['image'] = $key->image;
+            $arr['product'] = Product::where('id_category', $key->id)->get();
+
+            echo json_encode($arr);
+        }
     }
 
     public function filter_price(Request $request)
