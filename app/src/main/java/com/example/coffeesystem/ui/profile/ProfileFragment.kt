@@ -9,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isGone
+import androidx.core.view.isInvisible
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
@@ -39,28 +41,10 @@ class ProfileFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.btnProfile.setOnClickListener() {
-            val sharedPref = requireContext().getSharedPreferences("preference_login_key", Context.MODE_PRIVATE)
-            with(
-                sharedPref.getString(
-                    "preference_login_status",
-                    null
-                )
-            ) {
-                if (this !=null) {
-                    startActivity(Intent(activity, ProfileActivity::class.java))
-                }else{
-                    startActivity(Intent(activity, LoginActivity::class.java))
-                }
-            }
-
-        }
         val sharedPref = requireContext().getSharedPreferences("preference_login_key", Context.MODE_PRIVATE)
         with(
             sharedPref.getString(
@@ -70,9 +54,11 @@ class ProfileFragment : Fragment() {
         ) {
             if (this !=null) {
                 Log.e("share",this)
+                binding.btnPass.visibility= View.VISIBLE
                 binding.btnLogout.text ="Đăng xuất"
                 sharedPref.edit()
             }else{
+                binding.btnPass.visibility = View.GONE
                 binding.btnLogout.text ="Đăng nhập"
             }
         }
@@ -92,8 +78,25 @@ class ProfileFragment : Fragment() {
             }
         }
         binding.btnPass.setOnClickListener(){
-            startActivity(Intent(activity, ChangePasswordActivity::class.java))
+                    startActivity(Intent(activity, ChangePasswordActivity::class.java))
+            }
+        binding.btnProfile.setOnClickListener() {
+            val sharedPref = requireContext().getSharedPreferences("preference_login_key", Context.MODE_PRIVATE)
+            with(
+                    sharedPref.getString(
+                            "preference_login_status",
+                            null
+                    )
+            ) {
+                if (this !=null) {
+                    startActivity(Intent(activity, ProfileActivity::class.java))
+                }else{
+                    binding.btnPass.isInvisible = false
+                }
+            }
+
         }
+
     }
     private fun requestLogout() {
         requestQueue = Volley.newRequestQueue(activity)

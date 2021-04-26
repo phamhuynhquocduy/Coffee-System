@@ -23,5 +23,6 @@ data class Category(
     val id: Int,
     val name: String,
     val image: String,
-    val description: String
+    val description: String,
+    val listProdcut : ArrayList<Product>
 ): Serializable
