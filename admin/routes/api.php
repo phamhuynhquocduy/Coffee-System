@@ -46,3 +46,6 @@ Route::get('/product/filter/category', 'App\Http\Controllers\Api\ProductApiContr
 
 // ------------------------------ filter - price
 Route::get('/product/filter/{price}', 'App\Http\Controllers\Api\ProductApiController@filter_price');
+
+// ------------------------------ filter - eav -product
+Route::get('/product/filter', 'App\Http\Controllers\Api\ProductApiController@filter_product');

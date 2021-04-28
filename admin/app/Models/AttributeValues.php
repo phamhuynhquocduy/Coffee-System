@@ -11,11 +11,8 @@ class AttributeValues extends Model
 
     protected $table = "attribute_values";
 
-    public function product(){
-        return $this->belongsTo('App\Models\Product', 'id_product', 'id');
-    }
-
-    public function attribute(){
-        return $this->belongsTo('App\Models\Attribute', 'id_attribute', 'id');
+    public function product()
+    {
+        return $this->belongsToMany('App\Models\Product');
     }
 }

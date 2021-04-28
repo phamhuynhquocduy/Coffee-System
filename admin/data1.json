@@ -1,0 +1,88 @@
+﻿[
+  {
+    "id": 3,
+    "name": "Trà sữa",
+    "description": "Trà sữa ngon lắm",
+    "image": "public\/save\/images\/product\/cafe.jpg",
+    "price": 25000,
+    "id_category": 4,
+    "status": "Còn hàng",
+    "attributes": [
+      {
+        "id": 1,
+        "name": "Topping",
+        "values": [
+          {
+            "id": 1,
+            "name": "Trân châu đường đen",
+            "price": 10000
+          },
+          {
+            "id": 2,
+            "name": "Trân châu trắng",
+            "price": 10000
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Size",
+        "values": [
+          {
+            "id": 1,
+            "name": "Size M",
+            "price": 0
+          },
+          {
+            "id": 2,
+            "name": "Size L",
+            "price": 80000
+          }
+        ]
+      }
+    ]
+  } ,
+  {
+    "id": 4,
+    "name": "Trà đẹp",
+    "description": "Trà đẹp thanh nhiệt",
+    "image": "public\/save\/images\/product\/cafe.jpg",
+    "price": 25000,
+    "id_category": 4,
+    "status": "Còn hàng",
+    "attributes": [
+      {
+        "id": 1,
+        "name": "Topping",
+        "values": [
+          {
+            "id": 1,
+            "name": "Trân châu đường đen",
+            "price": 10000
+          },
+          {
+            "id": 2,
+            "name": "Trân châu trắng",
+            "price": 10000
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Size",
+        "values": [
+          {
+            "id": 1,
+            "name": "Size M",
+            "price": 0
+          },
+          {
+            "id": 2,
+            "name": "Size L",
+            "price": 80000
+          }
+        ]
+      }
+    ]
+  } 
+]

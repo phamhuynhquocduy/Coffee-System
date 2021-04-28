@@ -13,11 +13,8 @@ class Product extends Model
 
     public $timestamps = false;
 
-    public function attribute_values(){
-        return $this->hasMany('App\Models\AttributeValues', 'id_product', 'id');
-    }
-
-    public function category(){
-        return $this->belongsTo('App\Models\Category', 'id_category', 'id');
+    public function atrribute_values()
+    {
+        return $this->belongsToMany('App\Models\AttributeValues');
     }
 }

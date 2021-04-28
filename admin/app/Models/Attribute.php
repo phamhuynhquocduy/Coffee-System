@@ -11,7 +11,5 @@ class Attribute extends Model
 
     protected $table = "attributes";
 
-    public function attribute_values(){
-        return $this->hasMany('App\Models\AttributeValues', 'id_attribute', 'id');
-    }
+    
 }
