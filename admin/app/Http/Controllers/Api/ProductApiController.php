@@ -89,7 +89,7 @@ class ProductApiController extends Controller
         else if($id_category==null&&$name!=null)
         {
             $product = DB::table('products')
-            ->where('name','like',$name)
+            ->where('name','like','%'.$name.'%')
             ->where('price','>=',$min)
             ->where('price','<=',$max)
             ->orderBy('price','ASC')
@@ -106,7 +106,7 @@ class ProductApiController extends Controller
         else
         {
             $product = DB::table('products')
-            ->where('name','like',$name)
+            ->where('name','like','%'.$name.'%')
             ->where('id_category', $id_category)
             ->where('price','>=',$min)
             ->where('price','<=',$max)
