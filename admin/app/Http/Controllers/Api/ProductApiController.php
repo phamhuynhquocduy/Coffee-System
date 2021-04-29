@@ -15,7 +15,7 @@ class ProductApiController extends Controller
     //
     public function filter_attribute(){
         $category_profile = Category::all();
-
+        $arrrrr =array();
         foreach($category_profile as $key)
         {
             $arr = array();
@@ -25,8 +25,10 @@ class ProductApiController extends Controller
             $arr['image'] = $key->image;
             $arr['product'] = Product::where('id_category', $key->id)->get();
 
-            echo json_encode($arr);
+            $arrrrr[] = $arr;
         }
+
+        return response()->json($arrrrr);
     }
 
     public function filter_price(Request $request)
@@ -111,7 +113,7 @@ class ProductApiController extends Controller
         $attribute = Attribute::all();
 
         $attribute_values = AttributeValues::all();
-
+        $arrrr = array();
         foreach($product as $key)
         {
             $arr = array();
@@ -141,7 +143,8 @@ class ProductApiController extends Controller
                 ]
             ];
 
-            echo json_encode($arr);
+            $arrrr[] = $arr;
         }
+        return response()->json($arrrr);
     }
 }
