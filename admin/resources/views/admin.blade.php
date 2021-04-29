@@ -344,4 +344,28 @@
     $(".select").selectize();
   });
 </script>
+<script type="text/javascript">
+  //select import
+  $(document).ready(function () {
+    // topping
+    $('.add').on('click',function () { 
+      var product_id = $(this).data('id');
+      $.get('product/'+product_id+'/editjson', function (data) {
+        // console.log(data[0].id);
+        $('#id_product').val(data[0].id);
+        $('#name_product').val(data[0].name);
+      })
+    });
+    // size
+    $('.add2').on('click',function () { 
+      var product_id = $(this).data('id');
+      console.log(product_id);
+      $.get('product/'+product_id+'/editjson', function (data) {
+        // console.log(data);
+        $('#id_product1').val(data[0].id);
+        $('#name_product1').val(data[0].name);
+      })
+    });
+  });
+</script>
 </html>

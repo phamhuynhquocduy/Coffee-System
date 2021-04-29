@@ -74,7 +74,7 @@
               <tbody>
               @foreach ($list_product as $pro)
                   <tr>
-                      <td>
+                      <td class="id">
                           {{$pro->id}}
                       </td>
                       <td>
@@ -87,7 +87,7 @@
                           </strong>
                       </td>
                       <td>
-                          <strong>
+                          <strong class="name_product">
                               {{$pro->name}}
                           </strong>
                       </td>
@@ -101,7 +101,19 @@
                           {{$pro->price}}
                       </td>
                       <td class="project-actions text-right">
+                          <!-- <a class="btn btn-warning btn-sm" href="" >
+                            <i class="fas fa-dice-d6"></i>
+                              Thuộc tính
+                          </a> -->
+                          <!-- Button trigger modal -->
+                          <button type="button" class="btn btn-warning btn-sm add" data-toggle="modal" data-id="{{ $pro->id }}"  data-target="#staticBackdrop1">
+                            Topping
+                          </button>
+                          <button type="button" class="btn btn-secondary btn-sm add2" data-toggle="modal" data-id="{{ $pro->id }}" data-target="#staticBackdrop2">
+                            Size
+                          </button>
                           
+
                           <a class="btn btn-info btn-sm" href="{{route('product.edit',$pro->id)}}">
                               <i class="fas fa-pencil-alt">
                               </i>
@@ -124,10 +136,101 @@
               <div class="col-sm-3"></div>
               
           </div>
+
+          
+          <!-- Modal Topping -->
+          <div class="modal fade" id="staticBackdrop1" role="dialog" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">Thêm Topping</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <form action="{{ route('product.save-attribute') }}" method="post">
+                <div class="modal-body">
+                  @csrf
+                  <input type="hidden" name="id_attribute" value="1">
+                  <div class="row">
+                    <div class="col-6">
+                      <label for="">Id sản phẩm</label>
+                      <input type="text" id="id_product" name="id_product" class="form-control" readonly>
+                    </div>
+                    <div class="col-6">
+                      <label for="">Tên sản phẩm</label>
+                      <input type="text" id="name_product" disabled="disabled" class="form-control">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <label for="">Tên topping</label>
+                      <input type="text" name="topping" class="form-control">
+                    </div>
+                    <div class="col-6">
+                      <label for="">Giá topping</label>
+                      <input type="text" name="topping_price" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-success">Thêm</button>
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Modal Size -->
+          <div class="modal fade" id="staticBackdrop2" role="dialog" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">Thêm Size</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <form action="{{ route('product.save-attribute') }}" method="post">
+                <div class="modal-body">
+                @csrf
+                  <input type="hidden" name="id_attribute" value="2">
+                  <div class="row">
+                    <div class="col-6">
+                      <label for="">Id sản phẩm</label>
+                      <input type="text" id="id_product1" name="id_product" class="form-control" readonly>
+                    </div>
+                    <div class="col-6">
+                      <label for="">Tên sản phẩm</label>
+                      <input type="text" id="name_product1" disabled="disabled" class="form-control">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <label for="">Tên Size</label>
+                      <input type="text" name="topping" class="form-control">
+                    </div>
+                    <div class="col-6">
+                      <label for="">Giá Size</label>
+                      <input type="text" name="topping_price" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-success">Thêm</button>
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
         </div>
         <!-- /.card-body -->
       </div>
       <!-- /.card -->
     </section>
     <!-- /.content -->
+    
 @endsection

@@ -27,6 +27,8 @@ Route::prefix('product')->group(function () {
     Route::get('/create', 'App\Http\Controllers\ProductController@create')->name('product.create');
     Route::post('/save', 'App\Http\Controllers\ProductController@store')->name('product.store');
     Route::get('/{id}/edit', 'App\Http\Controllers\ProductController@edit')->name('product.edit');
+    Route::get('/{id}/editjson', 'App\Http\Controllers\ProductController@editjson')->name('product.editjson');
+    Route::post('/save/attribute', 'App\Http\Controllers\ProductController@save_attribute')->name('product.save-attribute');
     Route::post('/{id}/update', 'App\Http\Controllers\ProductController@update')->name('product.update');
     Route::get('/{id}', 'App\Http\Controllers\ProductController@destroy')->name('product.destroy');
 });
@@ -69,3 +71,6 @@ Route::post('/send-mail', 'App\Http\Controllers\MailController@post_send_mail')-
 Route::get('/customer/send-mail-api', 'App\Http\Controllers\Api\ResetPasswordApiController@get_send_email_api');
 //post send mail
 Route::post('/customer/send-mail-api', 'App\Http\Controllers\Api\ResetPasswordApiController@send_email_api')->name('post-send-mail-api');
+
+// -------------------------------- test -----------------------------//
+Route::get('/test','App\Http\Controllers\ProductController@list' );

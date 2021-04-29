@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\AttributeValues;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -109,7 +110,10 @@ class ProductController extends Controller
         $edit_pro = Product::where('id', $id)->get();
         return view('page.product.edit', compact(['list_cate','edit_pro']));
     }
-
+    public function editjson($id){
+        $edit_pro = Product::where('id', $id)->get(['id','name']);
+        return response()->json($edit_pro);
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -169,5 +173,25 @@ class ProductController extends Controller
         $get_all_pro_one_cate = Product::where('id_category', $id)->get();
 
         return response()->json($get_all_pro_one_cate);
+    }
+    // them topping
+    public function save_attribute(Request $request)
+    {
+        $arr = array();
+        $arr['id_attribute'] = $request->id_attribute;
+        $arr['id_product'] = $request->id_product;
+        $arr['name'] = $request->topping;
+        $arr['price'] = $request->topping_price;
+        // dd($arr);
+        AttributeValues::insert($arr);
+        Session::put('message', '
+            <div class="alert alert-success" role="alert">
+                Thêm topping thành công
+            </div>
+        ');
+        return redirect()->back();
+    }
+    public function list(){
+        return response()->json(AttributeValues::all());
     }
 }

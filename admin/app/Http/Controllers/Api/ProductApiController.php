@@ -64,15 +64,7 @@ class ProductApiController extends Controller
         // xử lý filter
         $name = $request->has('name') ? $request->name : null;
         
-        $category = $request->has('category') ? $request->category : null;
-        if($category == null)
-        {
-            $id_category = null;
-        }
-        else
-        {
-            $id_category = Category::where('name', 'like', '%'.$category.'%')->first();
-        }
+        $id_category = $request->has('id_category') ? $request->id_category : null;
 
         $min = $request->has('min_price') ? $request->min_price : 0;
         $max = $request->has('max_price') ? $request->max_price : 9000000;
@@ -143,7 +135,9 @@ class ProductApiController extends Controller
                     //size
                     'id' => $attribute[1]->id,
                     'name' => $attribute[1]->name,
-                    'values' => AttributeValues::where('id_attribute', $attribute[1]->id)->get(['id','name','price'])
+                    'values' => AttributeValues::where('id_attribute', $attribute[1]->id)
+                                                    ->where('id_product',$key->id)
+                                                    ->get(['id','name','price'])
                 ]
             ];
 
