@@ -184,11 +184,23 @@ class ProductController extends Controller
         $arr['price'] = $request->topping_price;
         // dd($arr);
         AttributeValues::insert($arr);
-        Session::put('message', '
+
+        if($request->id_attribute == 1)
+        {
+            Session::put('message', '
             <div class="alert alert-success" role="alert">
                 Thêm topping thành công
             </div>
-        ');
+            ');
+        }
+        else
+        {
+            Session::put('message', '
+            <div class="alert alert-success" role="alert">
+                Thêm size thành công
+            </div>
+            ');
+        }
         return redirect()->back();
     }
     public function list(){
