@@ -365,11 +365,27 @@
     // size
     $('.add2').on('click',function () { 
       var product_id = $(this).data('id');
-      console.log(product_id);
+      // console.log(product_id);
       $.get('product/'+product_id+'/editjson', function (data) {
         // console.log(data);
         $('#id_product1').val(data[0].id);
         $('#name_product1').val(data[0].name);
+      })
+    });
+  });
+</script>
+<script type="text/javascript">
+  //select import
+  $(document).ready(function () {
+    $('.edit').on('click',function () { 
+      var idd = $(this).data('id');
+      $.get(idd+'/edit', function (data) {
+        console.log(data);
+        $('#id').val(data[0].id);
+        $('#id_product').val(data[0].id_product);
+        $('#id_attribute').val(data[0].id_attribute);
+        $('#name').val(data[0].name);
+        $('#price').val(data[0].price);
       })
     });
   });

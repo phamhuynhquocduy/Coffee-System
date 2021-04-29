@@ -30,7 +30,7 @@
                     <!-- @csrf -->
                     <div class="col-md-5">
                         <label for="">Tên sản phẩm</label>
-                        <select name="id_product" id="id_product" class="form-control">
+                        <select name="id_product" class="form-control">
                             @foreach ($product as $key)
                             <option value="{{ $key->id }}">{{ $key->name }}</option>
                             @endforeach
@@ -38,7 +38,7 @@
                     </div>
                     <div class="col-md-5">
                         <label for="">Tên thuộc tính</label>
-                        <select name="id_attribute" id="id_attribute" class="form-control">
+                        <select name="id_attribute" class="form-control">
                             @foreach ($attribute as $key)
                             <option value="{{ $key->id }}">{{ $key->name }}</option>
                             @endforeach
@@ -99,7 +99,9 @@
                     <td>{{ $key->name }}</td>
                     <td>{{ $key->price }}</td>
                     <td>
-                      <button class="btn btn-primary btn-sm"><i class="fa fa-edit" aria-hidden="true"></i> Sửa</button>
+                      <button class="btn btn-primary btn-sm edit" data-id="{{ $key->id }}" data-toggle="modal" data-target="#editAttributeValues">
+                      <i class="fa fa-edit" aria-hidden="true"></i> Sửa
+                      </button>
                       <a href="{{ route('delete-attribute', $key->id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?')"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
                     </td>
                 </tr>
@@ -112,4 +114,44 @@
       </div>
     </section>
     <!-- /.content -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="editAttributeValues" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Cập nhật giá trị thuộc tính</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form action="{{ route('update-attribute') }}" method="post">
+                          <div class="row">
+                            @csrf
+                            <div class="col-md-12">
+                              <input type="hidden" id="id" name="id" class="form-control">
+                              <input type="hidden" id="id_product" name="id_product" class="form-control">
+                              <input type="hidden" id="id_attribute" name="id_attribute" class="form-control">
+                            </div>
+                            
+                            <div class="col-md-6">
+                              <label for="">Giá trị thuộc tính</label>
+                              <input type="text" id="name" name="name" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                              <label for="">Giá tiền</label>
+                              <input type="text" id="price" name="price" class="form-control">
+                            </div>
+                          </div>
+                        
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary">Cập nhật</button>
+                      </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
 @endsection

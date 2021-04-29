@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Auth;
+use DB;
 
 class ProductController extends Controller
 {
@@ -203,7 +204,15 @@ class ProductController extends Controller
         }
         return redirect()->back();
     }
-    public function list(){
-        return response()->json(AttributeValues::all());
-    }
+    // public function list(){
+    //     $arr =array();
+    //     // $arr['id_product'] = $request->id_product;
+    //     // $arr['id_attribute'] = $request->id_attribute;
+    //     // $arr['name'] = $request->name;
+    //     $arr['price'] = 12000;
+
+    //     // DB::table('attribute_values')->where('id', 7)->update(['price'=>12000]);
+    //     $result = DB::table('attribute_values')->where('id', 7)->get();
+    //     return response()->json($result);
+    // }
 }

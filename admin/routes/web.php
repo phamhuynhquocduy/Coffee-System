@@ -73,10 +73,13 @@ Route::get('/customer/send-mail-api', 'App\Http\Controllers\Api\ResetPasswordApi
 Route::post('/customer/send-mail-api', 'App\Http\Controllers\Api\ResetPasswordApiController@send_email_api')->name('post-send-mail-api');
 
 // -------------------------------- test -----------------------------//
-Route::get('/test','App\Http\Controllers\ProductController@list' );
+// Route::get('/test','App\Http\Controllers\ProductController@list' );
 
 // -------------------------------- filter ---------------------------//
 Route::get('product/filter/attribute/value', 'App\Http\Controllers\FilterAttributeController@all_attribute')->name('all-attribute');
 Route::get('product/filter/attribute/value/result', 'App\Http\Controllers\FilterAttributeController@result_filter')->name('post-filter');
 Route::get('product/filter/attribute/{id}/delete', 'App\Http\Controllers\FilterAttributeController@delete_attribute')->name('delete-attribute');
+Route::get('product/filter/attribute/value/{id}/edit', 'App\Http\Controllers\FilterAttributeController@edit_attribute')->name('edit-attribute');
+Route::post('product/filter/attribute/update', 'App\Http\Controllers\FilterAttributeController@update_attribute')->name('update-attribute');
+
 
