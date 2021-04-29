@@ -74,3 +74,9 @@ Route::post('/customer/send-mail-api', 'App\Http\Controllers\Api\ResetPasswordAp
 
 // -------------------------------- test -----------------------------//
 Route::get('/test','App\Http\Controllers\ProductController@list' );
+
+// -------------------------------- filter ---------------------------//
+Route::get('product/filter/attribute/value', 'App\Http\Controllers\FilterAttributeController@all_attribute')->name('all-attribute');
+Route::get('product/filter/attribute/value/result', 'App\Http\Controllers\FilterAttributeController@result_filter')->name('post-filter');
+Route::get('product/filter/attribute/{id}/delete', 'App\Http\Controllers\FilterAttributeController@delete_attribute')->name('delete-attribute');
+

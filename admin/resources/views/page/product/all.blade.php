@@ -138,7 +138,7 @@
           </div>
 
           
-          <!-- Modal Topping -->
+          <!-- Modal Add Topping -->
           <div class="modal fade" id="staticBackdrop1" role="dialog" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -182,7 +182,7 @@
             </div>
           </div>
           
-          <!-- Modal Size -->
+          <!-- Modal Add Size -->
           <div class="modal fade" id="staticBackdrop2" role="dialog" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">

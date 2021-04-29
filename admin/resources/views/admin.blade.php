@@ -177,6 +177,12 @@
                   <p>Tất cả sản phẩm</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{route('all-attribute')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Quản lý thuộc tính</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item">
