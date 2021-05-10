@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/navigation_home"
+        android:id="@+id/navigation_cart"
         android:icon="@drawable/ic_baseline_shopping_cart_24_black"
         app:showAsAction="always"
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_filter"
         android:icon="@drawable/ic_baseline_tune_24_black"
         app:showAsAction="always"
         android:title="@string/title_dashboard" />
