@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Attribute;
 
 class Product extends Model
 {
@@ -13,8 +14,15 @@ class Product extends Model
 
     public $timestamps = false;
 
-    public function atrribute_values()
+    protected $fillable = array('name', 'price', 'status');
+
+    public function attrs()
     {
-        return $this->belongsToMany('App\Models\AttributeValues');
+        return $this->belongsToMany(
+            Attribute::class,
+            'attribute_values',
+            'id_product',
+            'id_attribute'
+        )->withPivot('name_attr_value','price_attr_value');
     }
 }

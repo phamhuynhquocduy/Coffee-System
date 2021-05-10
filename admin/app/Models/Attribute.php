@@ -11,5 +11,4 @@ class Attribute extends Model
 
     protected $table = "attributes";
 
-    
 }

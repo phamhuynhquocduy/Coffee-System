@@ -204,15 +204,24 @@ class ProductController extends Controller
         }
         return redirect()->back();
     }
-    // public function list(){
-    //     $arr =array();
-    //     // $arr['id_product'] = $request->id_product;
-    //     // $arr['id_attribute'] = $request->id_attribute;
-    //     // $arr['name'] = $request->name;
-    //     $arr['price'] = 12000;
+    
+    // thumbs down
+    public function thumbs_down($id)
+    {
+        Product::find($id)->update(['status'=>'Hết']);
 
-    //     // DB::table('attribute_values')->where('id', 7)->update(['price'=>12000]);
-    //     $result = DB::table('attribute_values')->where('id', 7)->get();
-    //     return response()->json($result);
-    // }
+        Session::put('message', '<p style="color: red;">Thay đổi tình trạng "Hết" của sản phẩm thành công!</p>');
+
+        return redirect()->back();
+    }
+
+    // thumbs up
+    public function thumbs_up($id)
+    {
+        Product::find($id)->update(['status'=>'Còn']);
+
+        Session::put('message', '<p style="color: green;">Thay đổi tình trạng "Còn" của sản phẩm thành công!</p>');
+
+        return redirect()->back();
+    }
 }

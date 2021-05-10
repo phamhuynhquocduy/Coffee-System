@@ -31,6 +31,10 @@ Route::prefix('product')->group(function () {
     Route::post('/save/attribute', 'App\Http\Controllers\ProductController@save_attribute')->name('product.save-attribute');
     Route::post('/{id}/update', 'App\Http\Controllers\ProductController@update')->name('product.update');
     Route::get('/{id}', 'App\Http\Controllers\ProductController@destroy')->name('product.destroy');
+
+    // thumbs-up & thumbs-down
+    Route::get('/thumbs-down/{id}', 'App\Http\Controllers\ProductController@thumbs_down')->name('product.thumbs-down');
+    Route::get('/thumbs-up/{id}', 'App\Http\Controllers\ProductController@thumbs_up')->name('product.thumbs-up');
 });
 //category json
 Route::get('product/data/all/json', 'App\Http\Controllers\ProductController@conver_product_json')->name('product-json');

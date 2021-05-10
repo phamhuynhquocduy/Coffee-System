@@ -15,7 +15,7 @@ class CreateAttributesTable extends Migration
     {
         Schema::create('attributes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->nullable()->default('text');
+            $table->string('name_attr')->nullable()->default('text');
         });
     }
 

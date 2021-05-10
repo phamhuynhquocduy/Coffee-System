@@ -67,6 +67,9 @@
                       <th style="width: 15%">
                           Giá sản phẩm
                       </th>
+                      <th style="width: 5%">
+                          Tình trạng
+                      </th>
                       <th style="width: 20%">
                       </th>
                   </tr>
@@ -99,6 +102,17 @@
                       </td>
                       <td class="project_progress">
                           {{$pro->price}}
+                      </td>
+                      <td class="project_progress">
+                        @if ($pro->status == 'Còn')
+                          <a href="{{ route('product.thumbs-down', $pro->id) }}">
+                            <i class="fa fa-thumbs-up text-success" aria-hidden="true"></i>
+                          </a>
+                        @else
+                          <a href="{{ route('product.thumbs-up', $pro->id) }}">
+                            <i class="fa fa-thumbs-down text-danger" aria-hidden="true"></i>
+                          </a>  
+                        @endif
                       </td>
                       <td class="project-actions text-right">
                           <!-- <a class="btn btn-warning btn-sm" href="" >
