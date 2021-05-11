@@ -73,8 +73,8 @@
                     <input type="hidden" value="{{ $attr->id }}">
                     <label for="attr-{{ $loop->index }}">{{ $attr->name_attr }}</label>
                     <div class="row">
-                      <div class="col-md-6"><input type="text" name="attr_name[{{ $attr->id }}]" id="attr-name-{{ $loop->index }}" class="form-control" value=" {{$edit->attrs[$loop->index]->pivot->name_attr_value}}"></div>
-                      <div class="col-md-6"><input type="text" name="attr_price[{{ $attr->id }}]" id="attr-price-{{ $loop->index }}" class="form-control" value=" {{$edit->attrs[$loop->index]->pivot->price_attr_value}} "></div>
+                      <div class="col-md-6"><input type="text" name="attr_name[{{ $attr->id }}]" id="attr-name-{{ $loop->index }}" class="form-control" value="@if(!empty($edit->attrs[$loop->index]->pivot->name_attr_value)) {{$edit->attrs[$loop->index]->pivot->name_attr_value}} @endif"></div>
+                      <div class="col-md-6"><input type="text" name="attr_price[{{ $attr->id }}]" id="attr-price-{{ $loop->index }}" class="form-control" value="@if(!empty($edit->attrs[$loop->index]->pivot->price_attr_value)) {{$edit->attrs[$loop->index]->pivot->price_attr_value}} @endif"></div>
                     </div>
                   </div>
                 @endforeach
