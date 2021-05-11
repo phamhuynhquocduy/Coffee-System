@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Category;
-use App\Models\AttributeValues;
+use App\Models\Attribute;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -24,7 +24,7 @@ class ProductController extends Controller
         //
         if(empty(Auth::check())){
             Session::put('message', '<p style="color: red;">Bạn cần phải đăng nhập</p>');
-            return view('login');
+            return redirect('login');
         }
         $list_cate = Category::all();
         $list_product = Product::paginate(10);
@@ -35,6 +35,14 @@ class ProductController extends Controller
         $product = Product::all();
         return response()->json($product);
     }
+
+    public function get_all()
+    {
+        $products = Product::with('attrs')->get();
+
+        return $products;
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -47,8 +55,11 @@ class ProductController extends Controller
             Session::put('message', '<p style="color: red;">Bạn cần phải đăng nhập</p>');
             return view('login');
         }
+
+        $attrs = Attribute::all();
+
         $list_cate = Category::all();
-        return view('page.product.create', compact(['list_cate']));
+        return view('page.product.create', compact(['list_cate', 'attrs']));
     }
 
     /**
@@ -60,6 +71,8 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
+        // dd($request->all());
+
         $image = $request->file('inputImage');
         $name_image = $image->getClientOriginalName();
         $image->move('public/save/images/product/', $name_image );
@@ -76,7 +89,11 @@ class ProductController extends Controller
         $arr['id_category'] = $request->inputCategory;
         $arr['status'] = $request->inputStatus;
 
-        $test = Product::insert($arr);
+        $product = Product::create($arr);
+
+        // add attr
+        $this->saveAttr($product, $request);
+
         Session::put('message', '<p style="color:green;">Thêm sản phẩm thành công</p>');
         return redirect('product/create');
     }
@@ -107,9 +124,15 @@ class ProductController extends Controller
             Session::put('message', '<p style="color: red;">Bạn cần phải đăng nhập</p>');
             return view('login');
         }
+        
+        // attr
+        $attrs = Attribute::all();
+
         $list_cate = Category::all();
-        $edit_pro = Product::where('id', $id)->get();
-        return view('page.product.edit', compact(['list_cate','edit_pro']));
+        $edit_pro = Product::with('attrs')->where('id', $id)->get();
+
+        // return response()->json($edit_pro[0]->attrs[0]->pivot->name_attr_value);
+        return view('page.product.edit', compact(['list_cate','edit_pro', 'attrs']));
     }
     public function editjson($id){
         $edit_pro = Product::where('id', $id)->get(['id','name']);
@@ -135,22 +158,87 @@ class ProductController extends Controller
             Product::where('id',$id)->update($arr);
         }
         
-        $like = Product::where('name', $request->inputName)->get();
-        if(!empty($like[0]->name)){
-            Session::put('message', '<p style="color:red;">Sản phẩm đã tồn tại, vui lòng nhập sản phẩm khác!!</p>');
-            return redirect('product');
-        }
+        // $like = Product::where('name', $request->inputName)->get();
+        // if(!empty($like[0]->name)){
+        //     Session::put('message', '<p style="color:red;">Sản phẩm đã tồn tại, vui lòng nhập sản phẩm khác!!</p>');
+        //     return redirect('product');
+        // }
 
-        Product::where('id',$id)->update([
+        $product = Product::find($id);
+
+        $product->update([
             'name' => $request->inputName,
             'description' => $request->inputDescription,
             'price' => $request->inputPrice,
             'id_category' => $request->inputCategory,
             'status' => $request->inputStatus
         ]);
+
+
+        // // attr name
+        // $attr_name = [];
+        // foreach($request->input('attr_name') as $attrId => $value)
+        // {
+        //     if(!empty($value))
+        //     {
+        //         $attr_name[$attrId] = [
+        //             'name_attr_value' => $value
+        //         ];
+        //     }
+        // }
+        // // dd($attr_name);
+        // // attr price
+        // $attr_price = [];
+        // foreach($request->input('attr_price') as $attrId => $value)
+        // {
+        //     if(!empty($value))
+        //     {
+        //         $attr_price[$attrId] = [
+        //             'price_attr_value' => $value
+        //         ];
+        //     }
+        // }
+
+        // $product->attrs()->sync($attr_name);
+        // $product->attrs()->sync($attr_price);
+        // dd($attr_name);
+        // update attr
+        $this->saveAttr($product, $request);
+
         Session::put('message', '<p style="color:green;">Cập nhật sản phẩm thành công</p>');
         return redirect('product');
     }
+
+    protected function saveAttr($product, $request)
+    {
+        // attr name
+        $attr_name = [];
+        foreach($request->input('attr_name') as $attrId => $value)
+        {
+            if(!empty($value))
+            {
+                $attr_name[$attrId] = [
+                    'name_attr_value' => $value
+                ];
+            }
+        }
+        // dd($attr_name);
+        // attr price
+        $attr_price = [];
+        foreach($request->input('attr_price') as $attrId => $value)
+        {
+            if(!empty($value))
+            {
+                $attr_price[$attrId] = [
+                    'price_attr_value' => $value
+                ];
+            }
+        }
+
+        $product->attrs()->sync($attr_name);
+        $product->attrs()->sync($attr_price);
+    }
+
 
     /**
      * Remove the specified resource from storage.
@@ -223,5 +311,17 @@ class ProductController extends Controller
         Session::put('message', '<p style="color: green;">Thay đổi tình trạng "Còn" của sản phẩm thành công!</p>');
 
         return redirect()->back();
+    }
+
+    public function set_attr()
+    {
+        return view('page.product.create_attr');
+    }
+
+    public function get_attr(Request $request)
+    {
+        Attribute::create($request->only('name_attr'));
+
+        return redirect()->back()->with('message','<p style="color:green;">Thêm thuộc tính thành công</p>');
     }
 }

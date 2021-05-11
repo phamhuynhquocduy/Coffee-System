@@ -41,11 +41,8 @@ Route::get('/customer/reset-password/{token}', 'App\Http\Controllers\Api\ResetPa
 Route::post('/customer/reset-password/{token}', 'App\Http\Controllers\Api\ResetPasswordApiController@post_reset_password')->name('post-reset-password-api');
 
 
-// ------------------------------ filter - product - above - category
-Route::get('/product/filter/category', 'App\Http\Controllers\Api\ProductApiController@filter_attribute');
+// Route::get('/product/filter/category', 'App\Http\Controllers\Api\ProductApiController@filter_attribute');
 
-// ------------------------------ filter - price
-Route::get('/product/filter/{price}', 'App\Http\Controllers\Api\ProductApiController@filter_price');
+// Route::post('/product/filter', 'App\Http\Controllers\Api\ProductApiController@filter_product');
 
-// ------------------------------ filter - eav -product
-Route::post('/product/filter', 'App\Http\Controllers\Api\ProductApiController@filter_product');
+Route::post('/filter/result', 'App\Http\Controllers\Api\ProductApiController@filter');

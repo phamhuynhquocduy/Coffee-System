@@ -69,6 +69,20 @@
                   <label for="inputProjectLeader">Giá tiền sản phẩm</label>
                   <input type="text" name="inputPrice" class="form-control" required>
                 </div>
+
+                {{-- attribute-product --}}
+                @foreach ($attrs as $attr)
+                  <div class="form-group">
+                    <input type="hidden" value="{{ $attr->id }}">
+                    <label for="attr-{{ $loop->index }}">{{ $attr->name_attr }}</label>
+                    <div class="row">
+                      <div class="col-md-6"><input type="text" name="attr_name[{{ $attr->id }}]" id="attr-name-{{ $loop->index }}" class="form-control" placeholder="Tên {{ $attr->name_attr }}"></div>
+                      <div class="col-md-6"><input type="text" name="attr_price[{{ $attr->id }}]" id="attr-price-{{ $loop->index }}" class="form-control" placeholder="Giá tiền"></div>
+                    </div>
+                  </div>
+                @endforeach
+                {{-- // attribute-product --}}
+
                 <div class="form-group">
                   <label for="inputStatus">Trạng thái sản phẩm</label>
                   <select name="inputStatus" class="form-control custom-select" required>
@@ -87,6 +101,7 @@
       <div class="row">
         <div class="col-1"></div>
         <div class="col-10">
+          <a href="{{ route('product.set-create-attr') }}" class="btn btn-info">Thêm thuộc tính</a> 
           <input type="submit" value="Thêm sản phẩm" class="btn btn-success float-right">
         </div>
         <div class="col-1"></div>

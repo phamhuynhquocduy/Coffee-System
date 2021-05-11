@@ -35,7 +35,13 @@ Route::prefix('product')->group(function () {
     // thumbs-up & thumbs-down
     Route::get('/thumbs-down/{id}', 'App\Http\Controllers\ProductController@thumbs_down')->name('product.thumbs-down');
     Route::get('/thumbs-up/{id}', 'App\Http\Controllers\ProductController@thumbs_up')->name('product.thumbs-up');
+
+    // attr
+    Route::get('/create/attr', 'App\Http\Controllers\ProductController@set_attr')->name('product.set-create-attr');
+    Route::post('/create/attr', 'App\Http\Controllers\ProductController@get_attr')->name('product.post-create-attr');
 });
+// get product all
+Route::get('/product-all', 'App\Http\Controllers\ProductController@get_all');
 //category json
 Route::get('product/data/all/json', 'App\Http\Controllers\ProductController@conver_product_json')->name('product-json');
 //category
@@ -49,6 +55,7 @@ Route::prefix('category')->group(function () {
 });
 //category json
 Route::get('category/data/all/json', 'App\Http\Controllers\CategoryController@conver_category_json')->name('category-json');
+
 
 // json 1 cate to all product
 Route::get('/data/json/{id}/one-cate-all-product','App\Http\Controllers\ProductController@one_cate_all_pro');
@@ -80,10 +87,20 @@ Route::post('/customer/send-mail-api', 'App\Http\Controllers\Api\ResetPasswordAp
 // Route::get('/test','App\Http\Controllers\ProductController@list' );
 
 // -------------------------------- filter ---------------------------//
-Route::get('product/filter/attribute/value', 'App\Http\Controllers\FilterAttributeController@all_attribute')->name('all-attribute');
-Route::get('product/filter/attribute/value/result', 'App\Http\Controllers\FilterAttributeController@result_filter')->name('post-filter');
-Route::get('product/filter/attribute/{id}/delete', 'App\Http\Controllers\FilterAttributeController@delete_attribute')->name('delete-attribute');
-Route::get('product/filter/attribute/value/{id}/edit', 'App\Http\Controllers\FilterAttributeController@edit_attribute')->name('edit-attribute');
-Route::post('product/filter/attribute/update', 'App\Http\Controllers\FilterAttributeController@update_attribute')->name('update-attribute');
+// Route::get('product/filter/attribute/value/result', 'App\Http\Controllers\FilterAttributeController@result_filter')->name('post-filter');
+// Route::get('product/filter/attribute/{id}/delete', 'App\Http\Controllers\FilterAttributeController@delete_attribute')->name('delete-attribute');
+// Route::get('product/filter/attribute/value/{id}/edit', 'App\Http\Controllers\FilterAttributeController@edit_attribute')->name('edit-attribute');
+// Route::post('product/filter/attribute/update', 'App\Http\Controllers\FilterAttributeController@update_attribute')->name('update-attribute');
+
+
+/* ------------------------------ BILL ------------------------------- */
+Route::prefix('bill')->group(function () {
+    Route::get('/index', 'App\Http\Controllers\BillControler@index')->name('bill.index');
+    Route::get('/create', 'App\Http\Controllers\BillControler@create')->name('bill.create');
+    Route::post('/store', 'App\Http\Controllers\BillControler@store')->name('bill.store');
+    Route::get('/edit/{id}', 'App\Http\Controllers\BillControler@edit')->name('bill.edit');
+    Route::put('/update/{id}', 'App\Http\Controllers\BillControler@update')->name('bill.update');
+    Route::delete('/delete/{id}', 'App\Http\Controllers\BillControler@delete')->name('bill.delete');
+});
 
 

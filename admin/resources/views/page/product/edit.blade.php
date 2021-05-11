@@ -66,6 +66,20 @@
                   <label for="inputProjectLeader">Giá tiền sản phẩm</label>
                   <input type="text" value="{{$edit->price}}" name="inputPrice" class="form-control" required>
                 </div>
+
+                {{-- attribute-product --}}
+                @foreach ($attrs as $attr)
+                  <div class="form-group">
+                    <input type="hidden" value="{{ $attr->id }}">
+                    <label for="attr-{{ $loop->index }}">{{ $attr->name_attr }}</label>
+                    <div class="row">
+                      <div class="col-md-6"><input type="text" name="attr_name[{{ $attr->id }}]" id="attr-name-{{ $loop->index }}" class="form-control" value=" {{$edit->attrs[$loop->index]->pivot->name_attr_value}}"></div>
+                      <div class="col-md-6"><input type="text" name="attr_price[{{ $attr->id }}]" id="attr-price-{{ $loop->index }}" class="form-control" value=" {{$edit->attrs[$loop->index]->pivot->price_attr_value}} "></div>
+                    </div>
+                  </div>
+                @endforeach
+                {{-- // attribute-product --}}
+
                 <div class="form-group">
                   <label for="inputStatus">Trạng thái sản phẩm</label>
                   <select name="inputStatus" value="{{$edit->status}}" class="form-control custom-select" required>

@@ -16,6 +16,16 @@ class Product extends Model
 
     protected $fillable = array('name', 'price', 'status');
 
+    protected static function booted()
+    {
+        static::deleting(function ($product){
+            $product->attrs()->detach();
+        });
+
+        // Lưu ý khi xóa sản phẩm thì giá trị trong bảng product_attribute cũng phải xóa theo tương ứng
+
+    }
+
     public function attrs()
     {
         return $this->belongsToMany(
@@ -23,6 +33,6 @@ class Product extends Model
             'attribute_values',
             'id_product',
             'id_attribute'
-        )->withPivot('name_attr_value','price_attr_value');
+        )->withPivot('name_attr_value', 'price_attr_value');
     }
 }
