@@ -70,7 +70,8 @@
                       <th style="width: 5%">
                           Tình trạng
                       </th>
-                      <th style="width: 20%">
+                      <th style="width: 15%">
+                        Chức năng
                       </th>
                   </tr>
               </thead>
@@ -140,6 +141,9 @@
         <!-- /.card-body -->
       </div>
       <!-- /.card -->
+      <div class="col-md-12 text-right">
+        <a href="{{ route('product.create') }}" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> Thêm sản phẩm</a>
+      </div>
     </section>
     <!-- /.content -->
     

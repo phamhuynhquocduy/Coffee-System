@@ -147,62 +147,25 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
         $arr =array();
-        $image = $request->file('inputImage');
         
+        $image = $request->file('inputImage');
         if($image){
             $name_image = rand(0,200).$image->getClientOriginalName();
             $image->move('public/save/images/product',  $name_image);
             $arr['image'] = 'public/save/images/product/'.$name_image;
-            Product::where('id',$id)->update($arr);
         }
         
-        // $like = Product::where('name', $request->inputName)->get();
-        // if(!empty($like[0]->name)){
-        //     Session::put('message', '<p style="color:red;">Sản phẩm đã tồn tại, vui lòng nhập sản phẩm khác!!</p>');
-        //     return redirect('product');
-        // }
-
+        $arr['name'] = $request->inputName;
+        $arr['description'] = $request->inputDescription;
+        $arr['price'] = $request->inputPrice;
+        $arr['id_category'] = $request->inputCategory;
+        $arr['status'] = $request->inputStatus;
+        
         $product = Product::find($id);
 
-        $product->update([
-            'name' => $request->inputName,
-            'description' => $request->inputDescription,
-            'price' => $request->inputPrice,
-            'id_category' => $request->inputCategory,
-            'status' => $request->inputStatus
-        ]);
+        $product->update($arr);
 
-
-        // // attr name
-        // $attr_name = [];
-        // foreach($request->input('attr_name') as $attrId => $value)
-        // {
-        //     if(!empty($value))
-        //     {
-        //         $attr_name[$attrId] = [
-        //             'name_attr_value' => $value
-        //         ];
-        //     }
-        // }
-        // // dd($attr_name);
-        // // attr price
-        // $attr_price = [];
-        // foreach($request->input('attr_price') as $attrId => $value)
-        // {
-        //     if(!empty($value))
-        //     {
-        //         $attr_price[$attrId] = [
-        //             'price_attr_value' => $value
-        //         ];
-        //     }
-        // }
-
-        // $product->attrs()->sync($attr_name);
-        // $product->attrs()->sync($attr_price);
-        // dd($attr_name);
-        // update attr
         $this->saveAttr($product, $request);
 
         Session::put('message', '<p style="color:green;">Cập nhật sản phẩm thành công</p>');

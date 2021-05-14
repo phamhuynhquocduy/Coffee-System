@@ -30,7 +30,7 @@ Route::prefix('product')->group(function () {
     Route::get('/{id}/editjson', 'App\Http\Controllers\ProductController@editjson')->name('product.editjson');
     Route::post('/save/attribute', 'App\Http\Controllers\ProductController@save_attribute')->name('product.save-attribute');
     Route::post('/{id}/update', 'App\Http\Controllers\ProductController@update')->name('product.update');
-    Route::get('/{id}', 'App\Http\Controllers\ProductController@destroy')->name('product.destroy');
+    Route::get('/{id}/delete', 'App\Http\Controllers\ProductController@destroy')->name('product.destroy');
 
     // thumbs-up & thumbs-down
     Route::get('/thumbs-down/{id}', 'App\Http\Controllers\ProductController@thumbs_down')->name('product.thumbs-down');
@@ -92,6 +92,11 @@ Route::post('/customer/send-mail-api', 'App\Http\Controllers\Api\ResetPasswordAp
 // Route::get('product/filter/attribute/value/{id}/edit', 'App\Http\Controllers\FilterAttributeController@edit_attribute')->name('edit-attribute');
 // Route::post('product/filter/attribute/update', 'App\Http\Controllers\FilterAttributeController@update_attribute')->name('update-attribute');
 
+/* ------------------------------ ATTRIBUTE ------------------------------- */
+Route::prefix('attribute')->group(function () {
+    Route::get('/index', 'App\Http\Controllers\AttributeController@index')->name('attribute.index');
+    Route::get('/delete/{attribute}', 'App\Http\Controllers\AttributeController@delete')->name('attribute.delete');
+});
 
 /* ------------------------------ BILL ------------------------------- */
 Route::prefix('bill')->group(function () {

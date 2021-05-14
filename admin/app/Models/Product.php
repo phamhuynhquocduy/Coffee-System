@@ -14,7 +14,7 @@ class Product extends Model
 
     public $timestamps = false;
 
-    protected $fillable = array('name', 'price', 'status');
+    protected $fillable = array('name', 'description', 'image', 'price', 'id_category', 'status');
 
     protected static function booted()
     {
