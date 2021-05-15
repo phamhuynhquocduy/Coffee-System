@@ -1,14 +1,11 @@
 package com.example.coffeesystem.ui.home
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.SearchView
 import android.widget.Toast
-import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.AuthFailureError
@@ -18,7 +15,6 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.coffeesystem.DetailProductActivity
 import com.example.coffeesystem.R
 import com.example.coffeesystem.databinding.FragmentHomeBinding
 import com.example.coffeesystem.model.Product
@@ -26,9 +22,6 @@ import com.example.coffeesystem.network.requestProduct
 import com.example.coffeesystem.network.url
 import org.json.JSONArray
 import org.json.JSONException
-import org.json.JSONObject
-
-
 
 
 class HomeFragment : Fragment() {

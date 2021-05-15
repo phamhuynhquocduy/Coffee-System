@@ -26,3 +26,14 @@ data class Category(
     val description: String,
     val listProdcut : ArrayList<Product>
 ): Serializable
+
+data class Cart(
+    val idUser: Int,
+    val idProduct : Int,
+    val name: String,
+    val image: String,
+    val description: String,
+    val price: Double,
+    val idcategory: Int,
+    val count: Int
+): Serializable

@@ -13,6 +13,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coffeesystem.DetailProductActivity
 import com.example.coffeesystem.R
+import com.example.coffeesystem.model.Cart
 import com.example.coffeesystem.model.Product
 import com.squareup.picasso.Picasso
 import java.text.DecimalFormat
