@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.coffeesystem.cart.CartActivity
@@ -43,6 +44,9 @@ class DetailProductActivity : AppCompatActivity() {
 
         var priceproduct = product?.price?.times(count)
         binding.txtTotal.text = dec.format(priceproduct) + " đ"
+
+
+        binding.buttonAddCart.isEnabled = product?.status?.contains("Hết")==false
 
         binding.buttonMinus.setOnClickListener() {
             var count = binding.buttonValues.text.toString().toInt()

@@ -52,7 +52,7 @@ class ListProductActivity : AppCompatActivity(){
                     val price = product.getDouble("price")
                     val idcategory = product.getInt("id_category")
                     val status = product.getString("status")
-                    mReceiveOderList.add(Product(id, name, image, description, price, idcategory))
+                    mReceiveOderList.add(Product(id, name, image, description, price, idcategory,status))
                     mAdapter.addItems(mReceiveOderList)
                 }
             } catch (e: JSONException) {

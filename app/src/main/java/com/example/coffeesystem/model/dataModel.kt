@@ -7,7 +7,8 @@ data class Product(
         val image: String,
         val description: String,
         val price: Double,
-        val idcategory: Int
+        val idcategory: Int,
+        val status: String
 ) : Serializable
 
 data class User(
