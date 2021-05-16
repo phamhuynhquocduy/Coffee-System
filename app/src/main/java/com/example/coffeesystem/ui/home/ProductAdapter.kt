@@ -4,15 +4,19 @@ package com.example.coffeesystem.ui.home
 
 import android.app.Activity
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.*
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coffeesystem.DetailProductActivity
 import com.example.coffeesystem.R
+import com.example.coffeesystem.model.Cart
 import com.example.coffeesystem.model.Product
 import com.squareup.picasso.Picasso
 import java.text.DecimalFormat
@@ -46,14 +50,21 @@ class ProductAdapter(private var mItems: ArrayList<Product>) :RecyclerView.Adapt
             activity.startActivity(intent)
 
         }
+        if (item.status.contains("Hết")){
+            holder.tvStatus?.visibility = View.VISIBLE
+        }else{
+            holder.tvStatus?.visibility = View.INVISIBLE
+
         }
+    }
     inner class CustomViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
         var mTvName = itemView?.findViewById<TextView>(R.id.tv_name)
         var mTvPrice =itemView?.findViewById<TextView>(R.id.tv_price)
         var mImage  =itemView?.findViewById<ImageView>(R.id.img_product)
         var mImgBtnFavorite = itemView?.findViewById<ImageButton>(R.id.imgbtn_favorite)
         var mImgBtnCart = itemView?.findViewById<ImageButton>(R.id.imgbtn_cart)
-        var tvDescription = itemView?.findViewById<TextView>(R.id.tv_description);
+        var tvDescription = itemView?.findViewById<TextView>(R.id.tv_description)
+        var tvStatus = itemView?.findViewById<TextView>(R.id.tv_status)
     }
     fun addItems(items: ArrayList<Product>) {
         mItems.clear()

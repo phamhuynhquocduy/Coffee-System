@@ -54,7 +54,7 @@ class DashboardFragment : Fragment() {
                         val price = product.getDouble("price")
                         val idcategory = product.getInt("id_category")
                         val status = product.getString("status")
-                        mReceiveOderList.add(Product(id, name, image, description, price, idcategory))
+                        mReceiveOderList.add(Product(id, name, image, description, price, idcategory,status))
                     }
                     Log.e("reponsecategory", "success")
                     mAdapter.addItems(mReceiveOderList)
@@ -103,7 +103,7 @@ class DashboardFragment : Fragment() {
                             val price = product.getDouble("price")
                             val idcategory = product.getInt("id_category")
                             val status = product.getString("status")
-                            mProduct.add(Product(id, name, image, description, price, idcategory))
+                            mProduct.add(Product(id, name, image, description, price, idcategory,status))
                         } catch (e: JSONException) {
                             e.printStackTrace()
                         }

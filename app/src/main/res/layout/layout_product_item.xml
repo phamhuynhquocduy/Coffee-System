@@ -74,6 +74,19 @@
                 android:gravity="end"
                 android:layout_marginBottom="8dp"
                 android:layout_weight="3">
+                <TextView
+                    android:id="@+id/tv_status"
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:padding="2dp"
+                    android:layout_marginRight="48dp"
+                    android:background="@drawable/custom_status_product"
+                    android:text="Ngưng Bán">
+                </TextView>
                 <ImageButton
                     android:id="@+id/imgbtn_favorite"
                     android:layout_width="28dp"
