@@ -79,14 +79,6 @@
                   </div>
                 @endforeach
                 {{-- // attribute-product --}}
-
-                <div class="form-group">
-                  <label for="inputStatus">Trạng thái sản phẩm</label>
-                  <select name="inputStatus" value="{{$edit->status}}" class="form-control custom-select" required>
-                    <option value="Còn">Còn</option>
-                    <option value="Hết">Hết</option>
-                  </select>
-                </div>
             </div>
             <!-- /.card-body -->
           </div>
