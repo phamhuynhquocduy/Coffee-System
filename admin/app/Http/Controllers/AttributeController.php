@@ -23,4 +23,9 @@ class AttributeController extends Controller
 
         return redirect()->back()->with('message', '<p style="color: red;">Xóa thuộc tính sản phẩm thành công!</p>');
     }
+
+    public function update(Request $request, $id)
+    {
+        
+    }
 }
