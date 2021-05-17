@@ -9,8 +9,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Trang chủ</a></li>
-              <li class="breadcrumb-item"><a href="{{route('product.create')}}">Thêm sản phẩm</a></li>
-              <li class="breadcrumb-item active">Thêm thuộc tính sản phẩm</li>
+              <li class="breadcrumb-item active">Cập nhật thuộc tính sản phẩm</li>
             </ol>
           </div>
         </div>
@@ -21,7 +20,7 @@
           <div class="col-md-10">
             <div class="card card-secondary">
               <div class="card-header">
-                <h3 class="card-title">Thêm thuộc tính sản phẩm</h3>
+                <h3 class="card-title">Cập nhật thuộc tính sản phẩm</h3>
   
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -39,11 +38,12 @@
                 }
                 ?>
                 </div>
-                <form action="{{route('product.post-create-attr')}}" method="post">
+                @foreach ($edit_attr as $edit)
+                <form action="{{ route('attribute.update', $edit->id) }}" method="post">
                 {{ csrf_field() }}
                   <div class="form-group">
                     <label for="inputName">Tên thuộc tính</label>
-                    <input type="text" name="name_attr" class="form-control"  maxlength="100" required>
+                    <input type="text" name="name_attr" class="form-control" value="{{ $edit->name_attr }}" maxlength="100" required>
                   </div>
               </div>
               <!-- /.card-body -->
@@ -56,10 +56,11 @@
           <div class="col-1"></div>
           <div class="col-10">
             <a href="{{ route('attribute.index') }}" class="btn btn-primary float-left">Tất cả thuộc tính</a>
-            <input type="submit" value="Thêm" class="btn btn-success float-right">
+            <input type="submit" value="Cập nhật" class="btn btn-success float-right">
           </div>
           <div class="col-1"></div>
         </div>
         </form>
+        @endforeach
       </section>
 @endsection

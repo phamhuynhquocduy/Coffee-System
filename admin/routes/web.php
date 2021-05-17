@@ -35,10 +35,6 @@ Route::prefix('product')->group(function () {
     // thumbs-up & thumbs-down
     Route::get('/thumbs-down/{id}', 'App\Http\Controllers\ProductController@thumbs_down')->name('product.thumbs-down');
     Route::get('/thumbs-up/{id}', 'App\Http\Controllers\ProductController@thumbs_up')->name('product.thumbs-up');
-
-    // attr
-    Route::get('/create/attr', 'App\Http\Controllers\ProductController@set_attr')->name('product.set-create-attr');
-    Route::post('/create/attr', 'App\Http\Controllers\ProductController@get_attr')->name('product.post-create-attr');
 });
 // get product all
 Route::get('/product-all', 'App\Http\Controllers\ProductController@get_all');
@@ -94,8 +90,12 @@ Route::post('/customer/send-mail-api', 'App\Http\Controllers\Api\ResetPasswordAp
 
 /* ------------------------------ ATTRIBUTE ------------------------------- */
 Route::prefix('attribute')->group(function () {
+    Route::get('/create/attr', 'App\Http\Controllers\AttributeController@set_attr')->name('attribute.create');
+    Route::post('/create/attr', 'App\Http\Controllers\AttributeController@get_attr')->name('attribute.post-create');
     Route::get('/index', 'App\Http\Controllers\AttributeController@index')->name('attribute.index');
     Route::get('/delete/{attribute}', 'App\Http\Controllers\AttributeController@delete')->name('attribute.delete');
+    Route::get('/edit/{id}', 'App\Http\Controllers\AttributeController@edit')->name('attribute.edit');
+    Route::post('/update/{id}', 'App\Http\Controllers\AttributeController@update')->name('attribute.update');
 });
 
 /* ------------------------------ BILL ------------------------------- */

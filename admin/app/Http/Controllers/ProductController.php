@@ -274,16 +274,4 @@ class ProductController extends Controller
 
         return redirect()->back();
     }
-
-    public function set_attr()
-    {
-        return view('page.product.create_attr');
-    }
-
-    public function get_attr(Request $request)
-    {
-        Attribute::create($request->only('name_attr'));
-
-        return redirect()->back()->with('message','<p style="color:green;">Thêm thuộc tính thành công</p>');
-    }
 }

@@ -9,7 +9,6 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Trang chủ</a></li>
-                    <li class="breadcrumb-item"><a href="{{route('product.create')}}">Thêm sản phẩm</a></li>
                     <li class="breadcrumb-item active">Tất cả thuộc tính sản phẩm</li>
                 </ol>
             </div>
@@ -27,6 +26,18 @@
                 </div>
             </div>
             <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <?php
+                        $message = Session::get('message');
+                        if($message)
+                        {
+                            echo $message;
+                            Session::put('message', null);
+                        }
+                        ?>
+                    </div>
+                </div>
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -41,7 +52,7 @@
                             <td>{{ $value->id }}</td>
                             <td>{{ $value->name_attr }}</td>
                             <td>
-                                <a href="" class="btn btn-primary"><i class="fas fa-edit"></i> Sửa</a>
+                                <a href="{{ route('attribute.edit', $value->id) }}" class="btn btn-primary"><i class="fas fa-edit"></i> Sửa</a>
                                 <a href="{{ route('attribute.delete', $value->id) }}" class="btn btn-danger" onclick="return confirm('Bạn có chắc muốn xóa thuộc tính sản phẩm này không?')"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
                             </td>
                         </tr>

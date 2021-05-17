@@ -101,7 +101,6 @@
       <div class="row">
         <div class="col-1"></div>
         <div class="col-10">
-          <a href="{{ route('product.set-create-attr') }}" class="btn btn-info">Thêm thuộc tính</a> 
           <input type="submit" value="Thêm sản phẩm" class="btn btn-success float-right">
         </div>
         <div class="col-1"></div>
