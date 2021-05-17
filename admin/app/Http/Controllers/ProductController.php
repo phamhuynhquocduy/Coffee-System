@@ -160,7 +160,6 @@ class ProductController extends Controller
         $arr['description'] = $request->inputDescription;
         $arr['price'] = $request->inputPrice;
         $arr['id_category'] = $request->inputCategory;
-        $arr['status'] = $request->inputStatus;
         
         $product = Product::find($id);
 
