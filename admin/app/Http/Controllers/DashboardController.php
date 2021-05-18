@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use Session;
 use App\Models\Category;
+use App\Models\Customer;
+use App\Models\Attribute;
 use App\Models\User;
 use Auth;
 use Hash;
@@ -17,7 +19,9 @@ class DashboardController extends Controller
         if(Auth::check()){
             $category = Category::all();
             $product = Product::all();
-            return view('page.dashboard', compact(['category', 'product']));
+            $customer = Customer::all();
+            $attribute = Attribute::all();
+            return view('page.dashboard', compact(['category', 'product', 'customer', 'attribute']));
         }
         else{
             Session::put('message', '<p style="color:red;">Bạn cần phải đăng nhập</p>');

@@ -69,14 +69,17 @@ Route::prefix('customer')->group(function () {
 //customer json
 Route::get('/customer/data/all/json', 'App\Http\Controllers\CustomerController@conver_customer_json')->name('customer-json');
 
-// send mail
-Route::get('/send-mail', 'App\Http\Controllers\MailController@get_send_mail')->name('get-send-mail');
-// post send email
-Route::post('/send-mail', 'App\Http\Controllers\MailController@post_send_mail')->name('post-send-mail');
+// send mail admin
+Route::get('/send-mail-admin', 'App\Http\Controllers\MailController@get_send_mail')->name('get-send-mail');
+// post send email admin
+Route::post('/send-mail-admin', 'App\Http\Controllers\MailController@post_send_mail')->name('post-send-mail');
+// get reset password admin
+Route::get('/reset-password-admin/{token}', 'App\Http\Controllers\MailController@get_reset_password_admin')->name('get-reset-admin');
+Route::post('/reset-password-admin/{token}', 'App\Http\Controllers\MailController@post_reset_password_admin')->name('post-reset-admin');
 //----------------------------------------------
-//get send mail
+//get send mail api
 Route::get('/customer/send-mail-api', 'App\Http\Controllers\Api\ResetPasswordApiController@get_send_email_api');
-//post send mail
+//post send mail api
 Route::post('/customer/send-mail-api', 'App\Http\Controllers\Api\ResetPasswordApiController@send_email_api')->name('post-send-mail-api');
 
 // -------------------------------- test -----------------------------//

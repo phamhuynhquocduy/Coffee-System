@@ -69,7 +69,9 @@
                 </div>
                 <div class="form-group">
                   <label for="inputDescription">Số điện thoại</label>
-                  <input id="phone" type="text" name="phone" placeholder="Số điện thoại ..." class="form-control" pattern="[0]{1}[0-9]{9}" minlength="10" maxlength="10" required>
+                  <input id="phone" type="text" name="phone" placeholder="Số điện thoại ..." class="form-control" 
+                  onkeyup="if (/[^|0-9]+/g.test(this.value)) this.value = this.value.replace(/[^|0-9]+/g,'')" 
+                  maxlength="10" required>
                 </div>
                 <div class="form-group">
                   <label for="inputDescription">Địa chỉ</label>

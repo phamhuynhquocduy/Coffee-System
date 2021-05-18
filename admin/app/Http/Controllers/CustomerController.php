@@ -52,24 +52,26 @@ class CustomerController extends Controller
      *///Save product method post
     public function store(Request $request)
     {
-        //phone
-        $required_phone = Customer::where('phone',$request->phone)->first();
-        if(!empty($required_phone)){
-            Session::put('message', '<p style="color: red;">Số điện thoại đã tồn tại vui lòng đăng ký bằng số khác!!!</p>');
-            return Redirect::to('customer/create');
-        }
-        //email
-        $required_email = Customer::where('email',$request->email)->first();
-        if(!empty($required_email)){
-            Session::put('message', '<p style="color: red;">Email đã tồn tại vui lòng đăng ký bằng số khác!!!</p>');
-            return Redirect::to('customer/create');
-        }
-        //username
+        
         $required_username = Customer::where('username',$request->username)->first();
+        $required_email = Customer::where('email',$request->email)->first();
+        $required_phone = Customer::where('phone',$request->phone)->first();
+        //username
         if(!empty($required_username)){
-            Session::put('message', '<p style="color: red;">Username đã tồn tại vui lòng đăng ký bằng số khác!!!</p>');
-            return Redirect::to('customer/create');
+            Session::put('message', '<p style="color: red;">Username đã tồn tại vui lòng đăng ký bằng tài khoản khác!!!</p>');
+            return redirect('customer/create');
         }
+        // //email
+        elseif(!empty($required_email)){
+            Session::put('message', '<p style="color: red;">Email đã tồn tại vui lòng đăng ký bằng email khác!!!</p>');
+            return redirect('customer/create');
+        }
+        // //phone
+        elseif(!empty($required_phone)){
+            Session::put('message', '<p style="color: red;">Số điện thoại đã tồn tại vui lòng đăng ký bằng số khác!!!</p>');
+            return redirect('customer/create');
+        }
+          
         $arr = [
             'name' => $request->name,
             'username' => $request->username,
